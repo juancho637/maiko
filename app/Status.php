@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Transformers\StatusTransformer;
 use Illuminate\Database\Eloquent\Model;
 
 class Status extends Model
