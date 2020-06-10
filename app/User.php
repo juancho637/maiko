@@ -2,13 +2,16 @@
 
 namespace App;
 
+use Illuminate\Support\Str;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasRoles, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +19,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'status_id',
+        'full_name',
+        'email',
+        'password',
+        'verification_token',
     ];
 
     /**
@@ -25,7 +32,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
+        'verification_token',
     ];
 
     /**
@@ -36,4 +45,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Generación del token para la verificación del usuario.
+     */
+    public static function generate_verification_token()
+    {
+        return Str::random(40);
+    }
+
+    /**
+     * Obtiene el estado asociado al usuario.
+     */
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
 }
