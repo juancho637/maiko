@@ -40,6 +40,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 
     Route::group(['prefix' => 'zones'], function () {
         Route::resource('countries', 'Dashboard\Country\CountryController', ['as' => 'dashboard']);
+        Route::resource('states', 'Dashboard\State\StateController', ['as' => 'dashboard']);
     });
 });
 
@@ -53,6 +54,10 @@ Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
         'as'=>'datatable'
     ]);
     Route::resource('countries', 'DataTable\Country\CountryController', [
+        'only'=>['index'],
+        'as'=>'datatable'
+    ]);
+    Route::resource('states', 'DataTable\State\StateController', [
         'only'=>['index'],
         'as'=>'datatable'
     ]);

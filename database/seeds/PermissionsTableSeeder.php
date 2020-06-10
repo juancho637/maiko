@@ -32,5 +32,12 @@ class PermissionsTableSeeder extends Seeder
          Permission::create(['name' => 'create countries', 'module' => 'countries']);
          Permission::create(['name' => 'edit countries', 'module' => 'countries']);
          Permission::create(['name' => 'delete countries', 'module' => 'countries']);
+
+         // States
+         Permission::create(['name' => 'view states', 'module' => 'states']);
+         Permission::create(['name' => 'view state', 'module' => 'states']);
+         Permission::create(['name' => 'create states', 'module' => 'states']);
+         Permission::create(['name' => 'edit states', 'module' => 'states']);
+         Permission::create(['name' => 'delete states', 'module' => 'states']);
     }
 }

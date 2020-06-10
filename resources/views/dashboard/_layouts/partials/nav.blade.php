@@ -27,7 +27,8 @@
             </a>
         </li>
     @endcan
-    @if(Auth::user()->can('view countries'))
+    {{-- || Auth::user()->can('view cities') --}}
+    @if(Auth::user()->can('view countries') || Auth::user()->can('view states'))
         <li class="dropdown {{ request()->is('dashboard/zones*') ? 'active' : '' }}">
             <a href="#" class="nav-link has-dropdown">
                 <i class="fas fa-globe-americas"></i>
@@ -38,6 +39,20 @@
                     <li {{ request()->is('dashboard/zones/countries*') ? 'class=active' : '' }}>
                         <a class="nav-link" href="{{ route('dashboard.countries.index') }}">
                             <span>{{ ucfirst(__("countries")) }}</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('view states')
+                    <li {{ request()->is('dashboard/zones/states*') ? 'class=active' : '' }}>
+                        <a class="nav-link" href="{{ route('dashboard.states.index') }}">
+                            <span>{{ ucwords(__("states")) }}</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('view cities')
+                    <li {{ request()->is('dashboard/zones/cities*') ? 'class=active' : '' }}>
+                        <a class="nav-link" href="{{ route('dashboard.cities.index') }}">
+                            <span>{{ ucfirst(__("cities")) }}</span>
                         </a>
                     </li>
                 @endcan
