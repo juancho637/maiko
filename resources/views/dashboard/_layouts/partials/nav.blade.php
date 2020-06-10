@@ -27,8 +27,7 @@
             </a>
         </li>
     @endcan
-    {{-- || Auth::user()->can('view cities') --}}
-    @if(Auth::user()->can('view countries') || Auth::user()->can('view states'))
+    @if(Auth::user()->can('view countries') || Auth::user()->can('view states') || Auth::user()->can('view cities'))
         <li class="dropdown {{ request()->is('dashboard/zones*') ? 'active' : '' }}">
             <a href="#" class="nav-link has-dropdown">
                 <i class="fas fa-globe-americas"></i>

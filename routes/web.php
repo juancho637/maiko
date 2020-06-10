@@ -41,6 +41,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::group(['prefix' => 'zones'], function () {
         Route::resource('countries', 'Dashboard\Country\CountryController', ['as' => 'dashboard']);
         Route::resource('states', 'Dashboard\State\StateController', ['as' => 'dashboard']);
+        Route::resource('cities', 'Dashboard\City\CityController', ['as' => 'dashboard']);
     });
 });
 
@@ -61,4 +62,13 @@ Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
         'only'=>['index'],
         'as'=>'datatable'
     ]);
+    Route::resource('cities', 'DataTable\City\CityController', [
+        'only'=>['index'],
+        'as'=>'datatable'
+    ]);
+});
+
+// Select2
+Route::group(['prefix' => 'select2'], function () {
+    Route::resource('cities', 'Select2\CityController', ['only'=>['index'], 'as'=>'select2']);
 });

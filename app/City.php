@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class State extends Model
+class City extends Model
 {
     /**
      * Los atributos que son asignables en masa.
@@ -13,12 +13,12 @@ class State extends Model
      */
     protected $fillable = [
         'status_id',
-        'country_id',
+        'state_id',
         'name',
     ];
 
     /**
-     * Obtiene el estado asociado al usuario.
+     * Obtiene el estado asociado al la ciudad.
      */
     public function status()
     {
@@ -26,18 +26,18 @@ class State extends Model
     }
 
     /**
-     * Obtiene el país asociado al estado/departamento.
+     * Obtiene el estado/departamento asociado a la ciudad.
      */
-    public function country()
+    public function state()
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(State::class);
     }
 
     /**
-     * Obtiene las ciudades asociadas a un estado/departamento.
+     * Busqueda por nombre de la ciudad.
      */
-    public function cities()
+    public function scopeName($query, $name)
     {
-        return $this->hasMany(City::class);
+        return $query->where('name', 'LIKE', '%'.$name.'%');
     }
 }
