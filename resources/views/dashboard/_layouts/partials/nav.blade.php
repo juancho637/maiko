@@ -27,4 +27,21 @@
             </a>
         </li>
     @endcan
+    @if(Auth::user()->can('view countries'))
+        <li class="dropdown {{ request()->is('dashboard/zones*') ? 'active' : '' }}">
+            <a href="#" class="nav-link has-dropdown">
+                <i class="fas fa-globe-americas"></i>
+                <span>{{ ucfirst(__("zones")) }}</span>
+            </a>
+            <ul class="dropdown-menu">
+                @can('view countries')
+                    <li {{ request()->is('dashboard/zones/countries*') ? 'class=active' : '' }}>
+                        <a class="nav-link" href="{{ route('dashboard.countries.index') }}">
+                            <span>{{ ucfirst(__("countries")) }}</span>
+                        </a>
+                    </li>
+                @endcan
+            </ul>
+        </li>
+    @endif
 </ul>
