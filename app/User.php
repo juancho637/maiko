@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Support\Str;
+use App\Transformers\UserTransformer;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -45,6 +46,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Asigna las tranformaciones correspondientes.
+     */
+    public $transformer = UserTransformer::class;
 
     /**
      * Generación del token para la verificación del usuario.
