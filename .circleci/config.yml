@@ -1,0 +1,24 @@
+workflows:
+  version: 2
+  develop:
+    jobs:
+      - master:
+          filters:
+            branches:
+              only:
+                - develop
+
+version: 2
+jobs:
+  develop:
+    machine: true
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "3a:b7:42:b8:be:6d:e8:a4:a6:da:47:66:63:75:6b:26"
+      - checkout
+      - run: echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin
+      - run: docker build -t juancho637/maiko -t juancho637/maiko:$CIRCLE_SHA1 .
+      - run: docker push juancho637/maiko:latest
+      - run: docker push juancho637/maiko:$CIRCLE_SHA1
+      - run: ssh -o StrictHostKeyChecking=no ec2-user@maiko.fixper.com "/bin/bash /home/ec2-user/docker/deploy.sh $CIRCLE_SHA1 maiko"
