@@ -2,7 +2,7 @@ workflows:
   version: 2
   develop:
     jobs:
-      - master:
+      - develop:
           filters:
             branches:
               only:
