@@ -21,4 +21,4 @@ jobs:
       - run: docker build -t juancho637/maiko -t juancho637/maiko:$CIRCLE_SHA1 .
       - run: docker push juancho637/maiko:latest
       - run: docker push juancho637/maiko:$CIRCLE_SHA1
-      - run: ssh -o StrictHostKeyChecking=no ec2-user@maiko.fixper.com "/bin/bash /home/ec2-user/docker/deploy.sh $CIRCLE_SHA1 maiko"
+      - run: ssh -o StrictHostKeyChecking=no ec2-user@maiko.scriptf.com "/bin/bash /home/ec2-user/docker/deploy.sh $CIRCLE_SHA1 maiko"
