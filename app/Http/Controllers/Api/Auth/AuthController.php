@@ -6,6 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Api\ApiController;
 
+/**
+ * @OA\Server(
+ *      url=L5_SWAGGER_CONST_HOST
+ * )
+ *
+ * @OA\Tag(
+ *     name="Autenticación",
+ *     description="API Endpoints para la autenticación"
+ * )
+ */
 class AuthController extends ApiController
 {
     /**
@@ -19,9 +29,39 @@ class AuthController extends ApiController
     }
 
     /**
-     * Get a JWT via given credentials.
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Post(
+     *     path="/auth/login",
+     *     summary="Login de usuarios para la API",
+     *     tags={"Autenticación"},
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="email",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="password",
+     *                     type="string"
+     *                 ),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Muestra el token de autenticación.",
+     *         @OA\JsonContent()
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Usuario no autorizado.",
+     *     ),
+     *     @OA\Response(
+     *         response=403,
+     *         description="Usuario no verificado.",
+     *     ),
+     * )
      */
     public function login(Request $request)
     {
@@ -39,9 +79,21 @@ class AuthController extends ApiController
     }
 
     /**
-     * Get the authenticated User.
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Get(
+     *     path="/auth/me",
+     *     summary="Usuario autenticado",
+     *     tags={"Autenticación"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Muestra el usuario autenticado.",
+     *         @OA\JsonContent()
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Usuario no autorizado.",
+     *     ),
+     *     security={ {"bearer": {}} },
+     * )
      */
     public function me()
     {
@@ -49,9 +101,21 @@ class AuthController extends ApiController
     }
 
     /**
-     * Log the user out (Invalidate the token).
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Post(
+     *     path="/auth/logout",
+     *     summary="Elimina el token de autenticación",
+     *     tags={"Autenticación"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Elimina el token de autenticación.",
+     *         @OA\JsonContent()
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Usuario no autorizado.",
+     *     ),
+     *     security={ {"bearer": {}} },
+     * )
      */
     public function logout()
     {
@@ -61,9 +125,21 @@ class AuthController extends ApiController
     }
 
     /**
-     * Refresh a token.
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Post(
+     *     path="/auth/refresh",
+     *     summary="Refresca el token de autenticación",
+     *     tags={"Autenticación"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Muestra el token de autenticación.",
+     *         @OA\JsonContent()
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Usuario no autorizado.",
+     *     ),
+     *     security={ {"bearer": {}} },
+     * )
      */
     public function refresh()
     {
