@@ -26,6 +26,14 @@ class Status extends Model
     }
 
     /**
+     * Obtiene las empresas asociadas a un estado.
+     */
+    public function companies()
+    {
+        return $this->hasMany(Company::class);
+    }
+
+    /**
      * Alcance una consulta para incluir los estados de tipo especificado.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query

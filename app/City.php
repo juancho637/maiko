@@ -34,6 +34,14 @@ class City extends Model
     }
 
     /**
+     * Obtiene las empresas asociadas a una ciudad.
+     */
+    public function companies()
+    {
+        return $this->hasMany(Company::class);
+    }
+
+    /**
      * Busqueda por nombre de la ciudad.
      */
     public function scopeName($query, $name)

@@ -11,6 +11,14 @@
             <span>Dashboard</span>
         </a>
     </li>
+    @can('view companies')
+        <li {{ request()->is('dashboard/companies*') ? 'class=active' : '' }}>
+            <a class="nav-link" href="{{ route('dashboard.companies.index') }}">
+                <i class="fas fa-building"></i>
+                <span>{{ ucfirst(__("companies")) }}</span>
+            </a>
+        </li>
+    @endcan
     @can('view users')
         <li {{ request()->is('dashboard/users*') ? 'class=active' : '' }}>
             <a class="nav-link" href="{{ route('dashboard.users.index') }}">
