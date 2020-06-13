@@ -70,5 +70,6 @@ Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
 
 // Select2
 Route::group(['prefix' => 'select2'], function () {
+    Route::resource('states', 'Select2\StateController', ['only'=>['index'], 'as'=>'select2']);
     Route::resource('cities', 'Select2\CityController', ['only'=>['index'], 'as'=>'select2']);
 });
