@@ -1,6 +1,6 @@
 @extends('dashboard._layouts.app')
 
-@section('title', config('app.name').' | Ciudades')
+@section('title', config('app.name').' | '.ucfirst(__("ciudades")))
 
 @push('styles')
 <!-- DataTables -->
@@ -18,10 +18,10 @@
         <div class="col-12 col-md-12 col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Ciudades</h4>
+                    <h4>{{ ucfirst(__("ciudades")) }}</h4>
                     @can('create cities')
                         <div class="card-header-action">
-                            <a href="{{ route('dashboard.cities.create') }}" class="btn btn-primary">Nueva ciudad</a>
+                            <a href="{{ route('dashboard.cities.create') }}" class="btn btn-primary">{{ ucfirst(__("nueva ciudad")) }}</a>
                         </div>
                     @endcan
                 </div>
@@ -31,9 +31,9 @@
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Estado/Departamento</th>
-                                    <th>Acciones</th>
+                                    <th>{{ ucfirst(__("nombre")) }}</th>
+                                    <th>{{ ucfirst(__("estado/departamento")) }}</th>
+                                    <th>{{ ucfirst(__("acciones")) }}</th>
                                 </tr>
                             </thead>
                         </table>

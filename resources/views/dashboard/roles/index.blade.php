@@ -1,6 +1,6 @@
 @extends('dashboard._layouts.app')
 
-@section('title', config('app.name').' | Roles')
+@section('title', config('app.name').' | '.ucfirst(__("roles")))
 
 @push('styles')
 <!-- DataTables -->
@@ -18,10 +18,10 @@
         <div class="col-12 col-md-12 col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Roles</h4>
+                    <h4>{{ ucfirst(__("roles")) }}</h4>
                     @can('create roles')
                         <div class="card-header-action">
-                            <a href="{{ route('dashboard.roles.create') }}" class="btn btn-primary">Nuevo rol</a>
+                            <a href="{{ route('dashboard.roles.create') }}" class="btn btn-primary">{{ ucfirst(__("nuevo rol")) }}</a>
                         </div>
                     @endcan
                 </div>
@@ -31,8 +31,8 @@
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Acciones</th>
+                                    <th>{{ ucfirst(__("nombre")) }}</th>
+                                    <th>{{ ucfirst(__("acciones")) }}</th>
                                 </tr>
                             </thead>
                         </table>

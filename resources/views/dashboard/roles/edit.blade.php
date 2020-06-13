@@ -1,6 +1,6 @@
 @extends('dashboard._layouts.app')
 
-@section('title', config('app.name').' | Roles')
+@section('title', config('app.name').' | '.ucfirst(__("roles")))
 
 @push('styles')
 <style>
@@ -14,10 +14,10 @@
         <div class="col-12 col-md-12 col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Editar rol</h4>
+                    <h4>{{ ucfirst(__("editar rol")) }}</h4>
                     <div class="card-header-action">
-                        <div class="breadcrumb-item"><a href="{{ route('dashboard.roles.index') }}">Roles</a></div>
-                        <div class="breadcrumb-item">Editar rol</div>
+                        <div class="breadcrumb-item"><a href="{{ route('dashboard.roles.index') }}">{{ ucfirst(__("roles")) }}</a></div>
+                        <div class="breadcrumb-item">{{ ucfirst(__("editar rol")) }}</div>
                     </div>
                 </div>
                 <div class="card-body">
@@ -26,7 +26,7 @@
                             @csrf
                             @method('PUT')
                             <div class="form-group col-md-12 {{ $errors->has('name') ? 'has-error' : '' }}">
-                                <label for="name">Nombre</label>
+                                <label for="name">{{ ucfirst(__("nombre")) }}</label>
                                 <input type="text" id="name" name="name" value="{{ old('name', $role->name) }}" class="form-control" {{ $errors->has('name') || !old('name') ? 'autofocus' : '' }}>
                                 {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
                             </div>
@@ -61,7 +61,7 @@
                             </div>
                             @can('edit roles')
                                 <div class="col-md-6 offset-md-3">
-                                    <button type="submit" class="btn btn-icon icon-left btn-primary btn-block"><i class="fas fa-redo"></i> Actualizar</button>
+                                    <button type="submit" class="btn btn-icon icon-left btn-primary btn-block"><i class="fas fa-redo"></i> {{ ucfirst(__("actualizar")) }}</button>
                                 </div>
                             @endcan
                         </div>

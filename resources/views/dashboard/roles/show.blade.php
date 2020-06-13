@@ -1,6 +1,6 @@
 @extends('dashboard._layouts.app')
 
-@section('title', config('app.name').' | Roles')
+@section('title', config('app.name').' | '.ucfirst(__("roles")))
 
 @push('styles')
 <style>
@@ -14,16 +14,16 @@
         <div class="col-12 col-md-12 col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Visualizar rol</h4>
+                    <h4>{{ ucfirst(__("visualizar rol")) }}</h4>
                     <div class="card-header-action">
-                        <div class="breadcrumb-item"><a href="{{ route('dashboard.roles.index') }}">Roles</a></div>
-                        <div class="breadcrumb-item">Visualizar rol</div>
+                        <div class="breadcrumb-item"><a href="{{ route('dashboard.roles.index') }}">{{ ucfirst(__("roles")) }}</a></div>
+                        <div class="breadcrumb-item">{{ ucfirst(__("visualizar rol")) }}</div>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <label>Nombre</label>
+                            <label>{{ ucfirst(__("nombre")) }}</label>
                             <input type="text" value="{{ $role->name }}" class="form-control" disabled>
                         </div>
                         <div class="form-group col-md-12">
@@ -56,7 +56,7 @@
                         </div>
                         @can('edit roles')
                             <div class="col-md-6 offset-md-3">
-                                <a href="{{ route('dashboard.roles.edit', $role) }}" class="btn btn-icon icon-left btn-warning btn-block"><i class="fas fa-pen"></i> Editar</a>
+                                <a href="{{ route('dashboard.roles.edit', $role) }}" class="btn btn-icon icon-left btn-warning btn-block"><i class="fas fa-pen"></i> {{ ucfirst(__("editar")) }}</a>
                             </div>
                         @endcan
                     </div>

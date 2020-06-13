@@ -1,6 +1,6 @@
 @extends('dashboard._layouts.app')
 
-@section('title', config('app.name').' | Estados/Departamentos')
+@section('title', config('app.name').' | '.ucfirst(__("estados/departamentos")))
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('/modules/select2/dist/css/select2.min.css') }}">
@@ -16,10 +16,10 @@
         <div class="col-12 col-md-12 col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Crear estado/departamento</h4>
+                    <h4>{{ ucfirst(__("crear estado/departamento")) }}</h4>
                     <div class="card-header-action">
-                        <div class="breadcrumb-item"><a href="{{ route('dashboard.states.index') }}">Estados/Departamentos</a></div>
-                        <div class="breadcrumb-item">Crear estado/departamento</div>
+                        <div class="breadcrumb-item"><a href="{{ route('dashboard.states.index') }}">{{ ucfirst(__("estados/departamentos")) }}</a></div>
+                        <div class="breadcrumb-item">{{ ucfirst(__("crear estado/departamento")) }}</div>
                     </div>
                 </div>
                 <div class="card-body">
@@ -27,12 +27,12 @@
                         <div class="row">
                             @csrf
                             <div class="form-group col-md-6 {{ $errors->has('name') ? 'has-error' : '' }}">
-                                <label for="name">Nombre</label>
+                                <label for="name">{{ ucfirst(__("nombre")) }}</label>
                                 <input type="text" id="name" name="name" value="{{ old('name') }}" class="form-control" {{ $errors->has('name') || !old('name') ? 'autofocus' : '' }}>
                                 {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
                             </div>
                             <div class="form-group col-md-6 {{ $errors->has('country_id') ? 'has-error' : '' }}">
-                                <label for="country_id">País</label>
+                                <label for="country_id">{{ ucfirst(__("país")) }}</label>
                                 <select class="form-control select2" id="country_id" name="country_id" {{ $errors->has('country_id') || !old('country_id') ? 'autofocus' : '' }} style="width: 100%;">
                                     @foreach($countries as $country)
                                         <option value="{{ $country->id }}" {{ old('country_id') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
@@ -42,7 +42,7 @@
                             </div>
                             @can('create states')
                                 <div class="col-md-6 offset-md-3">
-                                    <button type="submit" class="btn btn-icon icon-left btn-primary btn-block"><i class="fas fa-plus"></i> {{ ucfirst(__('create')) }}</button>
+                                    <button type="submit" class="btn btn-icon icon-left btn-primary btn-block"><i class="fas fa-plus"></i> {{ ucfirst(__('crear')) }}</button>
                                 </div>
                             @endcan
                         </div>

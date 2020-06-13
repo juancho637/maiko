@@ -1,6 +1,6 @@
 @extends('dashboard._layouts.app')
 
-@section('title', config('app.name').' | '.ucfirst(__('users')))
+@section('title', config('app.name').' | '.ucfirst(__('usuarios')))
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('/modules/select2/dist/css/select2.min.css') }}">
@@ -19,10 +19,10 @@
         <div class="col-12 col-md-12 col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>{{ ucfirst(__('create user')) }}</h4>
+                    <h4>{{ ucfirst(__('crear usuario')) }}</h4>
                     <div class="card-header-action">
-                        <div class="breadcrumb-item"><a href="{{ route('dashboard.users.index') }}">{{ ucfirst(__('users')) }}</a></div>
-                        <div class="breadcrumb-item">{{ ucfirst(__('create user')) }}</div>
+                        <div class="breadcrumb-item"><a href="{{ route('dashboard.users.index') }}">{{ ucfirst(__('usuarios')) }}</a></div>
+                        <div class="breadcrumb-item">{{ ucfirst(__('crear usuario')) }}</div>
                     </div>
                 </div>
                 <div class="card-body">
@@ -30,17 +30,17 @@
                         <div class="row">
                             @csrf
                             <div class="form-group col-md-6 {{ $errors->has('full_name') ? 'has-error' : '' }}">
-                                <label for="full_name">Nombre completo*</label>
+                                <label for="full_name">{{ ucfirst(__("nombre completo")) }}*</label>
                                 <input type="text" id="full_name" name="full_name" value="{{ old('full_name') }}" class="form-control" {{ $errors->has('full_name') || !old('full_name') ? 'autofocus' : '' }}>
                                 {!! $errors->first('full_name', '<span class="help-block">:message</span>') !!}
                             </div>
                             <div class="form-group col-md-6 {{ $errors->has('email') ? 'has-error' : '' }}">
-                                <label for="email">Correo electrónico*</label>
+                                <label for="email">{{ ucfirst(__("correo electrónico")) }}*</label>
                                 <input type="text" id="email" name="email" value="{{ old('email') }}" class="form-control" {{ $errors->has('email') ? 'autofocus' : '' }}>
                                 {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
                             </div>
                             <div class="form-group col-md-12 {{ $errors->has('roles') ? 'has-error' : '' }}">
-                                <label for="roles">Rol*</label>
+                                <label for="roles">{{ ucfirst(__("roles")) }}*</label>
                                 <select class="form-control select2" id="roles" name="roles[]" multiple="multiple" {{ $errors->has('roles') ? 'autofocus' : '' }} style="width: 100%;">
                                     @foreach($roles as $role)
                                         @if(old("roles"))
@@ -54,7 +54,7 @@
                             </div>
                             @can('create users')
                                 <div class="col-md-6 offset-md-3">
-                                    <button type="submit" class="btn btn-icon icon-left btn-primary btn-block"><i class="fas fa-plus"></i> {{ ucfirst(__('create')) }}</button>
+                                    <button type="submit" class="btn btn-icon icon-left btn-primary btn-block"><i class="fas fa-plus"></i> {{ ucfirst(__('crear')) }}</button>
                                 </div>
                             @endcan
                         </div>

@@ -269,9 +269,9 @@
                         <div class="d-sm-none d-lg-inline-block">{{ Auth::user()->full_name }}</div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <div class="dropdown-title">Logged in 5 min ago</div>
+                        {{-- <div class="dropdown-title">Logged in 5 min ago</div> --}}
                         <a href="#" class="dropdown-item has-icon">
-                            <i class="far fa-user"></i> Perfil
+                            <i class="far fa-user"></i> {{ ucwords(__("perfil")) }}
                         </a>
                         {{--
                         <a href="#" class="dropdown-item has-icon">
@@ -283,7 +283,7 @@
                         --}}
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item has-icon text-danger" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="fas fa-sign-out-alt"></i> Salir
+                            <i class="fas fa-sign-out-alt"></i> {{ ucwords(__("salir")) }}
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

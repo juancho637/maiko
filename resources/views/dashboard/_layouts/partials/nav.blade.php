@@ -15,7 +15,7 @@
         <li {{ request()->is('dashboard/companies*') ? 'class=active' : '' }}>
             <a class="nav-link" href="{{ route('dashboard.companies.index') }}">
                 <i class="fas fa-building"></i>
-                <span>{{ ucfirst(__("companies")) }}</span>
+                <span>{{ ucfirst(__("empresas")) }}</span>
             </a>
         </li>
     @endcan
@@ -23,7 +23,7 @@
         <li {{ request()->is('dashboard/users*') ? 'class=active' : '' }}>
             <a class="nav-link" href="{{ route('dashboard.users.index') }}">
                 <i class="fas fa-users"></i>
-                <span>{{ ucfirst(__("users")) }}</span>
+                <span>{{ ucfirst(__("usuarios")) }}</span>
             </a>
         </li>
     @endcan
@@ -39,27 +39,27 @@
         <li class="dropdown {{ request()->is('dashboard/zones*') ? 'active' : '' }}">
             <a href="#" class="nav-link has-dropdown">
                 <i class="fas fa-globe-americas"></i>
-                <span>{{ ucfirst(__("zones")) }}</span>
+                <span>{{ ucfirst(__("zonas")) }}</span>
             </a>
             <ul class="dropdown-menu">
                 @can('view countries')
                     <li {{ request()->is('dashboard/zones/countries*') ? 'class=active' : '' }}>
                         <a class="nav-link" href="{{ route('dashboard.countries.index') }}">
-                            <span>{{ ucfirst(__("countries")) }}</span>
+                            <span>{{ ucfirst(__("países")) }}</span>
                         </a>
                     </li>
                 @endcan
                 @can('view states')
                     <li {{ request()->is('dashboard/zones/states*') ? 'class=active' : '' }}>
                         <a class="nav-link" href="{{ route('dashboard.states.index') }}">
-                            <span>{{ ucwords(__("states")) }}</span>
+                            <span>{{ ucwords(__("estados/departamentos")) }}</span>
                         </a>
                     </li>
                 @endcan
                 @can('view cities')
                     <li {{ request()->is('dashboard/zones/cities*') ? 'class=active' : '' }}>
                         <a class="nav-link" href="{{ route('dashboard.cities.index') }}">
-                            <span>{{ ucfirst(__("cities")) }}</span>
+                            <span>{{ ucfirst(__("ciudades")) }}</span>
                         </a>
                     </li>
                 @endcan

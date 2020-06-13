@@ -1,6 +1,6 @@
 @extends('dashboard._layouts.app')
 
-@section('title', config('app.name').' | '.ucfirst(__("users")))
+@section('title', config('app.name').' | '.ucfirst(__("usuarios")))
 
 @push('styles')
 <!-- DataTables -->
@@ -18,10 +18,10 @@
         <div class="col-12 col-md-12 col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>{{ ucfirst(__("users")) }}</h4>
+                    <h4>{{ ucfirst(__("usuarios")) }}</h4>
                     @can('create users')
                         <div class="card-header-action">
-                            <a href="{{ route('dashboard.users.create') }}" class="btn btn-primary">{{ ucfirst(__("new user")) }}</a>
+                            <a href="{{ route('dashboard.users.create') }}" class="btn btn-primary">{{ ucfirst(__("nuevo usuario")) }}</a>
                         </div>
                     @endcan
                 </div>
@@ -31,10 +31,10 @@
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Correo electrónico</th>
-                                    <th>Roles</th>
-                                    <th>Acciones</th>
+                                    <th>{{ ucfirst(__("nombre")) }}</th>
+                                    <th>{{ ucfirst(__("Correo electrónico")) }}</th>
+                                    <th>{{ ucfirst(__("roles")) }}</th>
+                                    <th>{{ ucfirst(__("acciones")) }}</th>
                                 </tr>
                             </thead>
                         </table>

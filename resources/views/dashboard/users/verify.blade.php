@@ -1,6 +1,6 @@
 @extends('layouts.simple')
 
-@section('title', config('app.name').' | Usuarios')
+@section('title', config('app.name').' | '.ucfirst(__("usuarios")))
 
 @push('styles')
 <style>
@@ -19,7 +19,7 @@
             </div>
 
             <div class="card card-primary">
-                <div class="card-header" style="text-align: center;"><h4 style="width: 100%;">Verificación y cambio de contraseña</h4></div>
+                <div class="card-header" style="text-align: center;"><h4 style="width: 100%;">{{ __("Verificación y cambio de contraseña") }}</h4></div>
 
                 <div class="card-body">
                     <form class="form-horizontal" method="POST" action="{{ route('dashboard.users.verify') }}">
@@ -27,20 +27,20 @@
                         <input type="hidden" name="token" value="{{ old('token', $token) }}">
 
                         <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
-                            <label for="password">Contraseña</label>
+                            <label for="password">{{ ucfirst(__("contraseña")) }}</label>
                             <input id="password" type="password" class="form-control" placeholder="Minimo 6 carácteres" name="password" tabindex="1" autofocus>
                             {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
                         </div>
 
                         <div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
-                            <label for="password_confirmation">Confirmar contraseña</label>
+                            <label for="password_confirmation">{{ ucfirst(__("confirmar contraseña")) }}</label>
                             <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" tabindex="1">
                             {!! $errors->first('password_confirmation', '<span class="help-block">:message</span>') !!}
                         </div>
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                Verificar
+                                {{ ucfirst(__("verificar")) }}
                             </button>
                         </div>
                     </form>
@@ -48,14 +48,14 @@
             </div>
         </div>
     </div>
-</div>    
+</div>
 @endsection
 
 @push('scripts')
 <!-- Code -->
 <script>
     $(function () {
-        
+
     });
 </script>
 @endpush
