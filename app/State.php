@@ -40,4 +40,12 @@ class State extends Model
     {
         return $this->hasMany(City::class);
     }
+
+    /**
+     * Busqueda por nombre del estado/departamento.
+     */
+    public function scopeName($query, $name)
+    {
+        return $query->where('name', 'LIKE', '%'.$name.'%');
+    }
 }
