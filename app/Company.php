@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Transformers\CompanyTransformer;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Company extends Model
@@ -22,6 +23,11 @@ class Company extends Model
         'contact_name',
         'contact_number',
     ];
+
+    /**
+     * Asigna las tranformaciones correspondientes.
+     */
+    public $transformer = CompanyTransformer::class;
 
     /**
      * Obtiene la ciudad asociada a la empresa.

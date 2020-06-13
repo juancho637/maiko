@@ -13,7 +13,7 @@ use App\Http\Controllers\Api\ApiController;
  *
  * @OA\Tag(
  *     name="Autenticación",
- *     description="API Endpoints para la autenticación"
+ *     description="Endpoints para la autenticación"
  * )
  */
 class AuthController extends ApiController

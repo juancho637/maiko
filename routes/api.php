@@ -14,10 +14,18 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['middleware' => 'api'], function ($router) {
-    Route::group(['prefix' => 'auth'], function ($router) {
-        Route::post('login', 'Api\Auth\AuthController@login');
-        Route::post('logout', 'Api\Auth\AuthController@logout');
-        Route::post('refresh', 'Api\Auth\AuthController@refresh');
-        Route::get('me', 'Api\Auth\AuthController@me');
+    Route::group(['prefix' => 'v1'], function ($router) {
+        Route::group(['prefix' => 'auth'], function ($router) {
+            Route::post('login', 'Api\Auth\AuthController@login');
+            Route::post('logout', 'Api\Auth\AuthController@logout');
+            Route::post('refresh', 'Api\Auth\AuthController@refresh');
+            Route::get('me', 'Api\Auth\AuthController@me');
+        });
+
+        // Rutas para las empresas
+        Route::apiResource('companies', 'Api\Company\CompanyController', [
+            'only' => ['index', 'show'],
+            'as'=>'api'
+        ]);
     });
 });

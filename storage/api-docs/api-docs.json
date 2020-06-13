@@ -9,7 +9,10 @@
     },
     "servers": [
         {
-            "url": "http://localhost/maiko/public/api"
+            "url": "http://localhost/maiko/public/api/v1"
+        },
+        {
+            "url": "http://localhost/maiko/public/api/v1"
         }
     ],
     "paths": {
@@ -135,12 +138,81 @@
                     }
                 ]
             }
+        },
+        "/companies": {
+            "get": {
+                "tags": [
+                    "Empresas"
+                ],
+                "summary": "Listado de empresas",
+                "operationId": "App\\Http\\Controllers\\Api\\Company\\CompanyController::index",
+                "responses": {
+                    "200": {
+                        "description": "Muestra el listado de empresas.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/companies/{id}": {
+            "get": {
+                "tags": [
+                    "Empresas"
+                ],
+                "summary": "Muestra una empresa",
+                "operationId": "App\\Http\\Controllers\\Api\\Company\\CompanyController::show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id de la empresa",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra una empresa dado un id.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
         }
     },
     "tags": [
         {
             "name": "Autenticación",
-            "description": "API Endpoints para la autenticación"
+            "description": "Endpoints para la autenticación"
+        },
+        {
+            "name": "Empresas",
+            "description": "Endpoints para el módulo de empresas"
         }
     ],
     "components": {
