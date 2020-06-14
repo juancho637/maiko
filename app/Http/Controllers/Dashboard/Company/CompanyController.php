@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Dashboard\Company;
 
 use App\City;
 use App\State;
+use App\Status;
 use App\Company;
 use App\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Status;
 
 class CompanyController extends Controller
 {
