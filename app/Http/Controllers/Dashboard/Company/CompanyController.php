@@ -144,7 +144,7 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         if ($company->delete()){
-            return redirect()->route('dashboard.companies.index')->with('success', __(":model eliminado correctamente", ['model' => ucfirst(__('rol'))]));
+            return redirect()->route('dashboard.companies.index')->with('success', __(":model eliminada correctamente", ['model' => ucfirst(__('empresa'))]));
         }
     }
 }
