@@ -42,6 +42,14 @@ class City extends Model
     }
 
     /**
+     * Obtiene los clientes asociados a una ciudad.
+     */
+    public function clients()
+    {
+        return $this->hasMany(Client::class);
+    }
+
+    /**
      * Busqueda por nombre de la ciudad.
      */
     public function scopeName($query, $name)

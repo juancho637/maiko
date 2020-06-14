@@ -3,10 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Transformers\CompanyTransformer;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Company extends Model
+class Client extends Model
 {
     use SoftDeletes;
 
@@ -17,17 +16,11 @@ class Company extends Model
      */
     protected $fillable = [
         'status_id',
+        'company_id',
         'city_id',
         'name',
         'address',
-        'contact_name',
-        'contact_number',
     ];
-
-    /**
-     * Asigna las tranformaciones correspondientes.
-     */
-    public $transformer = CompanyTransformer::class;
 
     /**
      * Obtiene el estado asociado a la empresa.
@@ -38,18 +31,18 @@ class Company extends Model
     }
 
     /**
+     * Obtiene la empresa asociada al cliente.
+     */
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    /**
      * Obtiene la ciudad asociada a la empresa.
      */
     public function city()
     {
         return $this->belongsTo(City::class);
-    }
-
-    /**
-     * Obtiene los clientes asociados a la empresa.
-     */
-    public function clients()
-    {
-        return $this->hasMany(Client::class);
     }
 }
