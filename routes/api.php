@@ -27,5 +27,13 @@ Route::group(['middleware' => 'api'], function ($router) {
             'only' => ['index', 'show'],
             'as'=>'api'
         ]);
+        Route::apiResource('companies.clients', 'Api\Company\CompanyClientController', [
+            'only' => ['index', 'store'],
+            'as'=>'api'
+        ]);
+        Route::apiResource('clients', 'Api\Client\ClientController', [
+            'only' => ['show', 'update'],
+            'as'=>'api'
+        ]);
     });
 });

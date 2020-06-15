@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Transformers\ClientTransformer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -21,6 +22,11 @@ class Client extends Model
         'name',
         'address',
     ];
+
+    /**
+     * Asigna las tranformaciones correspondientes.
+     */
+    public $transformer = ClientTransformer::class;
 
     /**
      * Obtiene el estado asociado a la empresa.
