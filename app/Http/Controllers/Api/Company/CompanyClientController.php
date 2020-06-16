@@ -2,24 +2,18 @@
 
 namespace App\Http\Controllers\Api\Company;
 
-use App\City;
-use App\State;
 use App\Status;
 use App\Company;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Api\ApiControllerV1;
 
 /**
- * @OA\Server(
- *      url=L5_SWAGGER_CONST_HOST
- * )
- *
  * @OA\Tag(
  *     name="Clientes",
  *     description="Endpoints para el módulo de clientes"
  * )
  */
-class CompanyClientController extends ApiController
+class CompanyClientController extends ApiControllerV1
 {
     /**
      * Create a new CompanyController instance.

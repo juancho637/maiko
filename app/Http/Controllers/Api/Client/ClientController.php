@@ -4,19 +4,15 @@ namespace App\Http\Controllers\Api\Client;
 
 use App\Client;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Api\ApiControllerV1;
 
 /**
- * @OA\Server(
- *      url=L5_SWAGGER_CONST_HOST
- * )
- *
  * @OA\Tag(
  *     name="Clientes",
  *     description="Endpoints para el módulo de clientes"
  * )
  */
-class ClientController extends ApiController
+class ClientController extends ApiControllerV1
 {
     /**
      * Create a new CompanyController instance.

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Traits\ApiResponser;
 use App\Http\Controllers\Controller;
 
-class ApiController extends Controller
+class ApiControllerV1 extends Controller
 {
     use ApiResponser;
 
@@ -16,6 +16,10 @@ class ApiController extends Controller
      *      @OA\Contact(
      *          email="juancho637@gmail.com"
      *      ),
+     * )
+     *
+     * @OA\Server(
+     *      url=L5_SWAGGER_CONST_HOST
      * )
      */
     public function __construct()

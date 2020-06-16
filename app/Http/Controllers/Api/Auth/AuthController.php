@@ -4,19 +4,15 @@ namespace App\Http\Controllers\Api\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Api\ApiControllerV1;
 
 /**
- * @OA\Server(
- *      url=L5_SWAGGER_CONST_HOST
- * )
- *
  * @OA\Tag(
  *     name="Autenticación",
  *     description="Endpoints para la autenticación"
  * )
  */
-class AuthController extends ApiController
+class AuthController extends ApiControllerV1
 {
     /**
      * Create a new AuthController instance.

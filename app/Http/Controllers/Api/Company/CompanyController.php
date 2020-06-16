@@ -3,19 +3,15 @@
 namespace App\Http\Controllers\Api\Company;
 
 use App\Company;
-use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Api\ApiControllerV1;
 
 /**
- * @OA\Server(
- *      url=L5_SWAGGER_CONST_HOST
- * )
- *
  * @OA\Tag(
  *     name="Empresas",
  *     description="Endpoints para el módulo de empresas"
  * )
  */
-class CompanyController extends ApiController
+class CompanyController extends ApiControllerV1
 {
     /**
      * Create a new CompanyController instance.
