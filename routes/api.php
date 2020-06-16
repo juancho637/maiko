@@ -22,6 +22,32 @@ Route::group(['middleware' => 'api'], function ($router) {
             Route::get('me', 'Api\Auth\AuthController@me');
         });
 
+        // Rutas para los países
+        Route::apiResource('countries', 'Api\Country\CountryController', [
+            'only' => ['index', 'show'],
+            'as'=>'api'
+        ]);
+        Route::apiResource('countries.states', 'Api\Country\CountryStateController', [
+            'only' => ['index'],
+            'as'=>'api'
+        ]);
+
+        // Rutas para los estados/departamentos
+        Route::apiResource('states', 'Api\State\StateController', [
+            'only' => ['index', 'show'],
+            'as'=>'api'
+        ]);
+        Route::apiResource('states.cities', 'Api\State\StateCityController', [
+            'only' => ['index'],
+            'as'=>'api'
+        ]);
+
+        // Rutas para las ciudades
+        Route::apiResource('cities', 'Api\City\CityController', [
+            'only' => ['index', 'show'],
+            'as'=>'api'
+        ]);
+
         // Rutas para las empresas
         Route::apiResource('companies', 'Api\Company\CompanyController', [
             'only' => ['index', 'show'],

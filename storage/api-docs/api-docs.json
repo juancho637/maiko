@@ -10,15 +10,6 @@
     "servers": [
         {
             "url": "http://localhost/maiko/public/api/v1"
-        },
-        {
-            "url": "http://localhost/maiko/public/api/v1"
-        },
-        {
-            "url": "http://localhost/maiko/public/api/v1"
-        },
-        {
-            "url": "http://localhost/maiko/public/api/v1"
         }
     ],
     "paths": {
@@ -136,6 +127,74 @@
                     },
                     "401": {
                         "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/cities": {
+            "get": {
+                "tags": [
+                    "Ciudades"
+                ],
+                "summary": "Listado de ciudades",
+                "operationId": "App\\Http\\Controllers\\Api\\City\\CityController::index",
+                "responses": {
+                    "200": {
+                        "description": "Muestra el listado de ciudades.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/cities/{id}": {
+            "get": {
+                "tags": [
+                    "Ciudades"
+                ],
+                "summary": "Muestra la información de un ciudad",
+                "operationId": "App\\Http\\Controllers\\Api\\City\\CityController::show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id de la ciudad",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra una ciudad dado un id.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "404": {
+                        "description": "Recurso no encontrado."
                     }
                 },
                 "security": [
@@ -409,12 +468,234 @@
                     }
                 ]
             }
+        },
+        "/countries": {
+            "get": {
+                "tags": [
+                    "Países"
+                ],
+                "summary": "Listado de países",
+                "operationId": "App\\Http\\Controllers\\Api\\Country\\CountryController::index",
+                "responses": {
+                    "200": {
+                        "description": "Muestra el listado de países.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/countries/{id}": {
+            "get": {
+                "tags": [
+                    "Países"
+                ],
+                "summary": "Muestra la información de un país",
+                "operationId": "App\\Http\\Controllers\\Api\\Country\\CountryController::show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del país",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra un país dado un id.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "404": {
+                        "description": "Recurso no encontrado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/countries/{id}/states": {
+            "get": {
+                "tags": [
+                    "Estados/departamentos"
+                ],
+                "summary": "Listado de estados/departamentos que pertenece a un país",
+                "operationId": "App\\Http\\Controllers\\Api\\Country\\CountryStateController::index",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del país",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra el listado de estados/departamentos asociados a un país.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "404": {
+                        "description": "Id no encontrado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/states/{id}/cities": {
+            "get": {
+                "tags": [
+                    "Ciudades"
+                ],
+                "summary": "Listado de ciudades que pertenece a un estado/departamento",
+                "operationId": "App\\Http\\Controllers\\Api\\State\\StateCityController::index",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del estado/departamento",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra el listado de ciudades asociados a un estados/departamentos.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "404": {
+                        "description": "Id no encontrado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/states": {
+            "get": {
+                "tags": [
+                    "Estados/departamentos"
+                ],
+                "summary": "Listado de estados/departamentos",
+                "operationId": "App\\Http\\Controllers\\Api\\State\\StateController::index",
+                "responses": {
+                    "200": {
+                        "description": "Muestra el listado de estados/departamentos.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/states/{id}": {
+            "get": {
+                "tags": [
+                    "Estados/departamentos"
+                ],
+                "summary": "Muestra la información de un estados/departamentos",
+                "operationId": "App\\Http\\Controllers\\Api\\State\\StateController::show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del estados/departamentos",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra un estados/departamentos dado un id.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "404": {
+                        "description": "Recurso no encontrado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
         }
     },
     "tags": [
         {
             "name": "Autenticación",
             "description": "Endpoints para la autenticación"
+        },
+        {
+            "name": "Ciudades",
+            "description": "Endpoints para el módulo de ciudades"
         },
         {
             "name": "Clientes",
@@ -427,6 +708,22 @@
         {
             "name": "Empresas",
             "description": "Endpoints para el módulo de empresas"
+        },
+        {
+            "name": "Países",
+            "description": "Endpoints para el módulo de países"
+        },
+        {
+            "name": "Estados/departamentos",
+            "description": "Endpoints para el módulo de estados/departamentos"
+        },
+        {
+            "name": "Ciudades",
+            "description": "Endpoints para el módulo de ciudades"
+        },
+        {
+            "name": "Estados/departamentos",
+            "description": "Endpoints para el módulo de ciudades"
         }
     ],
     "components": {
