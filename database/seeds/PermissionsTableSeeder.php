@@ -59,6 +59,6 @@ class PermissionsTableSeeder extends Seeder
          Permission::create(['name' => 'view client', 'module' => 'clients']);
          Permission::create(['name' => 'create clients', 'module' => 'clients']);
          Permission::create(['name' => 'edit clients', 'module' => 'clients']);
-         Permission::create(['name' => 'delete clients', 'module' => 'companies']);
+         Permission::create(['name' => 'delete clients', 'module' => 'clients']);
     }
 }
