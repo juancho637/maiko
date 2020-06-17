@@ -114,7 +114,7 @@ class CountryController extends Controller
     public function destroy(Country $country)
     {
         if($country->delete()) {
-            return redirect()->route('dashboard.services.index')->with('success', 'País eliminado correctamente');
+            return redirect()->route('dashboard.countries.index')->with('success', 'País eliminado correctamente');
         }
     }
 }
