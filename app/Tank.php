@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Transformers\TankTransformer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -27,6 +28,11 @@ class Tank extends Model
         'head_thickness',
         'body_thickness',
     ];
+
+    /**
+     * Asigna las tranformaciones correspondientes.
+     */
+    public $transformer = TankTransformer::class;
 
     /**
      * Obtiene el estado asociado a un tanque.

@@ -57,7 +57,19 @@ Route::group(['middleware' => 'api'], function ($router) {
             'only' => ['index', 'store'],
             'as'=>'api'
         ]);
+
+        // Rutas para los clientes
         Route::apiResource('clients', 'Api\Client\ClientController', [
+            'only' => ['show', 'update'],
+            'as'=>'api'
+        ]);
+        Route::apiResource('clients.tanks', 'Api\Client\ClientTankController', [
+            'only' => ['index', 'store'],
+            'as'=>'api'
+        ]);
+
+        // Rutas para los tanques
+        Route::apiResource('tanks', 'Api\Tank\TankController', [
             'only' => ['show', 'update'],
             'as'=>'api'
         ]);
