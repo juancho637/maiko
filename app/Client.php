@@ -51,4 +51,12 @@ class Client extends Model
     {
         return $this->belongsTo(City::class);
     }
+
+    /**
+     * Obtiene los tanques asociados a un cliente.
+     */
+    public function tanks()
+    {
+        return $this->hasMany(Tank::class);
+    }
 }

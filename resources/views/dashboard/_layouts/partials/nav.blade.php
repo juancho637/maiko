@@ -19,6 +19,14 @@
             </a>
         </li>
     @endcan
+    @can('view tanks')
+        <li {{ request()->is('dashboard/tanks*') ? 'class=active' : '' }}>
+            <a class="nav-link" href="{{ route('dashboard.tanks.index') }}">
+                <i class="fab fa-bitbucket"></i>
+                <span>{{ ucfirst(__("tanques")) }}</span>
+            </a>
+        </li>
+    @endcan
     @can('view users')
         <li {{ request()->is('dashboard/users*') ? 'class=active' : '' }}>
             <a class="nav-link" href="{{ route('dashboard.users.index') }}">
