@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Transformers\WorkOrderTransformer;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class WorkOrder extends Model
@@ -25,6 +26,11 @@ class WorkOrder extends Model
         'hotel',
         'lodging',
     ];
+
+    /**
+     * Asigna las tranformaciones correspondientes.
+     */
+    public $transformer = WorkOrderTransformer::class;
 
     /**
      * Obtiene el estado asociado a un tanque.

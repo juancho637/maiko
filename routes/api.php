@@ -73,5 +73,11 @@ Route::group(['middleware' => 'api'], function ($router) {
             'only' => ['show', 'update'],
             'as'=>'api'
         ]);
+
+        // Rutas para las ordenes de trabajo
+        Route::apiResource('work_orders', 'Api\WorkOrder\WorkOrderController', [
+            'only' => ['index', 'show'],
+            'as'=>'api'
+        ]);
     });
 });
