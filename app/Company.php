@@ -52,4 +52,12 @@ class Company extends Model
     {
         return $this->hasMany(Client::class);
     }
+
+    /**
+     * Obtiene las ordenes de trabajo asociadas a la empresa.
+     */
+    public function work_orders()
+    {
+        return $this->hasMany(WorkOrder::class);
+    }
 }

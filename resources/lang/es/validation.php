@@ -198,5 +198,12 @@ return [
         'diameter' => 'diametro',
         'head_thickness' => 'espesor de la cabeza',
         'body_thickness' => 'espesor del cuerpo',
+        'quotation' => 'cotización',
+        'start' => 'fecha de inicio',
+        'duration' => 'duración',
+        'transport' => 'transporte',
+        'feeding' => 'alimentación',
+        'hotel' => 'hotel',
+        'lodging' => 'alojamiento',
     ],
 ];

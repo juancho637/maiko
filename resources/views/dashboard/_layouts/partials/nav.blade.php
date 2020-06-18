@@ -11,6 +11,14 @@
             <span>Dashboard</span>
         </a>
     </li>
+    @can('view work_orders')
+        <li {{ request()->is('dashboard/work_orders*') ? 'class=active' : '' }}>
+            <a class="nav-link" href="{{ route('dashboard.work_orders.index') }}">
+                <i class="fas fa-book-open"></i>
+                <span>{{ ucfirst(__("ordenes de trabajo")) }}</span>
+            </a>
+        </li>
+    @endcan
     @can('view companies')
         <li {{ request()->is('dashboard/companies*') ? 'class=active' : '' }}>
             <a class="nav-link" href="{{ route('dashboard.companies.index') }}">

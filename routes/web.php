@@ -43,6 +43,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
         'as' => 'dashboard',
     ]);
     Route::resource('tanks', 'Dashboard\Tank\TankController', ['as' => 'dashboard']);
+    Route::resource('work_orders', 'Dashboard\WorkOrder\WorkOrderController', ['as' => 'dashboard']);
 
     Route::group(['prefix' => 'zones'], function () {
         Route::resource('countries', 'Dashboard\Country\CountryController', ['as' => 'dashboard']);
@@ -81,6 +82,10 @@ Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
         'as'=>'datatable'
     ]);
     Route::resource('tanks', 'DataTable\Tank\TankController', [
+        'only'=>['index'],
+        'as'=>'datatable'
+    ]);
+    Route::resource('work_orders', 'DataTable\WorkOrder\WorkOrderController', [
         'only'=>['index'],
         'as'=>'datatable'
     ]);
