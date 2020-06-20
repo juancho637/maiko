@@ -4,7 +4,8 @@ COPY ./ /app
 
 RUN rm -rf .git .config .circleci Dockerfile .DS_Store .gitignore readme.md \
     .env .env.example .editorconfig .env.testing .gitattributes && \
-    composer install --optimize-autoloader --no-dev
+    composer install --optimize-autoloader
+    # --no-dev
 
 FROM php:7.3-fpm-alpine3.11
 
