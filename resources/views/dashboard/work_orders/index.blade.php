@@ -50,7 +50,6 @@
 @push('scripts')
 <script src="{{ asset('/modules/datatables/datatables.min.js') }}"></script>
 <script src="{{ asset('/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('/js/datatables_config.js') }}"></script>
 
 <script>
     $(function () {
@@ -67,6 +66,21 @@
                 {data: 'status.name', name: 'status.name'},
                 {data: 'actions', name: 'actions'}
             ],
+            "language": {
+                "info": "_TOTAL_ registros",
+                "search": "Buscar",
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "paginate": {
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                },
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "emptyTable": "No hay datos",
+                "zeroRecords": "No hay coinsidencias",
+                "infoEmpty": "",
+                "infoFiltered": ""
+            }
         });
     });
 </script>
