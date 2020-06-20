@@ -33,7 +33,7 @@ class CompanyTransformer extends TransformerAbstract
     public function transform(Company $company)
     {
         return [
-            'identificator' => (int)$company->id,
+            'id' => (int)$company->id,
             'status' => (int)$company->status_id,
             'name' => (string)$company->name,
             'address' => (string)$company->address,

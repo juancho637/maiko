@@ -33,7 +33,7 @@ class WorkOrderTransformer extends TransformerAbstract
     public function transform(WorkOrder $work_order)
     {
         return [
-            'identificator' => (int)$work_order->id,
+            'id' => (int)$work_order->id,
             'status' => (int)$work_order->status_id,
             'company' => (string)$work_order->company_id,
             'quotation' => (string)$work_order->quotation,

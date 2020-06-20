@@ -33,7 +33,7 @@ class ClientTransformer extends TransformerAbstract
     public function transform(Client $client)
     {
         return [
-            'identificator' => (int)$client->id,
+            'id' => (int)$client->id,
             'status' => (int)$client->status_id,
             'company' => (int)$client->company_id,
             'city' => (int)$client->city_id,

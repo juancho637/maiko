@@ -33,7 +33,7 @@ class TankTransformer extends TransformerAbstract
     public function transform(Tank $tank)
     {
         return [
-            'identificator' => (int)$tank->id,
+            'id' => (int)$tank->id,
             'status' => (int)$tank->status_id,
             'client' => (int)$tank->client_id,
             'internal_serial_number' => (string)$tank->internal_serial_number,
