@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Transformers\CountryTransformer;
 
 class Country extends Model
 {
@@ -17,6 +18,11 @@ class Country extends Model
         'short_name',
         'phone_code',
     ];
+
+    /**
+     * Asigna las tranformaciones correspondientes.
+     */
+    public $transformer = CountryTransformer::class;
 
     /**
      * Obtiene el estado asociado al usuario.

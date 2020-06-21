@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Transformers\StateTransformer;
 use Illuminate\Database\Eloquent\Model;
 
 class State extends Model
@@ -16,6 +17,11 @@ class State extends Model
         'country_id',
         'name',
     ];
+
+    /**
+     * Asigna las tranformaciones correspondientes.
+     */
+    public $transformer = StateTransformer::class;
 
     /**
      * Obtiene el estado asociado al usuario.

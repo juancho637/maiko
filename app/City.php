@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Transformers\CityTransformer;
 use Illuminate\Database\Eloquent\Model;
 
 class City extends Model
@@ -16,6 +17,11 @@ class City extends Model
         'state_id',
         'name',
     ];
+
+    /**
+     * Asigna las tranformaciones correspondientes.
+     */
+    public $transformer = CityTransformer::class;
 
     /**
      * Obtiene el estado asociado al la ciudad.
