@@ -11,7 +11,7 @@
             <span>Dashboard</span>
         </a>
     </li>
-    @can('view work_orders')
+    @can('view work orders')
         <li {{ request()->is('dashboard/work_orders*') ? 'class=active' : '' }}>
             <a class="nav-link" href="{{ route('dashboard.work_orders.index') }}">
                 <i class="fas fa-book-open"></i>

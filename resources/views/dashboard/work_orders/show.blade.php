@@ -52,7 +52,7 @@
                             <label for="lodging">{{ ucfirst(__("alojamiento")) }}</label>
                             <input type="text" id="lodging" value="{{ $work_order->lodging }}" class="form-control" disabled>
                         </div>
-                        @can('edit work_orders')
+                        @can('edit work orders')
                             <div class="col-md-6 offset-md-3">
                                 <a href="{{ route('dashboard.work_orders.edit', $work_order) }}" class="btn btn-icon icon-left btn-warning btn-block"><i class="fas fa-pen"></i> {{ ucfirst(__('editar')) }}</a>
                             </div>

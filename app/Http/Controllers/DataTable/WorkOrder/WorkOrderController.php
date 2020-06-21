@@ -13,7 +13,7 @@ class WorkOrderController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('can:view work_orders')->only('index');
+        $this->middleware('can:view work orders')->only('index');
     }
 
     /**

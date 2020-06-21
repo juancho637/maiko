@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4>{{ ucfirst(__("ordenes de trabajo")) }}</h4>
-                    @can('create work_orders')
+                    @can('create work orders')
                         <div class="card-header-action">
                             <a href="{{ route('dashboard.work_orders.create') }}" class="btn btn-primary">{{ ucfirst(__("nueva orden de trabajo")) }}</a>
                         </div>

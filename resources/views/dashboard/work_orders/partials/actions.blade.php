@@ -1,10 +1,10 @@
-@can('view work_order')
+@can('view work order')
     <a href="{{ route('dashboard.work_orders.show', $id) }}" class="btn btn-xs btn-icon btn-info"><i class="fas fa-eye"></i></a>
 @endcan
-@can('edit work_orders')
+@can('edit work orders')
     <a href="{{ route('dashboard.work_orders.edit', $id) }}" class="btn btn-xs btn-icon btn-warning"><i class="fas fa-pen"></i></a>
 @endcan
-@can('delete work_orders')
+@can('delete work orders')
     <form method="POST" action="{{ route('dashboard.work_orders.destroy', $id) }}" style="display: inline">
         {{ csrf_field() }}
         {{ method_field('DELETE') }}

@@ -71,7 +71,7 @@
                                 <input type="text" id="lodging" name="lodging" value="{{ old('lodging') }}" class="form-control" {{ $errors->has('lodging') ? 'autofocus' : '' }}>
                                 {!! $errors->first('lodging', '<span class="help-block">:message</span>') !!}
                             </div>
-                            @can('create work_orders')
+                            @can('create work orders')
                                 <div class="col-md-6 offset-md-3">
                                     <button type="submit" class="btn btn-icon icon-left btn-primary btn-block"><i class="fas fa-plus"></i> {{ ucfirst(__('crear')) }}</button>
                                 </div>

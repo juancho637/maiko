@@ -12,6 +12,18 @@ use App\Http\Controllers\Controller;
 class WorkOrderController extends Controller
 {
     /**
+     * Inicialización de funcionalidades que va a requerir el controlador.
+     */
+    public function __construct()
+    {
+        $this->middleware('can:view work orders')->only('index');
+        $this->middleware('can:view work order')->only('show');
+        $this->middleware('can:create work orders')->only(['create', 'store']);
+        $this->middleware('can:edit work orders')->only(['edit', 'update']);
+        $this->middleware('can:delete work orders')->only('destroy');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
