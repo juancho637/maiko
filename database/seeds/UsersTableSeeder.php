@@ -15,16 +15,22 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $adminRole = Role::whereIn('name', ['super administrator'])->pluck('id')->toArray();
+        $adminRole = Role::all()->pluck('id')->toArray();
         $active_id = Status::abbreviation('gen-act')->id;
+        $now = Carbon::now()->toDateTimeString();
 
         $juan = User::create([
             'status_id' => $active_id,
             'full_name' => 'Juan David Garcia Reyes',
             'email' => 'super@maiko.com',
             'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-            'email_verified_at' => Carbon::now()->toDateTimeString(),
+            'email_verified_at' => $now,
         ]);
         $juan->syncRoles($adminRole);
+
+        $inspectorRole = Role::where('name', 'inspector')->first()->id;
+        factory(User::class, 5)->create()->each(function ($user) use ($inspectorRole){
+            $user->syncRoles($inspectorRole);
+        });
     }
 }
