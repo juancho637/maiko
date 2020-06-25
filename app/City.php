@@ -56,6 +56,14 @@ class City extends Model
     }
 
     /**
+     * Obtiene las inspecciones asociadas a una ciudad.
+     */
+    public function inspections()
+    {
+        return $this->hasMany(Inspection::class);
+    }
+
+    /**
      * Busqueda por nombre de la ciudad.
      */
     public function scopeName($query, $name)

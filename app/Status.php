@@ -58,6 +58,14 @@ class Status extends Model
     }
 
     /**
+     * Obtiene las inspecciones asociadas a un estado.
+     */
+    public function inspections()
+    {
+        return $this->hasMany(Inspection::class);
+    }
+
+    /**
      * Alcance una consulta para incluir los estados de tipo especificado.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query

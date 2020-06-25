@@ -993,6 +993,98 @@
                     }
                 ]
             }
+        },
+        "/work_orders/{id}/inspections": {
+            "post": {
+                "tags": [
+                    "Inspecciones"
+                ],
+                "summary": "Almacena una inspección",
+                "operationId": "App\\Http\\Controllers\\Api\\WorkOrder\\WorkOrderInspectionController::store",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id de la orden de trabajo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "latitude",
+                                    "longitude",
+                                    "date"
+                                ],
+                                "properties": {
+                                    "user_id": {
+                                        "type": "integer"
+                                    },
+                                    "latitude": {
+                                        "type": "integer"
+                                    },
+                                    "longitude": {
+                                        "type": "integer"
+                                    },
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "tank_id": {
+                                        "type": "integer"
+                                    },
+                                    "client_id": {
+                                        "type": "integer"
+                                    },
+                                    "observation": {
+                                        "type": "string"
+                                    },
+                                    "light_intensity": {
+                                        "type": "string"
+                                    },
+                                    "humidity": {
+                                        "type": "string"
+                                    },
+                                    "temperature": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Almacena una nueva inspección asociada a una orden de trabajo.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "409": {
+                        "description": "Error en validaciones de negocio."
+                    },
+                    "422": {
+                        "description": "Entidad no procesable."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
         }
     },
     "tags": [
@@ -1029,6 +1121,10 @@
             "description": "Endpoints para el módulo de estados/departamentos"
         },
         {
+            "name": "Inspecciones",
+            "description": "Endpoints para el módulo de inspecciones"
+        },
+        {
             "name": "Ciudades",
             "description": "Endpoints para el módulo de ciudades"
         },
@@ -1043,6 +1139,10 @@
         {
             "name": "Ordenes de trabajo",
             "description": "Endpoints para el módulo de ordenes de trabajo"
+        },
+        {
+            "name": "Inspecciones",
+            "description": "Endpoints para el módulo de inspecciones"
         }
     ],
     "components": {

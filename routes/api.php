@@ -79,5 +79,9 @@ Route::group(['middleware' => 'api'], function ($router) {
             'only' => ['index', 'show'],
             'as'=>'api'
         ]);
+        Route::apiResource('work_orders.inspections', 'Api\WorkOrder\WorkOrderInspectionController', [
+            'only' => ['store'],
+            'as'=>'api'
+        ]);
     });
 });

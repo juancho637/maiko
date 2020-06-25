@@ -49,4 +49,12 @@ class Tank extends Model
     {
         return $this->belongsTo(Client::class);
     }
+
+    /**
+     * Obtiene las inspecciones asociadas a un tanque.
+     */
+    public function inspections()
+    {
+        return $this->hasMany(Inspection::class);
+    }
 }

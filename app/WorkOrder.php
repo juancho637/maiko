@@ -47,4 +47,12 @@ class WorkOrder extends Model
     {
         return $this->belongsTo(Company::class);
     }
+
+    /**
+     * Obtiene las inspecciones asociadas a una orden de trabajo.
+     */
+    public function inspections()
+    {
+        return $this->hasMany(Inspection::class);
+    }
 }

@@ -89,4 +89,12 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsTo(Status::class);
     }
+
+    /**
+     * Obtiene las inspecciones asociadas a un usuario.
+     */
+    public function inspections()
+    {
+        return $this->hasMany(Inspection::class);
+    }
 }
