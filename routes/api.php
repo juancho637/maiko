@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,9 +11,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['middleware' => 'api'], function ($router) {
-    Route::group(['prefix' => 'v1'], function ($router) {
-        Route::group(['prefix' => 'auth'], function ($router) {
+Route::group(['middleware' => 'api'], function () {
+    Route::group(['prefix' => 'v1'], function () {
+        Route::group(['prefix' => 'auth'], function () {
             Route::post('login', 'Api\Auth\AuthController@login');
             Route::post('logout', 'Api\Auth\AuthController@logout');
             Route::post('refresh', 'Api\Auth\AuthController@refresh');
