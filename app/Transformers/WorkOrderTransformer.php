@@ -45,6 +45,27 @@ class WorkOrderTransformer extends TransformerAbstract
             'lodging' => (string)$work_order->lodging,
             'created' => (string)$work_order->created_at,
             'updated' => (string)$work_order->updated_at,
+            'deleted' => isset($work_order->deleted) ? (string)$work_order->deleted : null,
         ];
+    }
+
+    public static function originalAttribute($index){
+        $attributes = [
+            'id' => 'id',
+            'status' => 'status_id',
+            'company' => 'company_id',
+            'quotation' => 'quotation',
+            'start' => 'start',
+            'duration' => 'duration',
+            'transport' => 'transport',
+            'feeding' => 'feeding',
+            'hotel' => 'hotel',
+            'lodging' => 'lodging',
+            'created' => 'created_at',
+            'updated' => 'updated_at',
+            'deleted' => 'deleted_at',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
     }
 }

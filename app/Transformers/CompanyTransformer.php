@@ -41,6 +41,23 @@ class CompanyTransformer extends TransformerAbstract
             'contact_number' => (string)$company->contact_number,
             'created' => (string)$company->created_at,
             'updated' => (string)$company->updated_at,
+            'deleted' => isset($company->deleted) ? (string)$company->deleted : null,
         ];
+    }
+
+    public static function originalAttribute($index){
+        $attributes = [
+            'id' => 'id',
+            'status' => 'status_id',
+            'name' => 'name',
+            'address' => 'address',
+            'contact_name' => 'contact_name',
+            'contact_number' => 'contact_number',
+            'created' => 'created_at',
+            'updated' => 'updated_at',
+            'deleted' => 'deleted_at',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
     }
 }

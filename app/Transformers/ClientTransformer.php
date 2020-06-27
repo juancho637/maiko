@@ -41,6 +41,23 @@ class ClientTransformer extends TransformerAbstract
             'address' => (string)$client->address,
             'created' => (string)$client->created_at,
             'updated' => (string)$client->updated_at,
+            'deleted' => isset($client->deleted) ? (string)$client->deleted : null,
         ];
+    }
+
+    public static function originalAttribute($index){
+        $attributes = [
+            'id' => 'id',
+            'status' => 'status_id',
+            'company' => 'company_id',
+            'city' => 'city_id',
+            'name' => 'name',
+            'address' => 'address',
+            'created' => 'created_at',
+            'updated' => 'updated_at',
+            'deleted' => 'deleted_at',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
     }
 }

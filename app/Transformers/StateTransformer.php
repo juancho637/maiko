@@ -39,6 +39,21 @@ class StateTransformer extends TransformerAbstract
             'name' => (string)$state->name,
             'created' => (string)$state->created_at,
             'updated' => (string)$state->updated_at,
+            'deleted' => isset($state->deleted) ? (string)$state->deleted : null,
         ];
+    }
+
+    public static function originalAttribute($index){
+        $attributes = [
+            'id' => 'id',
+            'status' => 'status_id',
+            'country' => 'country_id',
+            'name' => 'name',
+            'created' => 'created_at',
+            'updated' => 'updated_at',
+            'deleted' => 'deleted_at',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
     }
 }

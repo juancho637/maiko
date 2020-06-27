@@ -39,6 +39,21 @@ class CityTransformer extends TransformerAbstract
             'name' => (string)$city->name,
             'created' => (string)$city->created_at,
             'updated' => (string)$city->updated_at,
+            'deleted' => isset($city->deleted) ? (string)$city->deleted : null,
         ];
+    }
+
+    public static function originalAttribute($index){
+        $attributes = [
+            'id' => 'id',
+            'status' => 'status_id',
+            'state' => 'state_id',
+            'name' => 'name',
+            'created' => 'created_at',
+            'updated' => 'updated_at',
+            'deleted' => 'deleted_at',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
     }
 }

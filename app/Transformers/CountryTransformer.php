@@ -40,6 +40,22 @@ class CountryTransformer extends TransformerAbstract
             'phone_code' => (string)$country->phone_code,
             'created' => (string)$country->created_at,
             'updated' => (string)$country->updated_at,
+            'deleted' => isset($country->deleted) ? (string)$country->deleted : null,
         ];
+    }
+
+    public static function originalAttribute($index){
+        $attributes = [
+            'id' => 'id',
+            'status' => 'status_id',
+            'name' => 'name',
+            'short_name' => 'short_name',
+            'phone_code' => 'phone_code',
+            'created' => 'created_at',
+            'updated' => 'updated_at',
+            'deleted' => 'deleted_at',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
     }
 }

@@ -38,17 +38,41 @@ class InspectionTransformer extends TransformerAbstract
             'user' => (int)$inspection->user_id,
             'work_order' => (int)$inspection->work_order_id,
             'city' => isset($inspection->city_id) ? (int)$inspection->city_id : null,
-            'tank' => isset($inspection->city_id) ? (int)$inspection->tank_id : null,
+            'tank' => isset($inspection->tank_id) ? (int)$inspection->tank_id : null,
             'date' => (string)$inspection->date,
-            'address' => isset($inspection->city_id) ? (string)$inspection->address : null,
-            'light_intensity' => isset($inspection->city_id) ? (string)$inspection->light_intensity : null,
-            'humidity' => isset($inspection->city_id) ? (string)$inspection->humidity : null,
-            'temperature' => isset($inspection->city_id) ? (string)$inspection->temperature : null,
+            'address' => isset($inspection->address) ? (string)$inspection->address : null,
+            'light_intensity' => isset($inspection->light_intensity) ? (string)$inspection->light_intensity : null,
+            'humidity' => isset($inspection->humidity) ? (string)$inspection->humidity : null,
+            'temperature' => isset($inspection->temperature) ? (string)$inspection->temperature : null,
             'latitude' => (string)$inspection->latitude,
             'longitude' => (string)$inspection->longitude,
-            'observation' => isset($inspection->city_id) ? (string)$inspection->observation : null,
+            'observation' => isset($inspection->observation) ? (string)$inspection->observation : null,
             'created' => (string)$inspection->created_at,
             'updated' => (string)$inspection->updated_at,
         ];
+    }
+
+    public static function originalAttribute($index){
+        $attributes = [
+            'id' => 'id',
+            'status' => 'status_id',
+            'user' => 'user_id',
+            'work_order' => 'work_order_id',
+            'city' => 'city_id',
+            'tank' => 'tank_id',
+            'date' => 'date',
+            'address' => 'address',
+            'light_intensity' => 'light_intensity',
+            'humidity' => 'humidity',
+            'temperature' => 'temperature',
+            'latitude' => 'latitude',
+            'longitude' => 'longitude',
+            'observation' => 'observation',
+            'created' => 'created_at',
+            'updated' => 'updated_at',
+            'deleted' => 'deleted_at',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
     }
 }
