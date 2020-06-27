@@ -19,6 +19,7 @@ class CreateStatesTable extends Migration
             $table->unsignedBigInteger('country_id');
             $table->string('name');
             $table->timestamps();
+            $table->softDeletes();
 
             //Relations
             $table->foreign('status_id')->references('id')->on('statuses');

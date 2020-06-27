@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Transformers\CountryTransformer;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Country extends Model
 {
+    use SoftDeletes;
+
     /**
      * Los atributos que son asignables en masa.
      *

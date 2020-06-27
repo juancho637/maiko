@@ -4,9 +4,12 @@ namespace App;
 
 use App\Transformers\StateTransformer;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class State extends Model
 {
+    use SoftDeletes;
+
     /**
      * Los atributos que son asignables en masa.
      *

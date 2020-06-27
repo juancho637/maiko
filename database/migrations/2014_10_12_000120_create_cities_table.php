@@ -19,6 +19,7 @@ class CreateCitiesTable extends Migration
             $table->unsignedBigInteger('state_id');
             $table->string('name');
             $table->timestamps();
+            $table->softDeletes();
 
             //Relations
             $table->foreign('status_id')->references('id')->on('statuses');

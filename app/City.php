@@ -4,9 +4,12 @@ namespace App;
 
 use App\Transformers\CityTransformer;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class City extends Model
 {
+    use SoftDeletes;
+
     /**
      * Los atributos que son asignables en masa.
      *

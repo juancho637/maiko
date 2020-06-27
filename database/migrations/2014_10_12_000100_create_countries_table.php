@@ -20,6 +20,7 @@ class CreateCountriesTable extends Migration
             $table->string('name');
             $table->integer('phone_code');
             $table->timestamps();
+            $table->softDeletes();
 
             //Relations
             $table->foreign('status_id')->references('id')->on('statuses');
