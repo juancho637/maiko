@@ -23,13 +23,21 @@ class StatusesTableSeeder extends Seeder
             'name' => 'eliminado',
             'description' => 'registro eliminado parcialmente de la base de datos',
             'abbreviation' => 'gen-del',
-            'type' => 'general',
+            'type' => 'general-inac',
         ]);
         Status::create([
             'name' => 'inactivo',
             'description' => 'registro inactivo en la base de datos',
             'abbreviation' => 'gen-inact',
-            'type' => 'general',
+            'type' => 'general-inac',
+        ]);
+
+        // Inspection statuses
+        Status::create([
+            'name' => 'completada',
+            'description' => 'inspección finalizada',
+            'abbreviation' => 'insp-comp',
+            'type' => 'inspections',
         ]);
     }
 }

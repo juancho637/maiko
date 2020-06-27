@@ -3,6 +3,8 @@
 @section('title', config('app.name').' | '.ucfirst(__("ordenes de trabajo")))
 
 @push('styles')
+<link rel="stylesheet" href="{{ asset('/modules/datatables/datatables.min.css') }}">
+<link rel="stylesheet" href="{{ asset('/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
 
 @endpush
 
@@ -61,14 +63,76 @@
                 </div>
             </div>
         </div>
+        @can('view inspections')
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>{{ ucfirst(__("inspecciones")) }}</h4>
+                        @can('create inspections')
+                            <div class="card-header-action">
+                                <a href="{{ route('dashboard.work_orders.inspections.create', $work_order) }}" class="btn btn-primary">{{ ucfirst(__("nueva inspección")) }}</a>
+                            </div>
+                        @endcan
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="inspections">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>{{ ucfirst(__("inspector")) }}</th>
+                                    <th>{{ ucfirst(__("fecha")) }}</th>
+                                    <th>{{ ucfirst(__("serial interno del tanque")) }}</th>
+                                    <th>{{ ucfirst(__("estado")) }}</th>
+                                    <th>{{ ucfirst(__("acciones")) }}</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endcan
     </div>
 </div>
 @endsection
 
 @push('scripts')
+<script src="{{ asset('/modules/datatables/datatables.min.js') }}"></script>
+<script src="{{ asset('/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
+
 <script>
     $(function () {
-
+        @can('view inspections')
+            $('#inspections').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('datatable.work_orders.inspections.index', $work_order) }}",
+                columns: [
+                    {data: 'id', name: 'id'},
+                    {data: 'user.full_name', name: 'user.full_name'},
+                    {data: 'date', name: 'date'},
+                    {data: 'tank.internal_serial_number', name: 'tank.internal_serial_number'},
+                    {data: 'status.name', name: 'status.name'},
+                    {data: 'actions', name: 'actions'}
+                ],
+                "language": {
+                    "info": "_TOTAL_ registros",
+                    "search": "Buscar",
+                    "lengthMenu": "Mostrar _MENU_ registros",
+                    "paginate": {
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "emptyTable": "No hay datos",
+                    "zeroRecords": "No hay coinsidencias",
+                    "infoEmpty": "",
+                    "infoFiltered": ""
+                }
+            });
+        @endcan
     });
 </script>
 @endpush

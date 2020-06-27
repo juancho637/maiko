@@ -44,6 +44,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     ]);
     Route::resource('tanks', 'Dashboard\Tank\TankController', ['as' => 'dashboard']);
     Route::resource('work_orders', 'Dashboard\WorkOrder\WorkOrderController', ['as' => 'dashboard']);
+    Route::resource('work_orders.inspections', 'Dashboard\WorkOrder\WorkOrderInspectionController', [
+        'except'=>['create', 'store'],
+        'as' => 'dashboard',
+    ]);
 
     Route::group(['prefix' => 'zones'], function () {
         Route::resource('countries', 'Dashboard\Country\CountryController', ['as' => 'dashboard']);
@@ -89,6 +93,10 @@ Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
         'only'=>['index'],
         'as'=>'datatable'
     ]);
+    Route::resource('work_orders.inspections', 'DataTable\WorkOrder\WorkOrderInspectionController', [
+        'only'=>['index'],
+        'as'=>'datatable'
+    ]);
 });
 
 // Select2
@@ -96,4 +104,5 @@ Route::group(['prefix' => 'select2', 'middleware' => ['auth']], function () {
     Route::resource('states', 'Select2\StateController', ['only'=>['index'], 'as'=>'select2']);
     Route::resource('cities', 'Select2\CityController', ['only'=>['index'], 'as'=>'select2']);
     Route::resource('clients', 'Select2\ClientController', ['only'=>['index'], 'as'=>'select2']);
+    Route::resource('tanks', 'Select2\TankController', ['only'=>['index'], 'as'=>'select2']);
 });
