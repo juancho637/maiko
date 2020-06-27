@@ -15,6 +15,11 @@ use App\Http\Controllers\Api\ApiControllerV1;
  */
 class WorkOrderInspectionController extends ApiControllerV1
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     /**
      * @OA\Post(
      *     path="/work_orders/{id}/inspections",
