@@ -35,7 +35,7 @@ class WorkOrderTransformer extends TransformerAbstract
         return [
             'id' => (int)$work_order->id,
             'status' => (int)$work_order->status_id,
-            'company' => (string)$work_order->company_id,
+            'company' => (int)$work_order->company_id,
             'quotation' => (string)$work_order->quotation,
             'start' => (string)$work_order->start,
             'duration' => (string)$work_order->duration,
