@@ -696,6 +696,122 @@
                 ]
             }
         },
+        "/inspections/{id}": {
+            "get": {
+                "tags": [
+                    "Inspecciones"
+                ],
+                "summary": "Muestra la información de una inspección",
+                "operationId": "App\\Http\\Controllers\\Api\\Inspection\\InspectionController::show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id de la inspección",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra la información asociada a una inspección.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Id no encontrado."
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Inspecciones"
+                ],
+                "summary": "Actualiza una inspección",
+                "operationId": "App\\Http\\Controllers\\Api\\Inspection\\InspectionController::update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id de la inspección",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "tank_id": {
+                                        "type": "integer"
+                                    },
+                                    "client_id": {
+                                        "type": "integer"
+                                    },
+                                    "observation": {
+                                        "type": "string"
+                                    },
+                                    "light_intensity": {
+                                        "type": "string"
+                                    },
+                                    "humidity": {
+                                        "type": "string"
+                                    },
+                                    "temperature": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Actualiza una inspección.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "409": {
+                        "description": "Error en validaciones de negocio."
+                    },
+                    "422": {
+                        "description": "Entidad no procesable."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/states/{id}/cities": {
             "get": {
                 "tags": [
@@ -926,6 +1042,47 @@
                 ]
             }
         },
+        "/users/{id}/inspections": {
+            "get": {
+                "tags": [
+                    "Inspecciones"
+                ],
+                "summary": "Listado de inspecciones",
+                "operationId": "App\\Http\\Controllers\\Api\\User\\UserInspectionController::index",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra el listado de inspecciones asociadas a un usuario.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Id no encontrado."
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/work_orders": {
             "get": {
                 "tags": [
@@ -1135,6 +1292,10 @@
         {
             "name": "Tanques",
             "description": "Endpoints para el módulo de tanques"
+        },
+        {
+            "name": "Inspecciones",
+            "description": "Endpoints para el módulo de inspecciones"
         },
         {
             "name": "Ordenes de trabajo",

@@ -46,6 +46,12 @@ Route::group(['middleware' => 'api'], function () {
             'as'=>'api'
         ]);
 
+        // Rutas para los usuarios
+        Route::apiResource('users.inspections', 'Api\User\UserInspectionController', [
+            'only' => ['index'],
+            'as'=>'api'
+        ]);
+
         // Rutas para las empresas
         Route::apiResource('companies', 'Api\Company\CompanyController', [
             'only' => ['index', 'show'],
@@ -79,6 +85,12 @@ Route::group(['middleware' => 'api'], function () {
         ]);
         Route::apiResource('work_orders.inspections', 'Api\WorkOrder\WorkOrderInspectionController', [
             'only' => ['store'],
+            'as'=>'api'
+        ]);
+
+        // Rutas para las inspecciones
+        Route::apiResource('inspections', 'Api\Inspection\InspectionController', [
+            'only' => ['show', 'update'],
             'as'=>'api'
         ]);
     });
