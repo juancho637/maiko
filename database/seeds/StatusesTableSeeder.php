@@ -34,9 +34,15 @@ class StatusesTableSeeder extends Seeder
 
         // Inspection statuses
         Status::create([
-            'name' => 'completada',
-            'description' => 'inspección finalizada',
-            'abbreviation' => 'insp-comp',
+            'name' => 'aprobada',
+            'description' => 'inspección aprobada',
+            'abbreviation' => 'insp-pass',
+            'type' => 'inspections',
+        ]);
+        Status::create([
+            'name' => 'rechazada',
+            'description' => 'inspección rechazada',
+            'abbreviation' => 'insp-refu',
             'type' => 'inspections',
         ]);
     }
