@@ -2,8 +2,13 @@
 
 namespace Tests\Feature\Http\Controllers\Api\Inspection;
 
+use App\Status;
+use App\WorkOrder;
+use Carbon\Carbon;
 use App\Inspection;
 use Tests\TestCase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -15,6 +20,7 @@ class InspectionControllerTest extends TestCase
     {
         parent::setUp();
 
+        Storage::fake('public');
         $this->seed();
     }
 
@@ -50,6 +56,52 @@ class InspectionControllerTest extends TestCase
                 'tank' => $tank->id,
                 'address' => $tank->client->address,
                 'humidity' => $humidity,
+            ]
+        ]);
+    }
+
+    public function testCompleteInspection()
+    {
+        $token = $this->login('super@maiko.com')->decodeResponseJson()['access_token'];
+        $inspector = $this->user($token)['data'];
+
+        $work_order = WorkOrder::all()->random(1)->first();
+
+        $tank = $work_order
+                    ->company
+                    ->clients()
+                    ->with('tanks')
+                    ->get()
+                    ->pluck('tanks')
+                    ->collapse()
+                    ->random(1)
+                    ->first();
+
+        $inspection = factory(Inspection::class)->create([
+            'user_id' => $inspector['id'],
+            'work_order_id' => $work_order->id,
+            'city_id' => $tank->client->city_id,
+            'tank_id' => $tank->id,
+            'date' => Carbon::now()->toDateString(),
+            'address' => $tank->client->address,
+        ]);
+
+        $status = Status::abbreviation('insp-pass');
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer '.$token,
+        ])->json('POST', '/api/v1/inspections/'.$inspection->id.'/complete', [
+            'status_id' => $status->id,
+            'files' => [
+                UploadedFile::fake()->image('avatar.jpg'),
+                UploadedFile::fake()->image('avatar.jpg')
+            ]
+        ]);
+
+        $response->assertStatus(200)->assertJson([
+            'data' => [
+                'id' => $inspection->id,
+                'status' => $status->id,
             ]
         ]);
     }

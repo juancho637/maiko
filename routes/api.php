@@ -93,5 +93,7 @@ Route::group(['middleware' => 'api'], function () {
             'only' => ['show', 'update'],
             'as'=>'api'
         ]);
+        Route::post('inspections/{inspection}/complete', 'Api\Inspection\InspectionController@complete')
+                ->name('api.inspections.complete');;
     });
 });

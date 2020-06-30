@@ -75,4 +75,12 @@ class Inspection extends Model
     {
         return $this->belongsTo(Tank::class);
     }
+
+    /**
+     * Obtiene los archivos asociados a una inspección.
+     */
+    public function files()
+    {
+        return $this->morphMany(File::class, 'fileable');
+    }
 }

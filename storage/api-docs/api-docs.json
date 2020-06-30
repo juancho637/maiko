@@ -809,6 +809,78 @@
                 ]
             }
         },
+        "/inspections/{id}/complete": {
+            "post": {
+                "tags": [
+                    "Inspecciones"
+                ],
+                "summary": "Completa una inspección",
+                "operationId": "App\\Http\\Controllers\\Api\\Inspection\\InspectionController::complete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id de la inspección",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "status_id",
+                                    "files"
+                                ],
+                                "properties": {
+                                    "status_id": {
+                                        "type": "integer"
+                                    },
+                                    "files": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Completa una inspección dado su id.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "404": {
+                        "description": "Id no encontrado."
+                    },
+                    "409": {
+                        "description": "Error en validaciones de negocio."
+                    },
+                    "422": {
+                        "description": "Entidad no procesable."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/states/{id}/cities": {
             "get": {
                 "tags": [

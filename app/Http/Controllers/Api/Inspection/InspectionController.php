@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\Inspection;
 use App\Status;
 use App\Inspection;
 use Illuminate\Http\Request;
+use App\Traits\StorageDriver;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Api\ApiControllerV1;
 
 /**
@@ -15,6 +17,8 @@ use App\Http\Controllers\Api\ApiControllerV1;
  */
 class InspectionController extends ApiControllerV1
 {
+    use StorageDriver;
+
     public function __construct()
     {
         $this->middleware('auth:api');
@@ -214,6 +218,111 @@ class InspectionController extends ApiControllerV1
         }
 
         $inspection->save();
+
+        return $this->showOne($inspection);
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/inspections/{id}/complete",
+     *     summary="Completa una inspección",
+     *     tags={"Inspecciones"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         description="Id de la inspección",
+     *         required=true,
+     *         in="path",
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="multipart/form-data",
+     *             @OA\Schema(
+     *                 required={"status_id", "files"},
+     *                 @OA\Property(
+     *                     property="status_id",
+     *                     type="integer"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="files",
+     *                     type="array",
+     *                     @OA\Items(
+     *                         type="string",
+     *                         format="binary",
+     *                     ),
+     *                 ),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Completa una inspección dado su id.",
+     *         @OA\JsonContent()
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Usuario no autorizado.",
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Id no encontrado.",
+     *     ),
+     *     @OA\Response(
+     *         response=409,
+     *         description="Error en validaciones de negocio.",
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Entidad no procesable.",
+     *     ),
+     *     security={ {"bearer": {}} },
+     * )
+     */
+    public function complete(Request $request, Inspection $inspection)
+    {
+        $this->validate($request, [
+            'status_id' => 'required|exists:statuses,id',
+            'files' => 'required|array|min:1',
+            'files.*' => 'image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $error = [];
+
+        foreach ($inspection->getAttributes() as $key => $value) {
+            if (!$value) {
+                if ($key === "deleted_at") {
+                    continue;
+                }
+
+                $error[$key] = [
+                    'El campo '.__($key).' es obligatorio.'
+                ];
+            }
+        }
+
+        if ($error) {
+            return $this->errorResponse($error, 422);
+        }
+
+        $status = Status::where('id', $request->status_id)->first();
+
+        if ($status->type !== "inspections") {
+            return $this->errorResponse(__('El estado no pertenece al módulo de inspecciones.'), 409);
+        }
+
+        $inspection->status_id = $request->status_id;
+
+        DB::beginTransaction();
+        foreach ($request->file('files') as $file) {
+            $inspection->files()->create([
+                'path' => $this->store_file($file, 'inspections/'.$inspection->id, 'private')
+            ]);
+        }
+
+        $inspection->save();
+        DB::commit();
 
         return $this->showOne($inspection);
     }
