@@ -759,9 +759,6 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "date": {
-                                        "type": "string"
-                                    },
                                     "tank_id": {
                                         "type": "integer"
                                     },
