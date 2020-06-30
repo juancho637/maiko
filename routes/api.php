@@ -20,6 +20,12 @@ Route::group(['middleware' => 'api'], function () {
             Route::get('me', 'Api\Auth\AuthController@me');
         });
 
+        // Rutas para los estados de un recurso
+        Route::apiResource('statuses', 'Api\Status\StatusController', [
+            'only' => ['index', 'show'],
+            'as'=>'api'
+        ]);
+
         // Rutas para los países
         Route::apiResource('countries', 'Api\Country\CountryController', [
             'only' => ['index', 'show'],

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Transformers\StatusTransformer;
 use Illuminate\Database\Eloquent\Model;
 
 class Status extends Model
@@ -16,6 +17,11 @@ class Status extends Model
         'abbreviation',
         'type',
     ];
+
+    /**
+     * Asigna las tranformaciones correspondientes.
+     */
+    public $transformer = StatusTransformer::class;
 
     /**
      * Obtiene los usuarios asociados a un estado.

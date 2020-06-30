@@ -990,6 +990,74 @@
                 ]
             }
         },
+        "/statuses": {
+            "get": {
+                "tags": [
+                    "Estados"
+                ],
+                "summary": "Listado de estados",
+                "operationId": "App\\Http\\Controllers\\Api\\Status\\StatusController::index",
+                "responses": {
+                    "200": {
+                        "description": "Muestra el listado de estados.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/statuses/{id}": {
+            "get": {
+                "tags": [
+                    "Estados"
+                ],
+                "summary": "Muestra la información de un estado",
+                "operationId": "App\\Http\\Controllers\\Api\\Status\\StatusController::show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del estado",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra la información asociada a un estado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "404": {
+                        "description": "Id no encontrado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/tanks/{id}": {
             "get": {
                 "tags": [
@@ -1357,6 +1425,10 @@
         {
             "name": "Estados/departamentos",
             "description": "Endpoints para el módulo de ciudades"
+        },
+        {
+            "name": "Estados",
+            "description": "Endpoints para el módulo de estados"
         },
         {
             "name": "Tanques",
