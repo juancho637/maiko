@@ -133,7 +133,7 @@ class InspectionController extends ApiControllerV1
             'temperature' => 'string',
         ]);
 
-        if ($inspection->status_id === Status::abbreviation('insp-comp')->id) {
+        if ($inspection->status_id != Status::abbreviation('gen-act')->id) {
             return $this->errorResponse(__('No puedes actualizar esta inspección ya que ha sido finalizada.'), 409);
         }
 
