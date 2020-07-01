@@ -49,6 +49,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
         'as' => 'dashboard',
     ]);
 
+    Route::group(['prefix' => 'settings'], function () {
+        Route::resource('questions', 'Dashboard\Question\QuestionController', ['as' => 'dashboard']);
+    });
+
     Route::group(['prefix' => 'zones'], function () {
         Route::resource('countries', 'Dashboard\Country\CountryController', ['as' => 'dashboard']);
         Route::resource('states', 'Dashboard\State\StateController', ['as' => 'dashboard']);
@@ -94,6 +98,10 @@ Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
         'as'=>'datatable'
     ]);
     Route::resource('work_orders.inspections', 'DataTable\WorkOrder\WorkOrderInspectionController', [
+        'only'=>['index'],
+        'as'=>'datatable'
+    ]);
+    Route::resource('questions', 'DataTable\Question\QuestionController', [
         'only'=>['index'],
         'as'=>'datatable'
     ]);

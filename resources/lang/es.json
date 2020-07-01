@@ -140,5 +140,11 @@
     "this offer file does not belong to this offer": "esta archivo de la oferta no le pertenece a esta oferta",
     "this bid does not belong to this user": "esta puja no le pertenece a este usuario",
 
+    "inspections": "inspecciones",
+    "internal inspections": "inspecciones internas",
+    "corrosions": "corrosiones",
+    "dents": "abolladoras",
+    "multiple choice with single answer": "opción múltiple con respuesta única",
+
     "edit photo": "editar foto"
 }

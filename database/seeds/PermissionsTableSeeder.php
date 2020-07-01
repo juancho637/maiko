@@ -81,5 +81,12 @@ class PermissionsTableSeeder extends Seeder
         //  Permission::create(['name' => 'create inspections', 'module' => 'inspections']);
          Permission::create(['name' => 'edit inspections', 'module' => 'inspections']);
          Permission::create(['name' => 'delete inspections', 'module' => 'inspections']);
+
+         // Questions
+         Permission::create(['name' => 'view questions', 'module' => 'questions']);
+         Permission::create(['name' => 'view question', 'module' => 'questions']);
+         Permission::create(['name' => 'create questions', 'module' => 'questions']);
+         Permission::create(['name' => 'edit questions', 'module' => 'questions']);
+         Permission::create(['name' => 'delete questions', 'module' => 'questions']);
     }
 }

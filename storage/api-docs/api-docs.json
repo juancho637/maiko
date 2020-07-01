@@ -881,6 +881,74 @@
                 ]
             }
         },
+        "/questions": {
+            "get": {
+                "tags": [
+                    "Preguntas"
+                ],
+                "summary": "Listado de preguntas",
+                "operationId": "App\\Http\\Controllers\\Api\\Question\\QuestionController::index",
+                "responses": {
+                    "200": {
+                        "description": "Muestra el listado de preguntas.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/questions/{id}": {
+            "get": {
+                "tags": [
+                    "Preguntas"
+                ],
+                "summary": "Muestra la información de una pregunta",
+                "operationId": "App\\Http\\Controllers\\Api\\Question\\QuestionController::show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id de la pregunta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra una pregunta dado un id.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "404": {
+                        "description": "Recurso no encontrado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/states/{id}/cities": {
             "get": {
                 "tags": [
@@ -1417,6 +1485,10 @@
         {
             "name": "Inspecciones",
             "description": "Endpoints para el módulo de inspecciones"
+        },
+        {
+            "name": "Preguntas",
+            "description": "Endpoints para el módulo de preguntas"
         },
         {
             "name": "Ciudades",

@@ -101,5 +101,11 @@ Route::group(['middleware' => 'api'], function () {
         ]);
         Route::post('inspections/{inspection}/complete', 'Api\Inspection\InspectionController@complete')
                 ->name('api.inspections.complete');;
+
+        // Rutas para las preguntas
+        Route::apiResource('questions', 'Api\Question\QuestionController', [
+            'only' => ['index', 'show'],
+            'as'=>'api'
+        ]);
     });
 });

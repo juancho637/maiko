@@ -51,6 +51,23 @@
             </a>
         </li>
     @endcan
+    @if(Auth::user()->can('view questions'))
+        <li class="dropdown {{ request()->is('dashboard/settings*') ? 'active' : '' }}">
+            <a href="#" class="nav-link has-dropdown">
+                <i class="fas fa-cogs"></i>
+                <span>{{ ucfirst(__("ajustes")) }}</span>
+            </a>
+            <ul class="dropdown-menu">
+                @can('view questions')
+                    <li {{ request()->is('dashboard/settings/questions*') ? 'class=active' : '' }}>
+                        <a class="nav-link" href="{{ route('dashboard.questions.index') }}">
+                            <span>{{ ucfirst(__("preguntas")) }}</span>
+                        </a>
+                    </li>
+                @endcan
+            </ul>
+        </li>
+    @endif
     @if(Auth::user()->can('view countries') || Auth::user()->can('view states') || Auth::user()->can('view cities'))
         <li class="dropdown {{ request()->is('dashboard/zones*') ? 'active' : '' }}">
             <a href="#" class="nav-link has-dropdown">
