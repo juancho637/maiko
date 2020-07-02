@@ -43,4 +43,15 @@ class Question extends Model
     const RESPONSE_TYPES = [
         'multiple choice with single answer',
     ];
+
+    /**
+     * Busqueda para incluir las preguntas de un módulo específico.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByModule($query, $module)
+    {
+        return $query->where('module', $module);
+    }
 }
