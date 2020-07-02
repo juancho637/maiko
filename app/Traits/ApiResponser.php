@@ -135,7 +135,7 @@ trait ApiResponser
     protected function paginateData(Collection $collection)
     {
         $rules = [
-            'per_page' => 'integer|min:2|max:50'
+            'per_page' => 'integer|min:2|max:100'
         ];
         Validator::validate(request()->all(), $rules);
 
