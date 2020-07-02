@@ -13,6 +13,104 @@
         }
     ],
     "paths": {
+        "/answers/{answer}": {
+            "get": {
+                "tags": [
+                    "Respuestas"
+                ],
+                "summary": "Muestra la información de una respuesta",
+                "operationId": "App\\Http\\Controllers\\Api\\Answer\\AnswerController::show",
+                "parameters": [
+                    {
+                        "name": "answer",
+                        "in": "path",
+                        "description": "Id de la respuesta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra la información asociada a una respuesta.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Id no encontrado."
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Respuestas"
+                ],
+                "summary": "Actualiza una respuesta",
+                "operationId": "App\\Http\\Controllers\\Api\\Answer\\AnswerController::update",
+                "parameters": [
+                    {
+                        "name": "answer",
+                        "in": "path",
+                        "description": "Id de la respuesta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Actualiza una respuesta.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "409": {
+                        "description": "Error en validaciones de negocio."
+                    },
+                    "422": {
+                        "description": "Entidad no procesable."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/auth/login": {
             "post": {
                 "tags": [
@@ -1450,6 +1548,10 @@
         }
     },
     "tags": [
+        {
+            "name": "Respuestas",
+            "description": "Endpoints para el módulo de respuestas"
+        },
         {
             "name": "Autenticación",
             "description": "Endpoints para la autenticación"

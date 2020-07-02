@@ -45,6 +45,14 @@ class Question extends Model
     ];
 
     /**
+     * Obtiene las respuestas asociadas a una pregunta.
+     */
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
+
+    /**
      * Busqueda para incluir las preguntas de un módulo específico.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query

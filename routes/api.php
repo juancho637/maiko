@@ -107,5 +107,11 @@ Route::group(['middleware' => 'api'], function () {
             'only' => ['index', 'show'],
             'as'=>'api'
         ]);
+
+        // Rutas para las respuestas
+        Route::apiResource('answers', 'Api\Answer\AnswerController', [
+            'only' => ['show', 'update'],
+            'as'=>'api'
+        ]);
     });
 });
