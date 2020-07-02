@@ -3,6 +3,7 @@
 namespace Tests\Feature\Http\Controllers\Api\Inspection;
 
 use App\Status;
+use App\Question;
 use App\WorkOrder;
 use Carbon\Carbon;
 use App\Inspection;
@@ -85,6 +86,15 @@ class InspectionControllerTest extends TestCase
             'date' => Carbon::now()->toDateString(),
             'address' => $tank->client->address,
         ]);
+
+        Question::byModule('inspections')
+                    ->get()
+                    ->each(function ($question) use ($inspection) {
+                        $inspection->answers()->create([
+                            'question_id' => $question->id,
+                            'value' => array_rand(explode(',', $question->possible_response)),
+                        ]);
+                    });
 
         $status = Status::abbreviation('insp-pass');
 

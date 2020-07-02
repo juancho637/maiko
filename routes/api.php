@@ -113,5 +113,13 @@ Route::group(['middleware' => 'api'], function () {
             'only' => ['show', 'update'],
             'as'=>'api'
         ]);
+        Route::apiResource('inspections.answers', 'Api\Inspection\InspectionAnswerController', [
+            'only' => ['index'],
+            'as'=>'api'
+        ]);
+        Route::apiResource('inspections.questions.answers', 'Api\Inspection\InspectionQuestionAnswerController', [
+            'only' => ['store'],
+            'as'=>'api'
+        ]);
     });
 });

@@ -83,4 +83,12 @@ class Inspection extends Model
     {
         return $this->morphMany(File::class, 'fileable');
     }
+
+    /**
+     * Obtiene las respuestas asociadas a una inspección.
+     */
+    public function answers()
+    {
+        return $this->morphMany(Answer::class, 'answerable');
+    }
 }

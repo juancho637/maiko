@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Inspection;
 
 use App\Status;
+use App\Question;
 use App\Inspection;
 use Illuminate\Http\Request;
 use App\Traits\StorageDriver;
@@ -304,6 +305,26 @@ class InspectionController extends ApiControllerV1
 
         if ($error) {
             return $this->errorResponse($error, 422);
+        }
+
+        $emptyQuestions = Question::byModule('inspections')
+                                    ->get()
+                                    ->pluck('id')
+                                    ->diff(
+                                        $inspection->answers()
+                                            ->pluck('question_id')
+                                    );
+
+        if (!$emptyQuestions->isEmpty()) {
+            $errors = [];
+
+            foreach ($emptyQuestions as $emptyQuestion) {
+                $errors[$emptyQuestion] = [
+                    __('La pregunta con id :number no se encuentra diligenciada.', ['number' => $emptyQuestion])
+                ];
+            }
+
+            return $this->errorResponse($errors, 409);
         }
 
         $status = Status::where('id', $request->status_id)->first();
