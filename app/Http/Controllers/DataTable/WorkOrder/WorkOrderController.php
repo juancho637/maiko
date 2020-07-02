@@ -24,9 +24,6 @@ class WorkOrderController extends Controller
     public function index()
     {
         return DataTables::of(WorkOrder::with('company:id,name', 'status:id,name'))
-            ->editColumn('quotation', function(WorkOrder $work_order) {
-                return '$'.number_format($work_order->quotation, 0, ',', '.');
-            })
             ->addColumn('actions', 'dashboard.work_orders.partials.actions')
             ->rawColumns(['actions'])
             ->toJson();
