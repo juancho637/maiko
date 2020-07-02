@@ -97,7 +97,32 @@ trait ApiResponser
             $attribute = $transformer::originalAttribute($query);
 
             if (isset($attribute, $value)) {
-                $collection = $collection->where($attribute, $value);
+                $values = explode('|', $value);
+                $countValues = count($values);
+
+                if ($countValues === 1) {
+                    $collection = $collection->where($attribute, $value);
+                } elseif ($countValues === 2) {
+                    switch ($values[0]) {
+                        case '>':
+                            $collection = $collection->where($attribute, '>', $values[1]);
+                            break;
+                        case '<':
+                            $collection = $collection->where($attribute, '<', $values[1]);
+                            break;
+                        case '>=':
+                            $collection = $collection->where($attribute, '>=', $values[1]);
+                            break;
+                        case '<=':
+                            $collection = $collection->where($attribute, '<=', $values[1]);
+                            break;
+                        case 'like':
+                            $collection = $collection->reject(function($attribute) use ($values) {
+                                return mb_strpos($attribute, $values[1]) === false;
+                            });
+                            break;
+                    }
+                }
             }
         }
 
