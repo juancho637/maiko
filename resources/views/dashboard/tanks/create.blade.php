@@ -69,10 +69,10 @@
                                 <input type="text" id="capacity" name="capacity" value="{{ old('capacity') }}" class="form-control" {{ $errors->has('capacity') ? 'autofocus' : '' }}>
                                 {!! $errors->first('capacity', '<span class="help-block">:message</span>') !!}
                             </div>
-                            <div class="form-group col-md-4 {{ $errors->has('long') ? 'has-error' : '' }}">
-                                <label for="long">{{ ucfirst(__("largo")) }}*</label>
-                                <input type="text" id="long" name="long" value="{{ old('long') }}" class="form-control" {{ $errors->has('long') ? 'autofocus' : '' }}>
-                                {!! $errors->first('long', '<span class="help-block">:message</span>') !!}
+                            <div class="form-group col-md-4 {{ $errors->has('large') ? 'has-error' : '' }}">
+                                <label for="large">{{ ucfirst(__("largo")) }}*</label>
+                                <input type="text" id="large" name="large" value="{{ old('large') }}" class="form-control" {{ $errors->has('large') ? 'autofocus' : '' }}>
+                                {!! $errors->first('large', '<span class="help-block">:message</span>') !!}
                             </div>
                             <div class="form-group col-md-4 {{ $errors->has('diameter') ? 'has-error' : '' }}">
                                 <label for="diameter">{{ ucfirst(__("diametro")) }}*</label>

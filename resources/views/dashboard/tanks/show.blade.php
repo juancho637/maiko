@@ -49,8 +49,8 @@
                             <input type="text" id="capacity" value="{{ $tank->capacity }}" class="form-control" disabled>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="long">{{ ucfirst(__("largo")) }}</label>
-                            <input type="text" id="long" value="{{ $tank->long }}" class="form-control" disabled>
+                            <label for="large">{{ ucfirst(__("largo")) }}</label>
+                            <input type="text" id="large" value="{{ $tank->large }}" class="form-control" disabled>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="diameter">{{ ucfirst(__("diametro")) }}</label>

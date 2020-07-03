@@ -194,7 +194,7 @@ return [
         'fabrication_year' => 'año de fabricación',
         'serial_number' => 'número de serie',
         'capacity' => 'capacidad',
-        'long' => 'largo',
+        'large' => 'largo',
         'diameter' => 'diametro',
         'head_thickness' => 'espesor de la cabeza',
         'body_thickness' => 'espesor del cuerpo',

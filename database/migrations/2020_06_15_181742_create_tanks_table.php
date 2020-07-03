@@ -22,7 +22,7 @@ class CreateTanksTable extends Migration
             $table->string('maker');
             $table->date('fabrication_year');
             $table->string('capacity');
-            $table->string('long');
+            $table->string('large');
             $table->string('diameter');
             $table->string('head_thickness');
             $table->string('body_thickness');

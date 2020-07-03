@@ -479,7 +479,7 @@
                                     "capacity": {
                                         "type": "string"
                                     },
-                                    "long": {
+                                    "large": {
                                         "type": "string"
                                     },
                                     "diameter": {
@@ -1409,7 +1409,7 @@
                                     "capacity": {
                                         "type": "string"
                                     },
-                                    "long": {
+                                    "large": {
                                         "type": "string"
                                     },
                                     "diameter": {

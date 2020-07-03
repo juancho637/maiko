@@ -97,7 +97,7 @@ class ClientTankController extends ApiControllerV1
      *                     type="string"
      *                 ),
      *                 @OA\Property(
-     *                     property="long",
+     *                     property="large",
      *                     type="string"
      *                 ),
      *                 @OA\Property(
@@ -141,7 +141,7 @@ class ClientTankController extends ApiControllerV1
             'maker' => 'required|string|max:191',
             'fabrication_year' => 'required|date|before:'.$now,
             'capacity' => 'required|string|max:191',
-            'long' => 'required|string|max:191',
+            'large' => 'required|string|max:191',
             'diameter' => 'required|string|max:191',
             'head_thickness' => 'required|string|max:191',
             'body_thickness' => 'required|string|max:191',

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Dashboard\Tank;
 
-use App\Client;
 use App\Tank;
+use App\Client;
 use App\Status;
 use App\Company;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 
 class TankController extends Controller
 {
@@ -68,7 +68,7 @@ class TankController extends Controller
             'maker' => 'required|string|max:191',
             'fabrication_year' => 'required|date|before:'.$now,
             'capacity' => 'required|string|max:191',
-            'long' => 'required|string|max:191',
+            'large' => 'required|string|max:191',
             'diameter' => 'required|string|max:191',
             'head_thickness' => 'required|string|max:191',
             'body_thickness' => 'required|string|max:191',
@@ -128,7 +128,7 @@ class TankController extends Controller
             'maker' => 'required|string|max:191',
             'fabrication_year' => 'required|date|before:'.$now,
             'capacity' => 'required|string|max:191',
-            'long' => 'required|string|max:191',
+            'large' => 'required|string|max:191',
             'diameter' => 'required|string|max:191',
             'head_thickness' => 'required|string|max:191',
             'body_thickness' => 'required|string|max:191',

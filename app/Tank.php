@@ -23,7 +23,7 @@ class Tank extends Model
         'maker',
         'fabrication_year',
         'capacity',
-        'long',
+        'large',
         'diameter',
         'head_thickness',
         'body_thickness',

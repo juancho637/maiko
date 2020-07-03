@@ -98,7 +98,7 @@ class TankController extends ApiControllerV1
      *                     type="string"
      *                 ),
      *                 @OA\Property(
-     *                     property="long",
+     *                     property="large",
      *                     type="string"
      *                 ),
      *                 @OA\Property(
@@ -143,7 +143,7 @@ class TankController extends ApiControllerV1
             'maker' => 'string|max:191',
             'fabrication_year' => 'date|before:'.$now,
             'capacity' => 'string|max:191',
-            'long' => 'string|max:191',
+            'large' => 'string|max:191',
             'diameter' => 'string|max:191',
             'head_thickness' => 'string|max:191',
             'body_thickness' => 'string|max:191',
@@ -173,8 +173,8 @@ class TankController extends ApiControllerV1
             $tank->capacity = $request->capacity;
         }
 
-        if ($request->has('long') && $request->long !== null) {
-            $tank->long = $request->long;
+        if ($request->has('large') && $request->large !== null) {
+            $tank->large = $request->large;
         }
 
         if ($request->has('diameter') && $request->diameter !== null) {
