@@ -10,7 +10,7 @@ RUN rm -rf .git .config .circleci Dockerfile .DS_Store .gitignore readme.md \
 FROM php:7.3-fpm-alpine3.11
 
 RUN apk --no-cache add nginx supervisor freetype libpng libjpeg-turbo \
-    freetype-dev libpng-dev libjpeg-turbo-dev zip zlib-dev
+    freetype-dev libpng-dev libjpeg-turbo-dev libzip-dev
 
 RUN docker-php-ext-configure zip --with-libzip=/usr/include
 
