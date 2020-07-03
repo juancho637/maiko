@@ -73,7 +73,32 @@ class InspectionController extends Controller
         }
 
         try {
+            $work_order = $inspection->work_order;
+            $company = $inspection->work_order->company;
+            $client = $inspection->tank->client;
+            $tank = $inspection->tank;
 
+            $template = new TemplateProcessor(storage_path('certs/rechazo.docx'));
+            $template->setValue('inspection_date', Carbon::parse($inspection->date)->locale('es')->isoFormat('D [de] MMMM [/] YYYY'));
+            $template->setValue('work_order_quotation', $work_order->quotation);
+            $template->setValue('client_name', $client->name);
+            $template->setValue('inspection_date', Carbon::parse($inspection->date)->locale('es')->isoFormat('D [de] MMMM [/] YYYY'));
+            $template->setValue('inspector_name', $inspection->user->full_name);
+            $template->setValue('company_name', $company->name);
+            $template->setValue('city_name', $client->city->name);
+            $template->setValue('tank_maker', $tank->maker);
+            $template->setValue('tank_serial', $tank->serial_number);
+            $template->setValue('tank_fabrication_year', Carbon::parse($tank->fabrication_year)->locale('es')->isoFormat('YYYY'));
+            $template->setValue('date', Carbon::now()->locale('es')->isoFormat('D [de] MMMM [/] YYYY'));
+
+            $tempFile = tempnam(sys_get_temp_dir(), 'PHPWord');
+            $template->saveAs($tempFile);
+
+            $headers = [
+                "Content-type: application/octet-stream",
+            ];
+
+            return response()->download($tempFile, 'inspección_#'.$inspection->id.'_rechazada.docx', $headers)->deleteFileAfterSend(true);
         } catch (\PhpOffice\PhpWord\Exception\Exception $e) {
             return back($e->getCode());
         }
