@@ -9,10 +9,12 @@ RUN rm -rf .git .config .circleci Dockerfile .DS_Store .gitignore readme.md \
 
 FROM php:7.3-fpm-alpine3.11
 
-RUN docker-php-ext-install bcmath pdo_mysql
-
 RUN apk --no-cache add nginx supervisor freetype libpng libjpeg-turbo \
-    freetype-dev libpng-dev libjpeg-turbo-dev
+    freetype-dev libpng-dev libjpeg-turbo-dev zip zlib-dev
+
+RUN docker-php-ext-configure zip --with-zlib-dir=/usr/include
+
+RUN docker-php-ext-install bcmath pdo_mysql zip
 
 COPY ./.circleci/config/nginx.conf /etc/nginx/nginx.conf
 
