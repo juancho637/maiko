@@ -38,6 +38,8 @@ class QuestionTransformer extends TransformerAbstract
             'question' => (string)$question->question,
             'response_type' => (string)$question->response_type,
             'possible_response' => (string)$question->possible_response,
+            'created' => (string)$question->created_at,
+            'updated' => (string)$question->updated_at,
         ];
     }
 
