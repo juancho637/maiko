@@ -48,6 +48,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
         'except'=>['create', 'store'],
         'as' => 'dashboard',
     ]);
+    Route::get('inspections/{inspection}/approved', 'Dashboard\Inspection\InspectionController@approved')
+            ->name('dashboard.inspections.approved');
+    Route::get('inspections/{inspection}/rejected', 'Dashboard\Inspection\InspectionController@rejected')
+            ->name('dashboard.inspections.rejected');
 
     Route::group(['prefix' => 'settings'], function () {
         Route::resource('questions', 'Dashboard\Question\QuestionController', ['as' => 'dashboard']);

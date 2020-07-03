@@ -1,3 +1,10 @@
+@can('download inspection cert')
+    @if ($status['name'] === 'aprobada')
+        <a href="{{ route('dashboard.inspections.approved', $id) }}" class="btn btn-xs btn-icon btn-secondary"><i class="fas fa-download"></i></a>
+    @elseif($status['name'] === 'rechazada')
+        <a href="{{ route('dashboard.inspections.rejected', $id) }}" class="btn btn-xs btn-icon btn-secondary"><i class="fas fa-download"></i></a>
+    @endif
+@endcan
 @can('view inspection')
     <a href="{{ route('dashboard.work_orders.inspections.show', [$work_order_id, $id]) }}" class="btn btn-xs btn-icon btn-info"><i class="fas fa-eye"></i></a>
 @endcan
