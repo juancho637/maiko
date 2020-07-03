@@ -41,7 +41,6 @@ class CompanyTransformer extends TransformerAbstract
             'contact_number' => (string)$company->contact_number,
             'created' => (string)$company->created_at,
             'updated' => (string)$company->updated_at,
-            'deleted' => isset($company->deleted) ? (string)$company->deleted : null,
         ];
     }
 

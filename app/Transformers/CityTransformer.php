@@ -39,7 +39,6 @@ class CityTransformer extends TransformerAbstract
             'name' => (string)$city->name,
             'created' => (string)$city->created_at,
             'updated' => (string)$city->updated_at,
-            'deleted' => isset($city->deleted) ? (string)$city->deleted : null,
         ];
     }
 

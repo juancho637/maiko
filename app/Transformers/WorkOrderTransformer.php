@@ -45,7 +45,6 @@ class WorkOrderTransformer extends TransformerAbstract
             'lodging' => (string)$work_order->lodging,
             'created' => (string)$work_order->created_at,
             'updated' => (string)$work_order->updated_at,
-            'deleted' => isset($work_order->deleted) ? (string)$work_order->deleted : null,
         ];
     }
 

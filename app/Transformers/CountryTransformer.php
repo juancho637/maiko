@@ -40,7 +40,6 @@ class CountryTransformer extends TransformerAbstract
             'phone_code' => (string)$country->phone_code,
             'created' => (string)$country->created_at,
             'updated' => (string)$country->updated_at,
-            'deleted' => isset($country->deleted) ? (string)$country->deleted : null,
         ];
     }
 

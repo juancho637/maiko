@@ -40,7 +40,6 @@ class UserTransformer extends TransformerAbstract
             'email_verified' => isset($user->email_verified_at) ? (string)$user->email_verified_at : null,
             'created' => (string)$user->created_at,
             'updated' => (string)$user->updated_at,
-            'deleted' => isset($user->deleted) ? (string)$user->deleted : null,
         ];
     }
 

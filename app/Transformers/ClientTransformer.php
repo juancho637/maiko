@@ -41,7 +41,6 @@ class ClientTransformer extends TransformerAbstract
             'address' => (string)$client->address,
             'created' => (string)$client->created_at,
             'updated' => (string)$client->updated_at,
-            'deleted' => isset($client->deleted) ? (string)$client->deleted : null,
         ];
     }
 

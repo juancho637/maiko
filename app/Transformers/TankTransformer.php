@@ -47,7 +47,6 @@ class TankTransformer extends TransformerAbstract
             'body_thickness' => (string)$tank->body_thickness,
             'created' => (string)$tank->created_at,
             'updated' => (string)$tank->updated_at,
-            'deleted' => isset($tank->deleted) ? (string)$tank->deleted : null,
         ];
     }
 

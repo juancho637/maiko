@@ -39,7 +39,6 @@ class StateTransformer extends TransformerAbstract
             'name' => (string)$state->name,
             'created' => (string)$state->created_at,
             'updated' => (string)$state->updated_at,
-            'deleted' => isset($state->deleted) ? (string)$state->deleted : null,
         ];
     }
 
