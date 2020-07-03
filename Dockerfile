@@ -12,7 +12,7 @@ FROM php:7.3-fpm-alpine3.11
 RUN apk --no-cache add nginx supervisor freetype libpng libjpeg-turbo \
     freetype-dev libpng-dev libjpeg-turbo-dev zip zlib-dev
 
-RUN docker-php-ext-configure zip --with-zlib-dir=/usr/include
+RUN docker-php-ext-configure zip --with-libzip=/usr/include
 
 RUN docker-php-ext-install bcmath pdo_mysql zip
 
