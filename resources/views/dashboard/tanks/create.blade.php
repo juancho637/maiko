@@ -4,7 +4,6 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('/modules/select2/dist/css/select2.min.css') }}">
-<link rel="stylesheet" href="{{ asset('/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
 
 <style>
     .right-square + span > .selection > .select2-selection--single {
@@ -56,7 +55,7 @@
                             </div>
                             <div class="form-group col-md-4 {{ $errors->has('fabrication_year') ? 'has-error' : '' }}">
                                 <label for="fabrication_year">{{ ucfirst(__("año de fabricación")) }}*</label>
-                                <input type="text" id="fabrication_year" name="fabrication_year" class="form-control" {{ $errors->has('fabrication_year') ? 'autofocus' : '' }}>
+                                <input type="text" id="fabrication_year" name="fabrication_year" value="{{ old('fabrication_year') }}" class="form-control" {{ $errors->has('fabrication_year') ? 'autofocus' : '' }}>
                                 {!! $errors->first('fabrication_year', '<span class="help-block">:message</span>') !!}
                             </div>
                             <div class="form-group col-md-3 {{ $errors->has('serial_number') ? 'has-error' : '' }}">
@@ -105,7 +104,6 @@
 
 @push('scripts')
 <script src="{{ asset('/modules/select2/dist/js/select2.full.min.js') }}"></script>
-<script src="{{ asset('/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 
 <script>
     $(function () {
@@ -135,19 +133,6 @@
                 });
             });
         }
-
-        localDate = moment().subtract(1, 'days');
-        if ("{{ old('fabrication_year') }}") {
-            localDate = "{{ old('fabrication_year') }}";
-        }
-        $('input[name="fabrication_year"]').daterangepicker({
-            locale: {format: 'YYYY-MM-DD'},
-            singleDatePicker: true,
-            showDropdowns: true,
-            startDate: localDate,
-            minYear: 1901,
-            maxYear: moment().format('YYYY')
-        });
     });
 </script>
 @endpush

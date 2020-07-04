@@ -44,7 +44,7 @@ class InspectionController extends Controller
             $template->setValue('client_state', $client->city->state->name);
             $template->setValue('tank_serial', $tank->serial_number);
             $template->setValue('tank_maker', $tank->maker);
-            $template->setValue('tank_fabrication_year', Carbon::parse($tank->fabrication_year)->locale('es')->isoFormat('YYYY'));
+            $template->setValue('tank_fabrication_year', $tank->fabrication_year);
             $template->setValue('inspection_date', Carbon::parse($inspection->date)->locale('es')->isoFormat('D [de] MMMM [/] YYYY'));
 
             $tempFile = tempnam(sys_get_temp_dir(), 'PHPWord');
@@ -88,7 +88,7 @@ class InspectionController extends Controller
             $template->setValue('city_name', $client->city->name);
             $template->setValue('tank_maker', $tank->maker);
             $template->setValue('tank_serial', $tank->serial_number);
-            $template->setValue('tank_fabrication_year', Carbon::parse($tank->fabrication_year)->locale('es')->isoFormat('YYYY'));
+            $template->setValue('tank_fabrication_year', $tank->fabrication_year);
             $template->setValue('date', Carbon::now()->locale('es')->isoFormat('D [de] MMMM [/] YYYY'));
 
             $tempFile = tempnam(sys_get_temp_dir(), 'PHPWord');

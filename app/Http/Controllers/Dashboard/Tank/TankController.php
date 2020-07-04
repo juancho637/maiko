@@ -6,7 +6,6 @@ use App\Tank;
 use App\Client;
 use App\Status;
 use App\Company;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -54,8 +53,6 @@ class TankController extends Controller
      */
     public function store(Request $request)
     {
-        $now = Carbon::now()->toDateString();
-
         $this->validate($request, [
             'company_id' => 'required|exists:companies,id',
             'client_id' => ['required', 'exists:clients,id', function ($attribute, $value, $fail) use ($request) {
@@ -66,7 +63,7 @@ class TankController extends Controller
             'internal_serial_number' => 'required|string|max:191',
             'serial_number' => 'required|string|max:191',
             'maker' => 'required|string|max:191',
-            'fabrication_year' => 'required|date|before:'.$now,
+            'fabrication_year' => 'required|numeric|min:1900|max:'.date('Y'),
             'capacity' => 'required|string|max:191',
             'large' => 'required|string|max:191',
             'diameter' => 'required|string|max:191',
@@ -114,8 +111,6 @@ class TankController extends Controller
      */
     public function update(Request $request, Tank $tank)
     {
-        $now = Carbon::now()->toDateString();
-
         $this->validate($request, [
             'company_id' => 'required|exists:companies,id',
             'client_id' => ['required', 'exists:clients,id', function ($attribute, $value, $fail) use ($request) {
@@ -126,7 +121,7 @@ class TankController extends Controller
             'internal_serial_number' => 'required|string|max:191',
             'serial_number' => 'required|string|max:191',
             'maker' => 'required|string|max:191',
-            'fabrication_year' => 'required|date|before:'.$now,
+            'fabrication_year' => 'required|numeric|min:1900|max:'.date('Y'),
             'capacity' => 'required|string|max:191',
             'large' => 'required|string|max:191',
             'diameter' => 'required|string|max:191',

@@ -16,7 +16,7 @@ $factory->define(Tank::class, function (Faker $faker) {
         'internal_serial_number' => $faker->numberBetween($min = 1000, $max = 9000),
         'serial_number' => $faker->ean8,
         'maker' => $faker->company,
-        'fabrication_year' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'fabrication_year' => $faker->numberBetween($min = 1900, $max = date('Y')),
         'capacity' => $faker->numberBetween($min = 100, $max = 200),
         'large' => $faker->numberBetween($min = 100, $max = 200),
         'diameter' => $faker->numberBetween($min = 100, $max = 200),

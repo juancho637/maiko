@@ -20,7 +20,7 @@ class CreateTanksTable extends Migration
             $table->string('internal_serial_number');
             $table->string('serial_number');
             $table->string('maker');
-            $table->date('fabrication_year');
+            $table->char('fabrication_year', 4);
             $table->string('capacity');
             $table->string('large');
             $table->string('diameter');

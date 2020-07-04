@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\Client;
 
 use App\Client;
 use App\Status;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\ApiControllerV1;
 
@@ -133,13 +132,11 @@ class ClientTankController extends ApiControllerV1
      */
     public function store(Request $request, Client $client)
     {
-        $now = Carbon::now()->toDateString();
-
         $this->validate($request, [
             'internal_serial_number' => 'required|string|max:191',
             'serial_number' => 'required|string|max:191',
             'maker' => 'required|string|max:191',
-            'fabrication_year' => 'required|date|before:'.$now,
+            'fabrication_year' => 'required|numeric|min:1900|max:'.date('Y'),
             'capacity' => 'required|string|max:191',
             'large' => 'required|string|max:191',
             'diameter' => 'required|string|max:191',
