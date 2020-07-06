@@ -61,9 +61,12 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            .back-img{
+                background-image: url("https://image.jimcdn.com/app/cms/image/transf/none/path/sc77e1e58a42c514a/image/i9977c7b3a6db203a/version/1516578954/image.jpg");
+            }
         </style>
     </head>
-    <body>
+    <body class="back-img">
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -80,19 +83,9 @@
             @endif
 
             <div class="content">
+                <img src="{{ asset('/img/logo_maiko.jpeg') }}" height="100" width="90">
                 <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    MAIKO INGENIERIA S.A.S
                 </div>
             </div>
         </div>
