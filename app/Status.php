@@ -72,6 +72,14 @@ class Status extends Model
     }
 
     /**
+     * Obtiene las corrosiones asociadas a un estado.
+     */
+    public function corrosions()
+    {
+        return $this->hasMany(Corrosion::class);
+    }
+
+    /**
      * Alcance una consulta para incluir los estados de tipo especificado.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query

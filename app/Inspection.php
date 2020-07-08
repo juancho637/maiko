@@ -77,6 +77,14 @@ class Inspection extends Model
     }
 
     /**
+     * Obtiene las corrisiones asociadas a una inspección.
+     */
+    public function corrosions()
+    {
+        return $this->hasMany(Corrosion::class);
+    }
+
+    /**
      * Obtiene los archivos asociados a una inspección.
      */
     public function files()
