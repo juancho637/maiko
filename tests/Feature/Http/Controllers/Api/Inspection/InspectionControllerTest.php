@@ -48,7 +48,7 @@ class InspectionControllerTest extends TestCase
             'Authorization' => 'Bearer '.$token,
         ])->json('PUT', '/api/v1/inspections/'.$inspection->id, [
             'humidity' => $humidity,
-            'tank_id' => $tank->id,
+            'tank' => $tank->id,
         ]);
 
         $response->assertStatus(200)->assertJson([
@@ -101,7 +101,7 @@ class InspectionControllerTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer '.$token,
         ])->json('POST', '/api/v1/inspections/'.$inspection->id.'/complete', [
-            'status_id' => $status->id,
+            'status' => $status->id,
             'files' => [
                 UploadedFile::fake()->image('avatar.jpg'),
                 UploadedFile::fake()->image('avatar.jpg')

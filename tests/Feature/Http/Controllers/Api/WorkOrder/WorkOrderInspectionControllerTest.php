@@ -31,7 +31,7 @@ class WorkOrderInspectionControllerTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer '.$token,
         ])->json('POST', '/api/v1/work_orders/'.$work_order->id.'/inspections', [
-            'user_id' => $inspector['id'],
+            'user' => $inspector['id'],
             'latitude' => $latitude,
             'longitude' => $longitude,
             'date' => $date,
@@ -71,8 +71,8 @@ class WorkOrderInspectionControllerTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer '.$token,
         ])->json('POST', '/api/v1/work_orders/'.$work_order->id.'/inspections', [
-            'user_id' => $inspector['id'],
-            'client_id' => $client->id,
+            'user' => $inspector['id'],
+            'client' => $client->id,
             'latitude' => $latitude,
             'longitude' => $longitude,
             'date' => $date,
@@ -121,8 +121,8 @@ class WorkOrderInspectionControllerTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer '.$token,
         ])->json('POST', '/api/v1/work_orders/'.$work_order->id.'/inspections', [
-            'user_id' => $inspector['id'],
-            'tank_id' => $tank->id,
+            'user' => $inspector['id'],
+            'tank' => $tank->id,
             'latitude' => $latitude,
             'longitude' => $longitude,
             'date' => $date,
@@ -175,9 +175,9 @@ class WorkOrderInspectionControllerTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer '.$token,
         ])->json('POST', '/api/v1/work_orders/'.$work_order->id.'/inspections', [
-            'user_id' => $inspector['id'],
-            'tank_id' => $tank->id,
-            'client_id' => $tank->client->id,
+            'user' => $inspector['id'],
+            'tank' => $tank->id,
+            'client' => $tank->client->id,
             'latitude' => $latitude,
             'longitude' => $longitude,
             'light_intensity' => $light_intensity,

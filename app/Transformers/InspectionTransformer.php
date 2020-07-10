@@ -70,6 +70,7 @@ class InspectionTransformer extends TransformerAbstract
             'observation' => 'observation',
             'created' => 'created_at',
             'updated' => 'updated_at',
+            'client' => 'client_id',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
@@ -94,6 +95,7 @@ class InspectionTransformer extends TransformerAbstract
             'observation' => 'observation',
             'created_at' => 'created',
             'updated_at' => 'updated',
+            'client_id' => 'client',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
