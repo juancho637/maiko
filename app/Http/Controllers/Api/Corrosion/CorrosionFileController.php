@@ -7,6 +7,7 @@ use App\Status;
 use App\Corrosion;
 use Illuminate\Http\Request;
 use App\Traits\StorageDriver;
+use App\Transformers\FileTransformer;
 use App\Http\Controllers\Api\ApiControllerV1;
 
 /**
@@ -22,6 +23,7 @@ class CorrosionFileController extends ApiControllerV1
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->middleware('transform.input:'.FileTransformer::class)->only(['store', 'update']);
     }
 
     /**

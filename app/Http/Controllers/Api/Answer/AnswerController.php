@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Answer;
 
 use App\Answer;
 use Illuminate\Http\Request;
+use App\Transformers\AnswerTransformer;
 use App\Http\Controllers\Api\ApiControllerV1;
 
 /**
@@ -17,6 +18,7 @@ class AnswerController extends ApiControllerV1
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->middleware('transform.input:'.AnswerTransformer::class)->only(['update']);
     }
 
     /**

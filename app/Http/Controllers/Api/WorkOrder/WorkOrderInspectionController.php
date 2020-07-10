@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\WorkOrder;
 use App\Status;
 use App\WorkOrder;
 use Illuminate\Http\Request;
+use App\Transformers\InspectionTransformer;
 use App\Http\Controllers\Api\ApiControllerV1;
 
 /**
@@ -18,6 +19,7 @@ class WorkOrderInspectionController extends ApiControllerV1
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->middleware('transform.input:'.InspectionTransformer::class)->only(['store']);
     }
 
     /**
@@ -39,7 +41,7 @@ class WorkOrderInspectionController extends ApiControllerV1
      *         @OA\JsonContent(
      *             required={"user_id", "latitude", "longitude", "date"},
      *             @OA\Property(
-     *                 property="user_id",
+     *                 property="user",
      *                 type="integer"
      *             ),
      *             @OA\Property(
@@ -55,11 +57,11 @@ class WorkOrderInspectionController extends ApiControllerV1
      *                 type="string"
      *             ),
      *             @OA\Property(
-     *                 property="tank_id",
+     *                 property="tank",
      *                 type="integer"
      *             ),
      *             @OA\Property(
-     *                 property="client_id",
+     *                 property="client",
      *                 type="integer"
      *             ),
      *             @OA\Property(

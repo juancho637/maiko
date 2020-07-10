@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Tank;
 
 use App\Tank;
 use Illuminate\Http\Request;
+use App\Transformers\TankTransformer;
 use App\Http\Controllers\Api\ApiControllerV1;
 
 /**
@@ -17,6 +18,7 @@ class TankController extends ApiControllerV1
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->middleware('transform.input:'.TankTransformer::class)->only(['update']);
     }
 
     /**
@@ -73,7 +75,7 @@ class TankController extends ApiControllerV1
      *             mediaType="application/json",
      *             @OA\Schema(
      *                 @OA\Property(
-     *                     property="client_id",
+     *                     property="client",
      *                     type="integer"
      *                 ),
      *                 @OA\Property(

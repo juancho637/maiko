@@ -8,6 +8,7 @@ use App\Inspection;
 use Illuminate\Http\Request;
 use App\Traits\StorageDriver;
 use Illuminate\Support\Facades\DB;
+use App\Transformers\InspectionTransformer;
 use App\Http\Controllers\Api\ApiControllerV1;
 
 /**
@@ -23,6 +24,7 @@ class InspectionController extends ApiControllerV1
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->middleware('transform.input:'.InspectionTransformer::class)->only(['update', 'complete']);
     }
 
     /**
@@ -78,11 +80,11 @@ class InspectionController extends ApiControllerV1
      *         required=true,
      *         @OA\JsonContent(
      *             @OA\Property(
-     *                 property="tank_id",
+     *                 property="tank",
      *                 type="integer"
      *             ),
      *             @OA\Property(
-     *                 property="client_id",
+     *                 property="client",
      *                 type="integer"
      *             ),
      *             @OA\Property(
@@ -241,9 +243,9 @@ class InspectionController extends ApiControllerV1
      *         @OA\MediaType(
      *             mediaType="multipart/form-data",
      *             @OA\Schema(
-     *                 required={"status_id", "files"},
+     *                 required={"status", "files"},
      *                 @OA\Property(
-     *                     property="status_id",
+     *                     property="status",
      *                     type="integer"
      *                 ),
      *                 @OA\Property(

@@ -6,6 +6,7 @@ use App\Status;
 use App\Corrosion;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Transformers\CorrosionTransformer;
 use App\Http\Controllers\Api\ApiControllerV1;
 
 /**
@@ -19,6 +20,7 @@ class CorrosionController extends ApiControllerV1
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->middleware('transform.input:'.CorrosionTransformer::class)->only(['update']);
     }
 
     /**

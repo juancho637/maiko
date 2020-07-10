@@ -367,7 +367,7 @@
                                     "name": {
                                         "type": "string"
                                     },
-                                    "city_id": {
+                                    "city": {
                                         "type": "integer"
                                     },
                                     "address": {
@@ -585,7 +585,7 @@
                                     "name": {
                                         "type": "string"
                                     },
-                                    "city_id": {
+                                    "city": {
                                         "type": "integer"
                                     },
                                     "address": {
@@ -1282,10 +1282,10 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "tank_id": {
+                                    "tank": {
                                         "type": "integer"
                                     },
-                                    "client_id": {
+                                    "client": {
                                         "type": "integer"
                                     },
                                     "observation": {
@@ -1355,11 +1355,11 @@
                         "multipart/form-data": {
                             "schema": {
                                 "required": [
-                                    "status_id",
+                                    "status",
                                     "files"
                                 ],
                                 "properties": {
-                                    "status_id": {
+                                    "status": {
                                         "type": "integer"
                                     },
                                     "files": {
@@ -1903,7 +1903,7 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "client_id": {
+                                    "client": {
                                         "type": "integer"
                                     },
                                     "internal_serial_number": {
@@ -2101,7 +2101,7 @@
                                     "date"
                                 ],
                                 "properties": {
-                                    "user_id": {
+                                    "user": {
                                         "type": "integer"
                                     },
                                     "latitude": {
@@ -2113,10 +2113,10 @@
                                     "date": {
                                         "type": "string"
                                     },
-                                    "tank_id": {
+                                    "tank": {
                                         "type": "integer"
                                     },
-                                    "client_id": {
+                                    "client": {
                                         "type": "integer"
                                     },
                                     "observation": {

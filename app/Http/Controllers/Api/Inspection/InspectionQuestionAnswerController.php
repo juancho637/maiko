@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Inspection;
 use App\Question;
 use App\Inspection;
 use Illuminate\Http\Request;
+use App\Transformers\AnswerTransformer;
 use App\Http\Controllers\Api\ApiControllerV1;
 
 /**
@@ -18,6 +19,7 @@ class InspectionQuestionAnswerController extends ApiControllerV1
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->middleware('transform.input:'.AnswerTransformer::class)->only(['store']);
     }
 
     /**

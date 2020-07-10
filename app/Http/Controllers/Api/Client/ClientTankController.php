@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Client;
 use App\Client;
 use App\Status;
 use Illuminate\Http\Request;
+use App\Transformers\TankTransformer;
 use App\Http\Controllers\Api\ApiControllerV1;
 
 /**
@@ -18,6 +19,7 @@ class ClientTankController extends ApiControllerV1
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->middleware('transform.input:'.TankTransformer::class)->only(['store']);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Client;
 
 use App\Client;
 use Illuminate\Http\Request;
+use App\Transformers\ClientTransformer;
 use App\Http\Controllers\Api\ApiControllerV1;
 
 /**
@@ -22,6 +23,7 @@ class ClientController extends ApiControllerV1
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->middleware('transform.input:'.ClientTransformer::class)->only(['update']);
     }
 
     /**
@@ -82,7 +84,7 @@ class ClientController extends ApiControllerV1
      *                     type="string"
      *                 ),
      *                 @OA\Property(
-     *                     property="city_id",
+     *                     property="city",
      *                     type="integer"
      *                 ),
      *                 @OA\Property(

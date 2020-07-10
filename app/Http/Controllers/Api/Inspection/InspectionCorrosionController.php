@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Traits\StorageDriver;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use App\Transformers\CorrosionTransformer;
 use App\Http\Controllers\Api\ApiControllerV1;
 
 /**
@@ -24,6 +25,7 @@ class InspectionCorrosionController extends ApiControllerV1
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->middleware('transform.input:'.CorrosionTransformer::class)->only(['store']);
     }
 
     /**
