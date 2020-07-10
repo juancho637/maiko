@@ -121,5 +121,18 @@ Route::group(['middleware' => 'api'], function () {
             'only' => ['store'],
             'as'=>'api'
         ]);
+
+        // Rutas para las corrosiones
+        Route::apiResource('corrosions', 'Api\Corrosion\CorrosionController', [
+            'only' => ['show', 'update'],
+            'as'=>'api'
+        ]);
+        Route::apiResource('corrosions.files', 'Api\Corrosion\CorrosionFileController', [
+            'as'=>'api'
+        ]);
+        Route::apiResource('inspections.corrosions', 'Api\Inspection\InspectionCorrosionController', [
+            'only' => ['index', 'store'],
+            'as'=>'api'
+        ]);
     });
 });

@@ -1,0 +1,171 @@
+<?php
+
+namespace App\Http\Controllers\Api\Inspection;
+
+use App\Status;
+use App\Corrosion;
+use App\Inspection;
+use Illuminate\Http\Request;
+use App\Traits\StorageDriver;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Api\ApiControllerV1;
+
+/**
+ * @OA\Tag(
+ *     name="Corrosiones",
+ *     description="Endpoints para el módulo de corrosiones"
+ * )
+ */
+class InspectionCorrosionController extends ApiControllerV1
+{
+    use StorageDriver;
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
+    /**
+     * @OA\Get(
+     *     path="/inspections/{inspection}/corrosions",
+     *     summary="Listado de corrisiones asociadas a una inspección",
+     *     tags={"Corrosiones"},
+     *     @OA\Parameter(
+     *         name="inspection",
+     *         description="Id de la inspección",
+     *         required=true,
+     *         in="path",
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Muestra el listado de corrisiones asociadas a una inspección.",
+     *         @OA\JsonContent()
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Id no encontrado.",
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Usuario no autorizado.",
+     *     ),
+     *     security={ {"bearer": {}} },
+     * )
+     */
+    public function index(Inspection $inspection)
+    {
+        $corrosions = $inspection->corrosions;
+
+        return $this->showAll($corrosions);
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/inspections/{inspection}/corrosions",
+     *     summary="Almacena una corrosión",
+     *     tags={"Corrosiones"},
+     *     @OA\Parameter(
+     *         name="inspection",
+     *         description="Id de la inspección",
+     *         required=true,
+     *         in="path",
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="multipart/form-data",
+     *             @OA\Schema(
+     *                 required={"corrosion_type", "remaining_thickness", "area", "large", "thickness", "depth", "files"},
+     *                 @OA\Property(
+     *                     property="corrosion_type",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="remaining_thickness",
+     *                     type="integer"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="area",
+     *                     type="integer"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="large",
+     *                     type="integer"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="thickness",
+     *                     type="integer"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="depth",
+     *                     type="integer"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="files",
+     *                     type="array",
+     *                     @OA\Items(
+     *                         type="string",
+     *                         format="binary",
+     *                     ),
+     *                 ),
+     *                 @OA\Property(
+     *                     property="observation",
+     *                     type="string"
+     *                 ),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Almacena una nueva corrosión asociada a una inspección.",
+     *         @OA\JsonContent()
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Entidad no procesable.",
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Usuario no autorizado.",
+     *     ),
+     *     security={ {"bearer": {}} },
+     * )
+     */
+    public function store(Request $request, Inspection $inspection)
+    {
+        $this->validate($request, [
+            'corrosion_type'  => [
+                'required',
+                Rule::in(Corrosion::CORROSION_TYPES),
+            ],
+            'remaining_thickness' => 'required|numeric|min:0',
+            'area' => 'required|numeric|min:0',
+            'large' => 'required|numeric|min:0',
+            'thickness' => 'required|numeric|min:0',
+            'depth' => 'required|numeric|min:0',
+            'files' => 'required|array|min:1',
+            'files.*' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'observation' => 'string',
+        ]);
+
+        $request['status_id'] = Status::abbreviation('gen-act')->id;
+
+        DB::beginTransaction();
+        $corrosion = $inspection->corrosions()->create($request->all());
+
+        foreach ($request->file('files') as $file) {
+            $corrosion->files()->create([
+                'path' => $this->store_file($file, 'inspections/'.$inspection->id.'/corrosions/'.$corrosion->id, 'private')
+            ]);
+        }
+        DB::commit();
+
+        return $this->showOne($corrosion);
+    }
+}

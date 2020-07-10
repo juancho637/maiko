@@ -685,6 +685,390 @@
                 ]
             }
         },
+        "/corrosions/{corrosion}": {
+            "get": {
+                "tags": [
+                    "Corrosiones"
+                ],
+                "summary": "Muestra la información de una corrosión",
+                "operationId": "App\\Http\\Controllers\\Api\\Corrosion\\CorrosionController::show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id de la corrosión",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra la información asociada a una corrosión.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Id no encontrado."
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Corrosiones"
+                ],
+                "summary": "Actualiza una corrosión",
+                "operationId": "App\\Http\\Controllers\\Api\\Corrosion\\CorrosionController::update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id de la corrosión",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "corrosion_type": {
+                                        "type": "string"
+                                    },
+                                    "remaining_thickness": {
+                                        "type": "integer"
+                                    },
+                                    "area": {
+                                        "type": "integer"
+                                    },
+                                    "large": {
+                                        "type": "integer"
+                                    },
+                                    "thickness": {
+                                        "type": "integer"
+                                    },
+                                    "depth": {
+                                        "type": "integer"
+                                    },
+                                    "observation": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Actualiza una corrosión.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "409": {
+                        "description": "Error en validaciones de negocio."
+                    },
+                    "422": {
+                        "description": "Entidad no procesable."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/corrosions/{corrosion}/files": {
+            "get": {
+                "tags": [
+                    "Corrosiones"
+                ],
+                "summary": "Listado de archivos asociadas a una corrosión",
+                "operationId": "App\\Http\\Controllers\\Api\\Corrosion\\CorrosionFileController::index",
+                "parameters": [
+                    {
+                        "name": "corrosion",
+                        "in": "path",
+                        "description": "Id de la corrosión",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra el listado de archivos asociadas a una corrosión.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Id no encontrado."
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Corrosiones"
+                ],
+                "summary": "Almacena un archivo asociado a una corrosión",
+                "operationId": "App\\Http\\Controllers\\Api\\Corrosion\\CorrosionFileController::store",
+                "parameters": [
+                    {
+                        "name": "corrosion",
+                        "in": "path",
+                        "description": "Id de la corrosión",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "file"
+                                ],
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Almacena un nuevo archivo asociado a una corrosión.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "409": {
+                        "description": "Error en validaciones de negocio."
+                    },
+                    "422": {
+                        "description": "Entidad no procesable."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/corrosions/{corrosion}/files/{file}": {
+            "get": {
+                "tags": [
+                    "Corrosiones"
+                ],
+                "summary": "Muestra un archivo asociado a una corrosión",
+                "operationId": "App\\Http\\Controllers\\Api\\Corrosion\\CorrosionFileController::show",
+                "parameters": [
+                    {
+                        "name": "corrosion",
+                        "in": "path",
+                        "description": "Id de la corrosión",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "file",
+                        "in": "path",
+                        "description": "Id del archivo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra un archivo asociado a una corrosión."
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "409": {
+                        "description": "Error en validaciones de negocio."
+                    },
+                    "422": {
+                        "description": "Entidad no procesable."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Corrosiones"
+                ],
+                "summary": "Actualiza un archivo asociado a una corrosión",
+                "operationId": "App\\Http\\Controllers\\Api\\Corrosion\\CorrosionFileController::update",
+                "parameters": [
+                    {
+                        "name": "corrosion",
+                        "in": "path",
+                        "description": "Id de la corrosión",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "file",
+                        "in": "path",
+                        "description": "Id del archivo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "file"
+                                ],
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Actualiza un archivo asociado a una corrosión.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "409": {
+                        "description": "Error en validaciones de negocio."
+                    },
+                    "422": {
+                        "description": "Entidad no procesable."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Corrosiones"
+                ],
+                "summary": "Elimina un archivo asociado a una corrosión",
+                "operationId": "App\\Http\\Controllers\\Api\\Corrosion\\CorrosionFileController::destroy",
+                "parameters": [
+                    {
+                        "name": "corrosion",
+                        "in": "path",
+                        "description": "Id de la corrosión",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "file",
+                        "in": "path",
+                        "description": "Id del archivo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Elimina un archivo asociado a una corrosión.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "409": {
+                        "description": "Error en validaciones de negocio."
+                    },
+                    "422": {
+                        "description": "Entidad no procesable."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/countries": {
             "get": {
                 "tags": [
@@ -1011,6 +1395,134 @@
                     },
                     "422": {
                         "description": "Entidad no procesable."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/inspections/{inspection}/corrosions": {
+            "get": {
+                "tags": [
+                    "Corrosiones"
+                ],
+                "summary": "Listado de corrisiones asociadas a una inspección",
+                "operationId": "App\\Http\\Controllers\\Api\\Inspection\\InspectionCorrosionController::index",
+                "parameters": [
+                    {
+                        "name": "inspection",
+                        "in": "path",
+                        "description": "Id de la inspección",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra el listado de corrisiones asociadas a una inspección.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Id no encontrado."
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Corrosiones"
+                ],
+                "summary": "Almacena una corrosión",
+                "operationId": "App\\Http\\Controllers\\Api\\Inspection\\InspectionCorrosionController::store",
+                "parameters": [
+                    {
+                        "name": "inspection",
+                        "in": "path",
+                        "description": "Id de la inspección",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "corrosion_type",
+                                    "remaining_thickness",
+                                    "area",
+                                    "large",
+                                    "thickness",
+                                    "depth",
+                                    "files"
+                                ],
+                                "properties": {
+                                    "corrosion_type": {
+                                        "type": "string"
+                                    },
+                                    "remaining_thickness": {
+                                        "type": "integer"
+                                    },
+                                    "area": {
+                                        "type": "integer"
+                                    },
+                                    "large": {
+                                        "type": "integer"
+                                    },
+                                    "thickness": {
+                                        "type": "integer"
+                                    },
+                                    "depth": {
+                                        "type": "integer"
+                                    },
+                                    "files": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    },
+                                    "observation": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Almacena una nueva corrosión asociada a una inspección.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Entidad no procesable."
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
                     }
                 },
                 "security": [
@@ -1682,6 +2194,14 @@
             "description": "Endpoints para el módulo de empresas"
         },
         {
+            "name": "Corrosiones",
+            "description": "Endpoints para el módulo de corrosiones"
+        },
+        {
+            "name": "Corrosiones",
+            "description": "Endpoints para el módulo de corrosiones"
+        },
+        {
             "name": "Países",
             "description": "Endpoints para el módulo de países"
         },
@@ -1696,6 +2216,10 @@
         {
             "name": "Inspecciones",
             "description": "Endpoints para el módulo de inspecciones"
+        },
+        {
+            "name": "Corrosiones",
+            "description": "Endpoints para el módulo de corrosiones"
         },
         {
             "name": "Respuestas",
