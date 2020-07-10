@@ -310,6 +310,10 @@ class CorrosionFileController extends ApiControllerV1
             return $this->errorResponse(__('No puedes eliminar el archivo de está corrosión porque a la inspección a la que pertenece ya fue finalizada.'), 409);
         }
 
+        if ($corrosion->files()->count() <= 5) {
+            return $this->errorResponse(__('No puedes eliminar este archivo porque una corrosión debe terner mínimo 5 archivos.'), 409);
+        }
+
         $this->delete_file($file);
 
         return $this->showOne($file);

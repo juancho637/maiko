@@ -151,7 +151,7 @@ class InspectionCorrosionController extends ApiControllerV1
             'large' => 'required|numeric|min:0',
             'thickness' => 'required|numeric|min:0',
             'depth' => 'required|numeric|min:0',
-            'files' => 'required|array|min:1',
+            'files' => 'required|array|min:5',
             'files.*' => 'image|mimes:jpeg,png,jpg|max:2048',
             'observation' => 'string',
         ]);
