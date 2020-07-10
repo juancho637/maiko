@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Controllers\Api\ApiControllerV1;
 
 /**
@@ -139,7 +140,11 @@ class AuthController extends ApiControllerV1
      */
     public function refresh()
     {
-        return $this->respondWithToken(Auth::guard('api')->refresh());
+        try {
+            return $this->respondWithToken(Auth::guard('api')->refresh());
+        } catch (JWTException $e) {
+            return $this->errorResponse(__('Token Signature could not be verified'), 409);
+        }
     }
 
     /**
