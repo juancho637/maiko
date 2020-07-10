@@ -70,7 +70,30 @@ class InspectionTransformer extends TransformerAbstract
             'observation' => 'observation',
             'created' => 'created_at',
             'updated' => 'updated_at',
-            'deleted' => 'deleted_at',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
+
+    public static function transformedAttribute($index)
+    {
+        $attributes = [
+            'id' => 'id',
+            'status_id' => 'status',
+            'user_id' => 'user',
+            'work_order_id' => 'work_order',
+            'city_id' => 'city',
+            'tank_id' => 'tank',
+            'date' => 'date',
+            'address' => 'address',
+            'light_intensity' => 'light_intensity',
+            'humidity' => 'humidity',
+            'temperature' => 'temperature',
+            'latitude' => 'latitude',
+            'longitude' => 'longitude',
+            'observation' => 'observation',
+            'created_at' => 'created',
+            'updated_at' => 'updated',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;

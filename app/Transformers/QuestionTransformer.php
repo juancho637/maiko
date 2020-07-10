@@ -52,7 +52,21 @@ class QuestionTransformer extends TransformerAbstract
             'possible_response' => 'possible_response',
             'created' => 'created_at',
             'updated' => 'updated_at',
-            'deleted' => 'deleted_at',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
+
+    public static function transformedAttribute($index)
+    {
+        $attributes = [
+            'id' => 'id',
+            'module' => 'module',
+            'question' => 'question',
+            'response_type' => 'response_type',
+            'possible_response' => 'possible_response',
+            'created_at' => 'created',
+            'updated_at' => 'updated',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;

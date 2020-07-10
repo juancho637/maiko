@@ -66,7 +66,28 @@ class TankTransformer extends TransformerAbstract
             'body_thickness' => 'body_thickness',
             'created' => 'created_at',
             'updated' => 'updated_at',
-            'deleted' => 'deleted_at',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
+
+    public static function transformedAttribute($index)
+    {
+        $attributes = [
+            'id' => 'id',
+            'status_id' => 'status',
+            'client_id' => 'client',
+            'internal_serial_number' => 'internal_serial_number',
+            'serial_number' => 'serial_number',
+            'maker' => 'maker',
+            'fabrication_year' => 'fabrication_year',
+            'capacity' => 'capacity',
+            'large' => 'large',
+            'diameter' => 'diameter',
+            'head_thickness' => 'head_thickness',
+            'body_thickness' => 'body_thickness',
+            'created_at' => 'created',
+            'updated_at' => 'updated',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;

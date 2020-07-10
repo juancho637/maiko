@@ -54,4 +54,18 @@ class StatusTransformer extends TransformerAbstract
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
     }
+
+    public static function transformedAttribute($index)
+    {
+        $attributes = [
+            'id' => 'id',
+            'name' => 'name',
+            'abbreviation' => 'abbreviation',
+            'type' => 'type',
+            'created_at' => 'created',
+            'updated_at' => 'updated',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
 }

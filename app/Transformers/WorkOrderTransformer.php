@@ -62,7 +62,26 @@ class WorkOrderTransformer extends TransformerAbstract
             'lodging' => 'lodging',
             'created' => 'created_at',
             'updated' => 'updated_at',
-            'deleted' => 'deleted_at',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
+
+    public static function transformedAttribute($index)
+    {
+        $attributes = [
+            'id' => 'id',
+            'status_id' => 'status',
+            'company_id' => 'company',
+            'quotation' => 'quotation',
+            'start' => 'start',
+            'duration' => 'duration',
+            'transport' => 'transport',
+            'feeding' => 'feeding',
+            'hotel' => 'hotel',
+            'lodging' => 'lodging',
+            'created_at' => 'created',
+            'updated_at' => 'updated',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;

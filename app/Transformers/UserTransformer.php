@@ -52,7 +52,21 @@ class UserTransformer extends TransformerAbstract
             'email_verified' => 'email_verified',
             'created' => 'created_at',
             'updated' => 'updated_at',
-            'deleted' => 'deleted_at',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
+
+    public static function transformedAttribute($index)
+    {
+        $attributes = [
+            'id' => 'id',
+            'status_id' => 'status',
+            'full_name' => 'full_name',
+            'email' => 'email',
+            'email_verified' => 'email_verified',
+            'created_at' => 'created',
+            'updated_at' => 'updated',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;

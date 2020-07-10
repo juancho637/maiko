@@ -47,4 +47,43 @@ class CorrosionTransformer extends TransformerAbstract
             'updated' => (string)$corrosion->updated_at,
         ];
     }
+
+    public static function originalAttribute($index){
+        $attributes = [
+            'id' => 'id',
+            'status' => 'status_id',
+            'inspection' => 'inspection_id',
+            'corrosion_type' => 'corrosion_type',
+            'remaining_thickness' => 'remaining_thickness',
+            'area' => 'area',
+            'large' => 'large',
+            'thickness' => 'thickness',
+            'depth' => 'depth',
+            'observation' => 'observation',
+            'created' => 'created_at',
+            'updated' => 'updated_at',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
+
+    public static function transformedAttribute($index)
+    {
+        $attributes = [
+            'id' => 'id',
+            'status_id' => 'status',
+            'inspection_id' => 'inspection',
+            'corrosion_type' => 'corrosion_type',
+            'remaining_thickness' => 'remaining_thickness',
+            'area' => 'area',
+            'large' => 'large',
+            'thickness' => 'thickness',
+            'depth' => 'depth',
+            'observation' => 'observation',
+            'created_at' => 'created',
+            'updated_at' => 'updated',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
 }
