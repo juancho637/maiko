@@ -21,16 +21,27 @@ class UsersTableSeeder extends Seeder
 
         $juan = User::create([
             'status_id' => $active_id,
-            'full_name' => 'Juan David Garcia Reyes',
+            'full_name' => 'Super Usuario',
             'email' => 'super@maiko.com',
             'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
             'email_verified_at' => $now,
         ]);
         $juan->syncRoles($adminRole);
 
-        $inspectorRole = Role::where('name', 'inspector')->first()->id;
-        factory(User::class, 5)->create()->each(function ($user) use ($inspectorRole){
-            $user->syncRoles($inspectorRole);
-        });
+        $oscar = User::create([
+            'status_id' => $active_id,
+            'full_name' => 'Oscar Perdomo',
+            'email' => 'gerenciatecnica@maiko.co',
+            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+            'email_verified_at' => $now,
+        ]);
+        $oscar->syncRoles($adminRole);
+
+        if (app()->environment() !== 'production') {
+            $inspectorRole = Role::where('name', 'inspector')->first()->id;
+            factory(User::class, 5)->create()->each(function ($user) use ($inspectorRole){
+                $user->syncRoles($inspectorRole);
+            });
+        }
     }
 }

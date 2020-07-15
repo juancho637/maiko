@@ -105,7 +105,7 @@ class RoleController extends Controller
             'permissions.*' => 'exists:permissions,name',
         ]);
 
-        if (in_array($role->name, ['super administrator', 'inspector'])) {
+        if (in_array($role->name, ['super administrator'])) {
             return redirect()->route('dashboard.roles.edit', $role)->with('error', 'Este rol no puede ser actualizado');
         }
 
