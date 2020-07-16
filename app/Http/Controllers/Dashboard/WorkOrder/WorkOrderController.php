@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Dashboard\WorkOrder;
 
 use App\Status;
 use App\Company;
+use App\Country;
+use App\State;
+use App\City;
 use App\WorkOrder;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
 
 class WorkOrderController extends Controller
 {
@@ -41,8 +45,10 @@ class WorkOrderController extends Controller
     public function create()
     {
         $companies = Company::get(['id', 'name']);
+        $countries = Country::all('id', 'name');
+        $users = User::all('id', 'full_name');
 
-        return view('dashboard.work_orders.create', compact('companies'));
+        return view('dashboard.work_orders.create', compact('companies','countries','users'));
     }
 
     /**
@@ -58,12 +64,28 @@ class WorkOrderController extends Controller
         $this->validate($request, [
             'company_id' => 'required|exists:companies,id',
             'quotation' => 'required|string|max:191',
-            'start' => 'required|date|after:'.$now,
-            'duration' => 'required|string|max:191',
+            'start' => 'required|date|after_or_equal:'.$now,
+            'work_order_number' => 'required|string|max:191',
+            'address' => 'required|string|max:191',
+            'country_id' => 'required|exists:countries,id',
+            'state_id' => ['required', 'exists:states,id', function ($attribute, $value, $fail) use ($request) {
+                if ((string) State::where('id', $value)->first()->country_id !== $request['country_id']) {
+                    $fail($attribute.' no pertenece a al país seleccionado.');
+                }
+            }],
+            'city_id' => ['required', 'exists:cities,id', function ($attribute, $value, $fail) use ($request) {
+                if ((string) City::where('id', $value)->first()->state_id !== $request['state_id']) {
+                    $fail($attribute.' no pertenece a el estado/departamento seleccionado.');
+                }
+            }],
+            'contact_name' => 'required|string|max:191',
+            'contact_number' => 'required|string|max:191',
+            'certificate_name' => 'required|string|max:191',
+            'owner_email' => 'required|string|max:191',
+            'emails' => 'required|string|max:191',
+            'observation' => 'required|string|max:191',
             'transport' => 'required|string|max:191',
-            'feeding' => 'required|string|max:191',
-            'hotel' => 'required|string|max:191',
-            'lodging' => 'required|string|max:191',
+            'hospitals' => 'required|string|max:191',
         ]);
 
         $request['status_id'] = Status::abbreviation('gen-act')->id;

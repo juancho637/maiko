@@ -21,11 +21,12 @@ class CreateWorkOrdersTable extends Migration
             $table->date('start');
             $table->string('work_order_number')->unique();
             $table->string('address');
-            $table->string('city_id');
-            $table->string('contac_name');
-            $table->string('contac_number');
+            $table->unsignedBigInteger('city_id');
+            $table->string('contact_name');
+            $table->string('contact_number');
             $table->string('inspection_type');
             $table->string('certificate_name');
+            $table->string('owner_email');
             $table->string('emails');
             $table->string('invoice_name');
             $table->string('invoice_nit');
@@ -53,7 +54,6 @@ class CreateWorkOrdersTable extends Migration
             $table->boolean('thickness_gauge_in');
             $table->boolean('reference_block_ladder_in');
             $table->boolean('thermometer');
-            $table->boolean('gas_multidetector');
             $table->boolean('gas_multidetector');
             $table->boolean('harness');
             $table->boolean('mask');
