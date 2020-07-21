@@ -22,9 +22,13 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-8">
                             <label for="company_id">{{ ucfirst(__("empresa")) }}</label>
                             <input type="text" id="company_id" value="{{ $work_order->company->name }}" class="form-control" disabled>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="status">{{ ucfirst(__("estado")) }}</label>
+                            <input type="text" id="status" value="{{ $work_order->status->name }}" class="form-control" disabled>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="quotation">{{ ucfirst(__("cotización")) }}</label>

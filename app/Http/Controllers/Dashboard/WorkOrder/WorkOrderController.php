@@ -147,8 +147,9 @@ class WorkOrderController extends Controller
         $companies = Company::get(['id', 'name']);
         $countries = Country::all('id', 'name');
         $users = User::role('inspector')->get(['id', 'full_name']);
+        $statuses = Status::whereIn('type', ['general', 'work_orders'])->get();
 
-        return view('dashboard.work_orders.edit', compact('work_order', 'companies', 'countries', 'users'));
+        return view('dashboard.work_orders.edit', compact('work_order', 'companies', 'countries', 'users', 'statuses'));
     }
 
     /**

@@ -45,5 +45,13 @@ class StatusesTableSeeder extends Seeder
             'abbreviation' => 'insp-refu',
             'type' => 'inspections',
         ]);
+
+        // Work order statuses
+        Status::create([
+            'name' => 'finalizada',
+            'description' => 'orden de trabajo finalizada',
+            'abbreviation' => 'wo-fin',
+            'type' => 'work_orders',
+        ]);
     }
 }

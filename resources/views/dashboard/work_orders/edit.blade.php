@@ -29,14 +29,23 @@
                         <div class="row">
                             @csrf
                             @method('PUT')
-                            <div class="form-group col-md-12 {{ $errors->has('company_id') ? 'has-error' : '' }}">
-                                <label for="company_id">{{ ucfirst(__('empresa')) }}</label>
+                            <div class="form-group col-md-8 {{ $errors->has('company_id') ? 'has-error' : '' }}">
+                                <label for="company_id">{{ ucfirst(__('empresa')) }}*</label>
                                 <select class="form-control select2" id="company_id" name="company_id" style="width: 100%" {{ $errors->has('company_id') ? 'autofocus' : '' }}>
                                     @foreach($companies as $company)
                                         <option value="{{ $company->id }}" {{ old("company_id", $work_order->company_id) == $company->id ? 'selected' : '' }}>{{ ucfirst($company->name) }}</option>
                                     @endforeach
                                 </select>
                                 {!! $errors->first('company_id', '<span class="help-block">:message</span>') !!}
+                            </div>
+                            <div class="form-group col-md-4 {{ $errors->has('status_id') ? 'has-error' : '' }}">
+                                <label for="status_id">{{ ucfirst(__('estado')) }}*</label>
+                                <select class="form-control select2" id="status_id" name="status_id" style="width: 100%" {{ $errors->has('status_id') ? 'autofocus' : '' }}>
+                                    @foreach($statuses as $status)
+                                        <option value="{{ $status->id }}" {{ old("status_id", $work_order->status_id) == $status->id ? 'selected' : '' }}>{{ ucfirst($status->name) }}</option>
+                                    @endforeach
+                                </select>
+                                {!! $errors->first('status_id', '<span class="help-block">:message</span>') !!}
                             </div>
                             <div class="form-group col-md-4 {{ $errors->has('quotation') ? 'has-error' : '' }}">
                                 <label for="quotation">{{ ucfirst(__("cotización")) }}*</label>
