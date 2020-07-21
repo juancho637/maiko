@@ -59,6 +59,14 @@ class City extends Model
     }
 
     /**
+     * Obtiene las ordenes de trabajo asociadas a una ciudad.
+     */
+    public function work_orders()
+    {
+        return $this->hasMany(WorkOrder::class);
+    }
+
+    /**
      * Obtiene las inspecciones asociadas a una ciudad.
      */
     public function inspections()

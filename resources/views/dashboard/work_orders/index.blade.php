@@ -33,7 +33,6 @@
                                     <th>{{ ucfirst(__("empresa")) }}</th>
                                     <th>{{ ucfirst(__("cotización")) }}</th>
                                     <th>{{ ucfirst(__("fecha de inicio")) }}</th>
-                                    <th>{{ ucfirst(__("duración")) }}</th>
                                     <th>{{ ucfirst(__("estado")) }}</th>
                                     <th>{{ ucfirst(__("acciones")) }}</th>
                                 </tr>
@@ -62,7 +61,6 @@
                 {data: 'company.name', name: 'company.name'},
                 {data: 'quotation', name: 'quotation'},
                 {data: 'start', name: 'start'},
-                {data: 'duration', name: 'duration'},
                 {data: 'status.name', name: 'status.name'},
                 {data: 'actions', name: 'actions'}
             ],

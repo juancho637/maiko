@@ -24,7 +24,7 @@ class CreateWorkOrdersTable extends Migration
             $table->unsignedBigInteger('city_id');
             $table->string('contact_name');
             $table->string('contact_number');
-            $table->string('inspection_type');
+            $table->string('inspection_type')->nullable();
             $table->string('certificate_name');
             $table->string('owner_email');
             $table->string('emails');
@@ -60,7 +60,6 @@ class CreateWorkOrdersTable extends Migration
             $table->boolean('slings');
             $table->boolean('lifeline');
             $table->boolean('atmospheremeter');
-            $table->string('others');
             $table->text('observation');
             $table->string('transport');
             $table->string('hospitals');

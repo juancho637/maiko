@@ -97,4 +97,12 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Inspection::class);
     }
+
+    /**
+     * Obtiene las ordenes de trabajo asociadas a un usuario.
+     */
+    public function work_orders()
+    {
+        return $this->belongsToMany(WorkOrder::class);
+    }
 }
