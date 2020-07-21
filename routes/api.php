@@ -93,6 +93,10 @@ Route::group(['middleware' => 'api'], function () {
             'only' => ['store'],
             'as'=>'api'
         ]);
+        Route::apiResource('users.work_orders', 'Api\User\UserWorkOrderController', [
+            'only' => ['index'],
+            'as'=>'api'
+        ]);
 
         // Rutas para las inspecciones
         Route::apiResource('inspections', 'Api\Inspection\InspectionController', [

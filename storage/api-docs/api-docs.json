@@ -2003,6 +2003,47 @@
                 ]
             }
         },
+        "/users/{user}/work_orders": {
+            "get": {
+                "tags": [
+                    "Ordenes de trabajo"
+                ],
+                "summary": "Listado de ordenes de trabajo asociadas a un usuario",
+                "operationId": "App\\Http\\Controllers\\Api\\User\\UserWorkOrderController::index",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "Id del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra el listado de ordenes de trabajo asociadas a un usuario.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Id no encontrado."
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/work_orders": {
             "get": {
                 "tags": [
@@ -2248,6 +2289,10 @@
         {
             "name": "Inspecciones",
             "description": "Endpoints para el módulo de inspecciones"
+        },
+        {
+            "name": "Ordenes de trabajo",
+            "description": "Endpoints para el módulo de ordenes de trabajo"
         },
         {
             "name": "Ordenes de trabajo",
