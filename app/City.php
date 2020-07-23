@@ -79,6 +79,16 @@ class City extends Model
      */
     public function scopeName($query, $name)
     {
-        return $query->where('name', 'LIKE', '%'.$name.'%');
+        return $query->where('name', 'LIKE', '%' . $name . '%');
+    }
+
+    /**
+     * Busqueda por el id del estado/departamento asociado.
+     */
+    public function scopeByState($query, $state_id)
+    {
+        if ($state_id) {
+            return $query->where('state_id', $state_id);
+        }
     }
 }

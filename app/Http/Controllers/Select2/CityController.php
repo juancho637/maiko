@@ -16,17 +16,11 @@ class CityController extends Controller
      */
     public function index(Request $request)
     {
-        $cities = City::name($request->search)->get();
+        $cities = City::select('id', 'name AS text')
+            ->name($request->search)
+            ->byState($request->state)
+            ->get();
 
-        $formatted_cities = [];
-
-        foreach ($cities as $city) {
-            $formatted_cities[] = [
-                'id' => $city->id,
-                'text' => $city->name,
-            ];
-        }
-
-        return response()->json($formatted_cities, 200);
+        return response()->json($cities, 200);
     }
 }
