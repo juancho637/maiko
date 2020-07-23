@@ -29,7 +29,7 @@
                         <table class="table table-striped" id="work_orders">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>{{ ucfirst(__("no. orden")) }}</th>
                                     <th>{{ ucfirst(__("empresa")) }}</th>
                                     <th>{{ ucfirst(__("cotización")) }}</th>
                                     <th>{{ ucfirst(__("fecha de inicio")) }}</th>
@@ -57,7 +57,7 @@
             serverSide: true,
             ajax: "{{ route('datatable.work_orders.index') }}",
             columns: [
-                {data: 'id', name: 'id'},
+                {data: 'work_order_number', name: 'work_order_number'},
                 {data: 'company.name', name: 'company.name'},
                 {data: 'quotation', name: 'quotation'},
                 {data: 'start', name: 'start'},
