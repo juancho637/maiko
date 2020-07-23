@@ -86,6 +86,22 @@
                             <label for="emails">{{ ucfirst(__("Correo electrónico")) }}</label>
                             <input type="text" id="emails" value="{{ $work_order->emails }}" class="form-control" disabled>
                         </div>
+                        <div class="form-group col-md-6">
+                            <label for="invoice_name">{{ ucfirst(__("Factura a nombre de")) }}</label>
+                            <input type="text" id="invoice_name" value="{{ $work_order->invoice_name }}" class="form-control" disabled>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="invoice_nit">{{ ucfirst(__("NIT")) }}</label>
+                            <input type="text" id="invoice_nit" value="{{ $work_order->invoice_nit }}" class="form-control" disabled>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="invoice_contact_name">{{ ucfirst(__("A quién se envía factura")) }}</label>
+                            <input type="text" id="invoice_contact_name" value="{{ $work_order->invoice_contact_name }}" class="form-control" disabled>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="invoice_mail">{{ ucfirst(__("Dirección de envío de factura")) }}</label>
+                            <input type="text" id="invoice_mail" value="{{ $work_order->invoice_mail }}" class="form-control" disabled>
+                        </div>
                         <div class="col-md-6">
                             <div class="card card-primary">
                                 <div class="card-header">

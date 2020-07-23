@@ -124,6 +124,26 @@
                                 <input type="text" id="emails" name="emails" value="{{ old('emails', $work_order->emails) }}" class="form-control" {{ $errors->has('emails') ? 'autofocus' : '' }}>
                                 {!! $errors->first('emails', '<span class="help-block">:message</span>') !!}
                             </div>
+                            <div class="form-group col-md-6 {{ $errors->has('invoice_name') ? 'has-error' : '' }}">
+                                <label for="invoice_name">{{ ucfirst(__("Factura a nombre de")) }}*</label>
+                                <input type="text" id="invoice_name" name="invoice_name" value="{{ old('invoice_name', $work_order->invoice_name) }}" class="form-control" {{ $errors->has('invoice_name') ? 'autofocus' : '' }}>
+                                {!! $errors->first('invoice_name', '<span class="help-block">:message</span>') !!}
+                            </div>
+                            <div class="form-group col-md-6 {{ $errors->has('invoice_nit') ? 'has-error' : '' }}">
+                                <label for="invoice_nit">{{ ucfirst(__("NIT")) }}*</label>
+                                <input type="text" id="invoice_nit" name="invoice_nit" value="{{ old('invoice_nit', $work_order->invoice_nit) }}" class="form-control" {{ $errors->has('invoice_nit') ? 'autofocus' : '' }}>
+                                {!! $errors->first('invoice_nit', '<span class="help-block">:message</span>') !!}
+                            </div>
+                            <div class="form-group col-md-6 {{ $errors->has('invoice_contact_name') ? 'has-error' : '' }}">
+                                <label for="invoice_contact_name">{{ ucfirst(__("A quién se envía factura")) }}*</label>
+                                <input type="text" id="invoice_contact_name" name="invoice_contact_name" value="{{ old('invoice_contact_name', $work_order->invoice_contact_name) }}" class="form-control" {{ $errors->has('invoice_contact_name') ? 'autofocus' : '' }}>
+                                {!! $errors->first('invoice_contact_name', '<span class="help-block">:message</span>') !!}
+                            </div>
+                            <div class="form-group col-md-6 {{ $errors->has('invoice_mail') ? 'has-error' : '' }}">
+                                <label for="invoice_mail">{{ ucfirst(__("Dirección de envío de factura")) }}*</label>
+                                <input type="text" id="invoice_mail" name="invoice_mail" value="{{ old('invoice_mail', $work_order->invoice_mail) }}" class="form-control" {{ $errors->has('invoice_mail') ? 'autofocus' : '' }}>
+                                {!! $errors->first('invoice_mail', '<span class="help-block">:message</span>') !!}
+                            </div>
                             <div class="col-md-6">
                                 <div class="card card-primary">
                                     <div class="card-header">
