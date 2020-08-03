@@ -23,8 +23,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return DataTables::of(Question::all())
-            ->editColumn('module', function(Question $question) {
+        return DataTables::of(Question::query())
+            ->editColumn('module', function (Question $question) {
                 return __($question->module);
             })
             ->addColumn('actions', 'dashboard.questions.partials.actions')

@@ -23,7 +23,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return DataTables::of(Role::all())
+        return DataTables::of(Role::query())
             ->addColumn('actions', 'dashboard.roles.partials.actions')
             ->rawColumns(['actions'])
             ->toJson();

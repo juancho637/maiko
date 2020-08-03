@@ -23,10 +23,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return DataTables::of(User::all())
+        return DataTables::of(User::with('roles:id,name'))
             ->addColumn('roles', function (User $user) {
-                return $user->roles->map(function($role) {
-                    return "<a href='".route("dashboard.roles.show", $role->id)."'>".$role->name."</a>";
+                return $user->roles->map(function ($role) {
+                    return "<a href='" . route("dashboard.roles.show", $role->id) . "'>" . $role->name . "</a>";
                 })->implode(', ');
             })
             ->addColumn('actions', 'dashboard.users.partials.actions')

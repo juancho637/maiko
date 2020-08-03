@@ -23,7 +23,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        return DataTables::of(Company::all())
+        return DataTables::of(Company::query())
             ->addColumn('actions', 'dashboard.companies.partials.actions')
             ->rawColumns(['actions'])
             ->toJson();
