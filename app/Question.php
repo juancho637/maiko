@@ -31,10 +31,10 @@ class Question extends Model
      * Posibles módulos a la que una pregunta puede pertenecer.
      */
     const MODULES = [
-        'inspections',
-        'internal inspections',
-        'corrosions',
-        'dents',
+        'inspección extrena',
+        'inspación interna',
+        'corrosión',
+        'abolladura',
     ];
 
     /**
