@@ -19,7 +19,7 @@ class InspectionQuestionAnswerController extends ApiControllerV1
     public function __construct()
     {
         $this->middleware('auth:api');
-        $this->middleware('transform.input:'.AnswerTransformer::class)->only(['store']);
+        $this->middleware('transform.input:' . AnswerTransformer::class)->only(['store']);
     }
 
     /**
@@ -75,8 +75,12 @@ class InspectionQuestionAnswerController extends ApiControllerV1
     public function store(Request $request, Inspection $inspection, Question $question)
     {
         $this->validate($request, [
-            'value' => 'required|in:'.$question->possible_response,
+            'value' => 'required|in:' . $question->possible_response,
         ]);
+
+        if ($question->module !== 'inspección extrena') {
+            return $this->errorResponse(__('La pregunta no pertenece al módulo de inspección extrena.'), 409);
+        }
 
         $answer = $inspection->answers()->create([
             'question_id' => $question->id,
