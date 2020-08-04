@@ -18,6 +18,7 @@ class CreateInspectionsTable extends Migration
             $table->unsignedBigInteger('status_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('work_order_id');
+            $table->string('certificate_number')->unique()->nullable();
             $table->unsignedBigInteger('city_id')->nullable();
             $table->unsignedBigInteger('tank_id')->nullable();
             $table->date('date');
@@ -28,6 +29,7 @@ class CreateInspectionsTable extends Migration
             $table->string('latitude');
             $table->string('longitude');
             $table->text('observation')->nullable();
+            $table->boolean('total')->default(false);
             $table->timestamps();
             $table->softDeletes();
 
