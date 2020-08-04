@@ -78,8 +78,8 @@ class InspectionQuestionAnswerController extends ApiControllerV1
             'value' => 'required|in:' . $question->possible_response,
         ]);
 
-        if ($question->module !== 'inspección extrena') {
-            return $this->errorResponse(__('La pregunta no pertenece al módulo de inspección extrena.'), 409);
+        if ($question->module !== 'inspección externa') {
+            return $this->errorResponse(__('La pregunta no pertenece al módulo de inspección externa.'), 409);
         }
 
         $answer = $inspection->answers()->create([

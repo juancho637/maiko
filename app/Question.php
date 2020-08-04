@@ -31,7 +31,7 @@ class Question extends Model
      * Posibles módulos a la que una pregunta puede pertenecer.
      */
     const MODULES = [
-        'inspección extrena',
+        'inspección externa',
         'inspación interna',
         'corrosión',
         'abolladura',
