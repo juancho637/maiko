@@ -138,5 +138,15 @@ Route::group(['middleware' => 'api'], function () {
             'only' => ['index', 'store'],
             'as'=>'api'
         ]);
+
+        // Rutas para los accesorios
+        Route::apiResource('inspections.accesories', 'Api\Inspection\InspectionAccesoryController', [
+            'only' => ['index', 'store'],
+            'as' => 'api'
+        ]);
+        Route::apiResource('accesories', 'Api\Accesory\AccesoryController', [
+            'only' => ['show', 'update'],
+            'as' => 'api'
+        ]);
     });
 });
