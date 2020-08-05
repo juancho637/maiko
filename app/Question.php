@@ -36,6 +36,10 @@ class Question extends Model
         'corrosión',
         'abolladura',
     ];
+    const MODULE_EXTERNAL = 'inspección externa';
+    const MODULE_INTERNAL = 'inspación interna';
+    const MODULE_CORROSION = 'corrosión';
+    const MODULE_DENT = 'abolladura';
 
     /**
      * Posibles tipos de respuesta que una pregunta puede tener.

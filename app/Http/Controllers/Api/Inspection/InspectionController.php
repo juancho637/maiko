@@ -317,7 +317,7 @@ class InspectionController extends ApiControllerV1
             return $this->errorResponse($error, 422);
         }
 
-        $emptyQuestions = Question::byModule('inspections')
+        $emptyQuestions = Question::byModule(Question::MODULE_EXTERNAL)
             ->get()
             ->pluck('id')
             ->diff(
