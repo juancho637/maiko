@@ -19,6 +19,7 @@ class Inspection extends Model
         'status_id',
         'user_id',
         'work_order_id',
+        'certificate_number',
         'city_id',
         'tank_id',
         'date',
@@ -29,6 +30,7 @@ class Inspection extends Model
         'latitude',
         'longitude',
         'observation',
+        'total',
     ];
 
     /**

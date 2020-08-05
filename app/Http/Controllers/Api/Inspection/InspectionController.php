@@ -294,13 +294,21 @@ class InspectionController extends ApiControllerV1
         $error = [];
 
         foreach ($inspection->getAttributes() as $key => $value) {
-            if (!$value) {
+            if (is_null($value)) {
                 if ($key === "deleted_at") {
                     continue;
                 }
 
+                if ($key === "certificate_number") {
+                    continue;
+                }
+
+                if ($key === "observation") {
+                    continue;
+                }
+
                 $error[$key] = [
-                    'El campo '.__($key).' es obligatorio.'
+                    'El campo ' . __($key) . ' es obligatorio.'
                 ];
             }
         }
