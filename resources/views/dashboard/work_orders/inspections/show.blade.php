@@ -95,6 +95,26 @@
                 </div>
             </div>
         </div>
+        <div class="col-12 col-md-12 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>{{ ucfirst(__("accesorios")) }}</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="accesories">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>{{ ucfirst(__("nombre")) }}</th>
+                                {{-- <th>{{ ucfirst(__("acciones")) }}</th> --}}
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
@@ -112,6 +132,31 @@
             columns: [
                 {data: 'question.question', name: 'question.question'},
                 {data: 'value', name: 'value'},
+            ],
+            "language": {
+                "info": "_TOTAL_ registros",
+                "search": "Buscar",
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "paginate": {
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                },
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "emptyTable": "No hay datos",
+                "zeroRecords": "No hay coinsidencias",
+                "infoEmpty": "",
+                "infoFiltered": ""
+            }
+        });
+
+        $('#accesories').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('datatable.inspections.accesories.index', $inspection) }}",
+            columns: [
+                {data: 'id', name: 'id'},
+                {data: 'name', name: 'name'},
             ],
             "language": {
                 "info": "_TOTAL_ registros",
