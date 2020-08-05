@@ -24,7 +24,7 @@ class InspectionController extends ApiControllerV1
     public function __construct()
     {
         $this->middleware('auth:api');
-        $this->middleware('transform.input:'.InspectionTransformer::class)->only(['update', 'complete']);
+        $this->middleware('transform.input:' . InspectionTransformer::class)->only(['update', 'complete']);
     }
 
     /**
@@ -142,11 +142,11 @@ class InspectionController extends ApiControllerV1
 
         if ($request->has('tank_id') && $request->tank_id !== null && $request->has('client_id') && $request->client_id !== null) {
             $client = $inspection
-                        ->work_order
-                        ->company
-                        ->clients()
-                        ->where('id', $request->client_id)
-                        ->first();
+                ->work_order
+                ->company
+                ->clients()
+                ->where('id', $request->client_id)
+                ->first();
 
             $tank = $client->tanks()->where('id', $request->tank_id)->first();
 
@@ -163,15 +163,15 @@ class InspectionController extends ApiControllerV1
             $inspection->address = $client->address;
         } elseif ($request->has('tank_id') && $request->tank_id !== null && !$request->has('client_id')) {
             $tank = $inspection
-                        ->work_order
-                        ->company
-                        ->clients()
-                        ->with('tanks')
-                        ->get()
-                        ->pluck('tanks')
-                        ->collapse()
-                        ->where('id', $request->tank_id)
-                        ->first();
+                ->work_order
+                ->company
+                ->clients()
+                ->with('tanks')
+                ->get()
+                ->pluck('tanks')
+                ->collapse()
+                ->where('id', $request->tank_id)
+                ->first();
 
 
             if (!$tank) {
@@ -183,11 +183,11 @@ class InspectionController extends ApiControllerV1
             $inspection->address = $tank->client->address;
         } elseif ($request->has('client_id') && $request->client_id !== null && !$request->has('tank_id')) {
             $client = $inspection
-                        ->work_order
-                        ->company
-                        ->clients()
-                        ->where('id', $request->client_id)
-                        ->first();
+                ->work_order
+                ->company
+                ->clients()
+                ->where('id', $request->client_id)
+                ->first();
 
             if (!$client) {
                 return $this->errorResponse(__('Este cliente no pertenece a la empresa de la orden de trabajo dada.'), 409);
@@ -213,7 +213,7 @@ class InspectionController extends ApiControllerV1
             $inspection->temperature = $request->temperature;
         }
 
-        if (!$inspection->isDirty()){
+        if (!$inspection->isDirty()) {
             return $this->errorResponse(
                 ucfirst(__('se debe especificar al menos un valor diferente para actualizar')),
                 422
@@ -318,12 +318,12 @@ class InspectionController extends ApiControllerV1
         }
 
         $emptyQuestions = Question::byModule('inspections')
-                                    ->get()
-                                    ->pluck('id')
-                                    ->diff(
-                                        $inspection->answers()
-                                            ->pluck('question_id')
-                                    );
+            ->get()
+            ->pluck('id')
+            ->diff(
+                $inspection->answers()
+                    ->pluck('question_id')
+            );
 
         if (!$emptyQuestions->isEmpty()) {
             $errors = [];
@@ -348,7 +348,7 @@ class InspectionController extends ApiControllerV1
         DB::beginTransaction();
         foreach ($request->file('files') as $file) {
             $inspection->files()->create([
-                'path' => $this->store_file($file, 'inspections/'.$inspection->id, 'private')
+                'path' => $this->store_file($file, 'inspections/' . $inspection->id, 'private')
             ]);
         }
 
