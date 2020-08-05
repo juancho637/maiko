@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\DataTable\Inspection;
 
-use App\Answer;
 use App\Inspection;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
