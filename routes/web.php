@@ -39,19 +39,19 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::resource('roles', 'Dashboard\Role\RoleController', ['as' => 'dashboard']);
     Route::resource('companies', 'Dashboard\Company\CompanyController', ['as' => 'dashboard']);
     Route::resource('companies.clients', 'Dashboard\Company\CompanyClientController', [
-        'except'=>['index'],
+        'except' => ['index'],
         'as' => 'dashboard',
     ]);
     Route::resource('tanks', 'Dashboard\Tank\TankController', ['as' => 'dashboard']);
     Route::resource('work_orders', 'Dashboard\WorkOrder\WorkOrderController', ['as' => 'dashboard']);
     Route::resource('work_orders.inspections', 'Dashboard\WorkOrder\WorkOrderInspectionController', [
-        'except'=>['create', 'store'],
+        'except' => ['create', 'store'],
         'as' => 'dashboard',
     ]);
     Route::get('inspections/{inspection}/approved', 'Dashboard\Inspection\InspectionController@approved')
-            ->name('dashboard.inspections.approved');
+        ->name('dashboard.inspections.approved');
     Route::get('inspections/{inspection}/rejected', 'Dashboard\Inspection\InspectionController@rejected')
-            ->name('dashboard.inspections.rejected');
+        ->name('dashboard.inspections.rejected');
 
     Route::group(['prefix' => 'settings'], function () {
         Route::resource('questions', 'Dashboard\Question\QuestionController', ['as' => 'dashboard']);
@@ -66,48 +66,48 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 
 Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
     Route::resource('users', 'DataTable\User\UserController', [
-        'only'=>['index'],
-        'as'=>'datatable'
+        'only' => ['index'],
+        'as' => 'datatable'
     ]);
     Route::resource('roles', 'DataTable\Role\RoleController', [
-        'only'=>['index'],
-        'as'=>'datatable'
+        'only' => ['index'],
+        'as' => 'datatable'
     ]);
     Route::resource('countries', 'DataTable\Country\CountryController', [
-        'only'=>['index'],
-        'as'=>'datatable'
+        'only' => ['index'],
+        'as' => 'datatable'
     ]);
     Route::resource('states', 'DataTable\State\StateController', [
-        'only'=>['index'],
-        'as'=>'datatable'
+        'only' => ['index'],
+        'as' => 'datatable'
     ]);
     Route::resource('cities', 'DataTable\City\CityController', [
-        'only'=>['index'],
-        'as'=>'datatable'
+        'only' => ['index'],
+        'as' => 'datatable'
     ]);
     Route::resource('companies', 'DataTable\Company\CompanyController', [
-        'only'=>['index'],
-        'as'=>'datatable'
+        'only' => ['index'],
+        'as' => 'datatable'
     ]);
     Route::resource('companies.clients', 'DataTable\Company\CompanyClientController', [
-        'only'=>['index'],
-        'as'=>'datatable'
+        'only' => ['index'],
+        'as' => 'datatable'
     ]);
     Route::resource('tanks', 'DataTable\Tank\TankController', [
-        'only'=>['index'],
-        'as'=>'datatable'
+        'only' => ['index'],
+        'as' => 'datatable'
     ]);
     Route::resource('work_orders', 'DataTable\WorkOrder\WorkOrderController', [
-        'only'=>['index'],
-        'as'=>'datatable'
+        'only' => ['index'],
+        'as' => 'datatable'
     ]);
     Route::resource('work_orders.inspections', 'DataTable\WorkOrder\WorkOrderInspectionController', [
-        'only'=>['index'],
-        'as'=>'datatable'
+        'only' => ['index'],
+        'as' => 'datatable'
     ]);
     Route::resource('questions', 'DataTable\Question\QuestionController', [
-        'only'=>['index'],
-        'as'=>'datatable'
+        'only' => ['index'],
+        'as' => 'datatable'
     ]);
     Route::resource('inspections.answers', 'DataTable\Inspection\InspectionAnswerController', [
         'only' => ['index'],
@@ -117,8 +117,8 @@ Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
 
 // Select2
 Route::group(['prefix' => 'select2', 'middleware' => ['auth']], function () {
-    Route::resource('states', 'Select2\StateController', ['only'=>['index'], 'as'=>'select2']);
-    Route::resource('cities', 'Select2\CityController', ['only'=>['index'], 'as'=>'select2']);
-    Route::resource('clients', 'Select2\ClientController', ['only'=>['index'], 'as'=>'select2']);
-    Route::resource('tanks', 'Select2\TankController', ['only'=>['index'], 'as'=>'select2']);
+    Route::resource('states', 'Select2\StateController', ['only' => ['index'], 'as' => 'select2']);
+    Route::resource('cities', 'Select2\CityController', ['only' => ['index'], 'as' => 'select2']);
+    Route::resource('clients', 'Select2\ClientController', ['only' => ['index'], 'as' => 'select2']);
+    Route::resource('tanks', 'Select2\TankController', ['only' => ['index'], 'as' => 'select2']);
 });

@@ -32,21 +32,21 @@ class InspectionControllerTest extends TestCase
         $inspection = Inspection::all()->random(1)->first();
 
         $tank = $inspection
-                    ->work_order
-                    ->company
-                    ->clients()
-                    ->with('tanks')
-                    ->get()
-                    ->pluck('tanks')
-                    ->collapse()
-                    ->random(1)
-                    ->first();
+            ->work_order
+            ->company
+            ->clients()
+            ->with('tanks')
+            ->get()
+            ->pluck('tanks')
+            ->collapse()
+            ->random(1)
+            ->first();
 
-        $humidity = ''.$this->faker->numberBetween($min = 20, $max = 30);
+        $humidity = '' . $this->faker->numberBetween($min = 20, $max = 30);
 
         $response = $this->withHeaders([
-            'Authorization' => 'Bearer '.$token,
-        ])->json('PUT', '/api/v1/inspections/'.$inspection->id, [
+            'Authorization' => 'Bearer ' . $token,
+        ])->json('PUT', '/api/v1/inspections/' . $inspection->id, [
             'humidity' => $humidity,
             'tank' => $tank->id,
         ]);
@@ -69,14 +69,14 @@ class InspectionControllerTest extends TestCase
         $work_order = WorkOrder::all()->random(1)->first();
 
         $tank = $work_order
-                    ->company
-                    ->clients()
-                    ->with('tanks')
-                    ->get()
-                    ->pluck('tanks')
-                    ->collapse()
-                    ->random(1)
-                    ->first();
+            ->company
+            ->clients()
+            ->with('tanks')
+            ->get()
+            ->pluck('tanks')
+            ->collapse()
+            ->random(1)
+            ->first();
 
         $inspection = factory(Inspection::class)->create([
             'user_id' => $inspector['id'],
@@ -87,20 +87,20 @@ class InspectionControllerTest extends TestCase
             'address' => $tank->client->address,
         ]);
 
-        Question::byModule('inspections')
-                    ->get()
-                    ->each(function ($question) use ($inspection) {
-                        $inspection->answers()->create([
-                            'question_id' => $question->id,
-                            'value' => array_rand(explode(',', $question->possible_response)),
-                        ]);
-                    });
+        Question::byModule(Question::MODULE_EXTERNAL)
+            ->get()
+            ->each(function ($question) use ($inspection) {
+                $inspection->answers()->create([
+                    'question_id' => $question->id,
+                    'value' => array_rand(explode(',', $question->possible_response)),
+                ]);
+            });
 
         $status = Status::abbreviation('insp-pass');
 
         $response = $this->withHeaders([
-            'Authorization' => 'Bearer '.$token,
-        ])->json('POST', '/api/v1/inspections/'.$inspection->id.'/complete', [
+            'Authorization' => 'Bearer ' . $token,
+        ])->json('POST', '/api/v1/inspections/' . $inspection->id . '/complete', [
             'status' => $status->id,
             'files' => [
                 UploadedFile::fake()->image('avatar.jpg'),
