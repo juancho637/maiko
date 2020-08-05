@@ -14,7 +14,7 @@ class WorkOrdersTableSeeder extends Seeder
     public function run()
     {
         Company::all()->each(function ($company) {
-            factory(WorkOrder::class, 10)->create([
+            factory(WorkOrder::class, 5)->create([
                 'company_id' => $company->id,
             ]);
         });

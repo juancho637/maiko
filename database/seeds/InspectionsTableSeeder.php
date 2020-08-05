@@ -17,7 +17,7 @@ class InspectionsTableSeeder extends Seeder
         WorkOrder::all()->each(function ($work_order) {
             $client = $work_order->company->clients()->get()->random(1)->first();
 
-            factory(Inspection::class, 5)->create([
+            factory(Inspection::class, 1)->create([
                 'work_order_id' => $work_order->id,
                 'city_id' => $client->city_id,
                 'tank_id' => $client->tanks()->get()->random(1)->first()->id,
