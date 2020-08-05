@@ -87,6 +87,14 @@ class Inspection extends Model
     }
 
     /**
+     * Obtiene los accesorios asociados a una inspección.
+     */
+    public function accesories()
+    {
+        return $this->hasMany(Accesory::class);
+    }
+
+    /**
      * Obtiene los archivos asociados a una inspección.
      */
     public function files()

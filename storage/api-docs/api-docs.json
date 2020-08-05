@@ -13,6 +13,121 @@
         }
     ],
     "paths": {
+        "/accesories/{accesory}": {
+            "get": {
+                "tags": [
+                    "Accesorios"
+                ],
+                "summary": "Muestra la información de un accesorio",
+                "operationId": "App\\Http\\Controllers\\Api\\Accesory\\AccesoryController::show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del accesorio",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra la información asociada a un accesorio.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Id no encontrado."
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Accesorios"
+                ],
+                "summary": "Actualiza un accesorio",
+                "operationId": "App\\Http\\Controllers\\Api\\Accesory\\AccesoryController::update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del accesorio",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "measure": {
+                                        "type": "string"
+                                    },
+                                    "serial": {
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "brand": {
+                                        "type": "string"
+                                    },
+                                    "cant": {
+                                        "type": "string"
+                                    },
+                                    "according": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Actualiza una corrosión.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "409": {
+                        "description": "Error en validaciones de negocio."
+                    },
+                    "422": {
+                        "description": "Entidad no procesable."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/answers/{answer}": {
             "get": {
                 "tags": [
@@ -1178,6 +1293,124 @@
                 ]
             }
         },
+        "/inspections/{inspection}/accesories": {
+            "get": {
+                "tags": [
+                    "Accesorios"
+                ],
+                "summary": "Listado de accesorios asociados a una inspección",
+                "operationId": "App\\Http\\Controllers\\Api\\Inspection\\InspectionAccesoryController::index",
+                "parameters": [
+                    {
+                        "name": "inspection",
+                        "in": "path",
+                        "description": "Id de la inspección",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra el listado de accesorios asociados a una inspección.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Id no encontrado."
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Accesorios"
+                ],
+                "summary": "Almacena un accesorio asociado a una inspección",
+                "operationId": "App\\Http\\Controllers\\Api\\Inspection\\InspectionAccesoryController::store",
+                "parameters": [
+                    {
+                        "name": "inspection",
+                        "in": "path",
+                        "description": "Id de la inspección",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "measure": {
+                                        "type": "string"
+                                    },
+                                    "serial": {
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "brand": {
+                                        "type": "string"
+                                    },
+                                    "cant": {
+                                        "type": "string"
+                                    },
+                                    "according": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Almacena una nueva corrosión asociada a una inspección.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "409": {
+                        "description": "Error en validaciones de negocio."
+                    },
+                    "422": {
+                        "description": "Entidad no procesable."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/inspections/{inspection}/answers": {
             "get": {
                 "tags": [
@@ -2207,6 +2440,10 @@
     },
     "tags": [
         {
+            "name": "Accesorios",
+            "description": "Endpoints para el módulo de accesorios"
+        },
+        {
             "name": "Respuestas",
             "description": "Endpoints para el módulo de respuestas"
         },
@@ -2249,6 +2486,10 @@
         {
             "name": "Estados/departamentos",
             "description": "Endpoints para el módulo de estados/departamentos"
+        },
+        {
+            "name": "Accesorios",
+            "description": "Endpoints para el módulo de accesorios"
         },
         {
             "name": "Respuestas",
