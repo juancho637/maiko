@@ -3,7 +3,12 @@
 @section('title', config('app.name').' | '.ucfirst(__("inspecciones")))
 
 @push('styles')
+<link rel="stylesheet" href="{{ asset('/modules/datatables/datatables.min.css') }}">
+<link rel="stylesheet" href="{{ asset('/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
 
+<style>
+
+</style>
 @endpush
 
 @section('content')
@@ -70,14 +75,60 @@
                 </div>
             </div>
         </div>
+        <div class="col-12 col-md-12 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>{{ ucfirst(__("respuestas")) }}</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="answers">
+                            <thead>
+                            <tr>
+                                <th>{{ ucfirst(__("pregunta")) }}</th>
+                                <th>{{ ucfirst(__("respuesta")) }}</th>
+                                {{-- <th>{{ ucfirst(__("acciones")) }}</th> --}}
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
 
 @push('scripts')
+<script src="{{ asset('/modules/datatables/datatables.min.js') }}"></script>
+<script src="{{ asset('/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
+
 <script>
     $(function () {
-
+        $('#answers').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('datatable.inspections.answers.index', $inspection) }}",
+            columns: [
+                {data: 'question.question', name: 'question.question'},
+                {data: 'value', name: 'value'},
+            ],
+            "language": {
+                "info": "_TOTAL_ registros",
+                "search": "Buscar",
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "paginate": {
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                },
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "emptyTable": "No hay datos",
+                "zeroRecords": "No hay coinsidencias",
+                "infoEmpty": "",
+                "infoFiltered": ""
+            }
+        });
     });
 </script>
 @endpush

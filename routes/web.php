@@ -109,6 +109,10 @@ Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
         'only'=>['index'],
         'as'=>'datatable'
     ]);
+    Route::resource('inspections.answers', 'DataTable\Inspection\InspectionAnswerController', [
+        'only' => ['index'],
+        'as' => 'datatable'
+    ]);
 });
 
 // Select2
