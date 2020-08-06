@@ -115,6 +115,28 @@
                 </div>
             </div>
         </div>
+        @if($inspection->status->abbreviation === "insp-refu")
+        <div class="col-12 col-md-12 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>{{ ucfirst(__("criterios de rechazo")) }}</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="rejection_criterias">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>{{ ucfirst(__("criterio de rechazo")) }}</th>
+                                {{-- <th>{{ ucfirst(__("acciones")) }}</th> --}}
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
 </div>
 @endsection
@@ -174,6 +196,33 @@
                 "infoFiltered": ""
             }
         });
+
+        @if($inspection->status->abbreviation === "insp-refu")
+        $('#rejection_criterias').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('datatable.inspections.rejection_criterias.index', $inspection) }}",
+            columns: [
+                {data: 'id', name: 'id'},
+                {data: 'criteria', name: 'criteria'},
+            ],
+            "language": {
+                "info": "_TOTAL_ registros",
+                "search": "Buscar",
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "paginate": {
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                },
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "emptyTable": "No hay datos",
+                "zeroRecords": "No hay coinsidencias",
+                "infoEmpty": "",
+                "infoFiltered": ""
+            }
+        });
+        @endif
     });
 </script>
 @endpush

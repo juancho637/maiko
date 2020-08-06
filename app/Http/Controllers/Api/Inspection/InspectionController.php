@@ -256,6 +256,13 @@ class InspectionController extends ApiControllerV1
      *                         format="binary",
      *                     ),
      *                 ),
+     *                 @OA\Property(
+     *                     property="criterias",
+     *                     type="array",
+     *                     @OA\Items(
+     *                         type="string",
+     *                     ),
+     *                 ),
      *             )
      *         )
      *     ),
@@ -347,6 +354,13 @@ class InspectionController extends ApiControllerV1
             return $this->errorResponse(__('El estado no pertenece al módulo de inspecciones.'), 409);
         }
 
+        if ($status->abbreviation === "insp-refu") {
+            $this->validate($request, [
+                'criterias' => 'required|array|min:1',
+                'criterias.*' => 'string',
+            ]);
+        }
+
         $inspection->status_id = $request->status_id;
 
         DB::beginTransaction();
@@ -357,6 +371,13 @@ class InspectionController extends ApiControllerV1
         }
 
         $inspection->save();
+        if ($status->abbreviation === "insp-refu") {
+            foreach ($request->criterias as $criteria) {
+                $inspection->rejection_criterias()->create([
+                    'criteria' => $criteria
+                ]);
+            }
+        }
         DB::commit();
 
         return $this->showOne($inspection);

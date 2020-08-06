@@ -1601,6 +1601,12 @@
                                             "type": "string",
                                             "format": "binary"
                                         }
+                                    },
+                                    "criterias": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
                                     }
                                 },
                                 "type": "object"
@@ -1829,6 +1835,47 @@
                 ]
             }
         },
+        "/inspections/{inspection}/rejection_criterias": {
+            "get": {
+                "tags": [
+                    "Criterios de rechazo"
+                ],
+                "summary": "Listado de criterios de rechazo asociados a una inspección",
+                "operationId": "App\\Http\\Controllers\\Api\\Inspection\\InspectionRejectionCriteriaController::index",
+                "parameters": [
+                    {
+                        "name": "inspection",
+                        "in": "path",
+                        "description": "Id de la inspección",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra el listado de criterios de rechazo asociados a una inspección.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Id no encontrado."
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/questions": {
             "get": {
                 "tags": [
@@ -1888,6 +1935,47 @@
                     },
                     "404": {
                         "description": "Recurso no encontrado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/rejection_criterias/{rejection_criteria}": {
+            "get": {
+                "tags": [
+                    "Criterios de rechazo"
+                ],
+                "summary": "Muestra la información de un criterio de rechazo",
+                "operationId": "App\\Http\\Controllers\\Api\\RejectionCriteria\\RejectionCriteriaController::show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del criterio de rechazo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra la información asociada a un criterio de rechazo.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Id no encontrado."
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
                     }
                 },
                 "security": [
@@ -2508,8 +2596,16 @@
             "description": "Endpoints para el módulo de respuestas"
         },
         {
+            "name": "Criterios de rechazo",
+            "description": "Endpoints para el módulo de criterios de rechazo"
+        },
+        {
             "name": "Preguntas",
             "description": "Endpoints para el módulo de preguntas"
+        },
+        {
+            "name": "Criterios de rechazo",
+            "description": "Endpoints para el módulo de criterios de rechazo"
         },
         {
             "name": "Ciudades",

@@ -148,5 +148,15 @@ Route::group(['middleware' => 'api'], function () {
             'only' => ['show', 'update'],
             'as' => 'api'
         ]);
+
+        // Rutas para los criterios de rechazo
+        Route::apiResource('inspections.rejection_criterias', 'Api\Inspection\InspectionRejectionCriteriaController', [
+            'only' => ['index'],
+            'as' => 'api'
+        ]);
+        Route::apiResource('rejection_criterias', 'Api\RejectionCriteria\RejectionCriteriaController', [
+            'only' => ['show'],
+            'as' => 'api'
+        ]);
     });
 });

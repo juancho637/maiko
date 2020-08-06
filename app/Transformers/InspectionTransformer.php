@@ -52,7 +52,8 @@ class InspectionTransformer extends TransformerAbstract
         ];
     }
 
-    public static function originalAttribute($index){
+    public static function originalAttribute($index)
+    {
         $attributes = [
             'id' => 'id',
             'status' => 'status_id',
@@ -71,6 +72,7 @@ class InspectionTransformer extends TransformerAbstract
             'created' => 'created_at',
             'updated' => 'updated_at',
             'client' => 'client_id',
+            'criterias' => 'criterias',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;

@@ -95,6 +95,14 @@ class Inspection extends Model
     }
 
     /**
+     * Obtiene los criterios de rechazo asociados a una inspección.
+     */
+    public function rejection_criterias()
+    {
+        return $this->hasMany(RejectionCriteria::class);
+    }
+
+    /**
      * Obtiene los archivos asociados a una inspección.
      */
     public function files()

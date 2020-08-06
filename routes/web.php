@@ -117,6 +117,10 @@ Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
         'only' => ['index'],
         'as' => 'datatable'
     ]);
+    Route::resource('inspections.rejection_criterias', 'DataTable\Inspection\InspectionRejectionCriteriaController', [
+        'only' => ['index'],
+        'as' => 'datatable'
+    ]);
 });
 
 // Select2
