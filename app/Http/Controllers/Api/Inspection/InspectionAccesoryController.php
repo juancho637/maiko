@@ -111,7 +111,7 @@ class InspectionAccesoryController extends ApiControllerV1
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Almacena una nueva corrosión asociada a una inspección.",
+     *         description="Almacena un nuevo accesorio asociado a una inspección.",
      *         @OA\JsonContent()
      *     ),
      *     @OA\Response(

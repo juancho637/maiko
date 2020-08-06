@@ -108,7 +108,7 @@ class AccesoryController extends ApiControllerV1
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Actualiza una corrosión.",
+     *         description="Actualiza una accesorio.",
      *         @OA\JsonContent()
      *     ),
      *     @OA\Response(

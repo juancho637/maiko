@@ -104,7 +104,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Actualiza una corrosión.",
+                        "description": "Actualiza una accesorio.",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -1387,7 +1387,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Almacena una nueva corrosión asociada a una inspección.",
+                        "description": "Almacena un nuevo accesorio asociado a una inspección.",
                         "content": {
                             "application/json": {
                                 "schema": {}
