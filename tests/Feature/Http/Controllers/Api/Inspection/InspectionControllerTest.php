@@ -87,6 +87,11 @@ class InspectionControllerTest extends TestCase
             'address' => $tank->client->address,
         ]);
 
+        $inspection->accesories()->create([
+            'inspection_id' => $inspection->id,
+            'name' => 'asd',
+        ]);
+
         Question::byModule(Question::MODULE_EXTERNAL)
             ->get()
             ->each(function ($question) use ($inspection) {

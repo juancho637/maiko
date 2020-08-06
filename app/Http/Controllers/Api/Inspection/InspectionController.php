@@ -337,6 +337,10 @@ class InspectionController extends ApiControllerV1
             return $this->errorResponse($errors, 409);
         }
 
+        if (count($inspection->accesories) < 1) {
+            return $this->errorResponse(__('La inspección debe tener al menos un accesorio.'), 409);
+        }
+
         $status = Status::where('id', $request->status_id)->first();
 
         if ($status->type !== "inspections") {
