@@ -87,6 +87,14 @@ class Inspection extends Model
     }
 
     /**
+     * Obtiene las abolladuras asociadas a una inspección.
+     */
+    public function dents()
+    {
+        return $this->hasMany(Dent::class);
+    }
+
+    /**
      * Obtiene los accesorios asociados a una inspección.
      */
     public function accesories()

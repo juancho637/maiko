@@ -139,6 +139,19 @@ Route::group(['middleware' => 'api'], function () {
             'as' => 'api'
         ]);
 
+        // Rutas para las abolladuras
+        Route::apiResource('dents', 'Api\Dent\DentController', [
+            'only' => ['show', 'update'],
+            'as' => 'api'
+        ]);
+        Route::apiResource('dents.files', 'Api\Dent\DentFileController', [
+            'as' => 'api'
+        ]);
+        Route::apiResource('inspections.dents', 'Api\Inspection\InspectionDentController', [
+            'only' => ['index', 'store'],
+            'as' => 'api'
+        ]);
+
         // Rutas para los accesorios
         Route::apiResource('inspections.accesories', 'Api\Inspection\InspectionAccesoryController', [
             'only' => ['index', 'store'],
