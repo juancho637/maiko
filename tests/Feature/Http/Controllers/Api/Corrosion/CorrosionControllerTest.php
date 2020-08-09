@@ -26,12 +26,12 @@ class CorrosionControllerTest extends TestCase
         $inspection = Inspection::all()->random(1)->first();
         $corrosion = $inspection->corrosions()->first();
 
-        $area = $this->faker->numberBetween($min = 20, $max = 30);
+        $area = (string)$this->faker->numberBetween($min = 20, $max = 30);
         $corrosion_type = $this->faker->randomElement(Corrosion::CORROSION_TYPES);
 
         $response = $this->withHeaders([
-            'Authorization' => 'Bearer '.$token,
-        ])->json('PUT', '/api/v1/corrosions/'.$corrosion->id, [
+            'Authorization' => 'Bearer ' . $token,
+        ])->json('PUT', '/api/v1/corrosions/' . $corrosion->id, [
             'area' => $area,
             'corrosion_type' => $corrosion_type,
         ]);

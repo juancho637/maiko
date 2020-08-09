@@ -28,16 +28,16 @@ class InspectionCorrosionControllerTest extends TestCase
 
         $inspection = Inspection::all()->random(1)->first();
 
-        $area = $this->faker->numberBetween($min = 20, $max = 30);
+        $area = (string)$this->faker->numberBetween($min = 20, $max = 30);
         $corrosion_type = $this->faker->randomElement(Corrosion::CORROSION_TYPES);
-        $remaining_thickness = $this->faker->numberBetween($min = 20, $max = 30);
-        $large = $this->faker->numberBetween($min = 20, $max = 30);
-        $thickness = $this->faker->numberBetween($min = 20, $max = 30);
-        $depth = $this->faker->numberBetween($min = 20, $max = 30);
+        $remaining_thickness = (string)$this->faker->numberBetween($min = 20, $max = 30);
+        $large = (string)$this->faker->numberBetween($min = 20, $max = 30);
+        $thickness = (string)$this->faker->numberBetween($min = 20, $max = 30);
+        $depth = (string)$this->faker->numberBetween($min = 20, $max = 30);
 
         $response = $this->withHeaders([
-            'Authorization' => 'Bearer '.$token,
-        ])->json('POST', '/api/v1/inspections/'.$inspection->id.'/corrosions', [
+            'Authorization' => 'Bearer ' . $token,
+        ])->json('POST', '/api/v1/inspections/' . $inspection->id . '/corrosions', [
             'area' => $area,
             'corrosion_type' => $corrosion_type,
             'remaining_thickness' => $remaining_thickness,
