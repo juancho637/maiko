@@ -18,11 +18,11 @@ class CreateCorrosionsTable extends Migration
             $table->unsignedBigInteger('status_id');
             $table->unsignedBigInteger('inspection_id');
             $table->string('corrosion_type');
-            $table->integer('remaining_thickness');
-            $table->integer('area');
-            $table->integer('large');
-            $table->integer('thickness');
-            $table->integer('depth');
+            $table->string('remaining_thickness');
+            $table->string('area');
+            $table->string('large');
+            $table->string('thickness');
+            $table->string('depth');
             $table->text('observation')->nullable();
             $table->timestamps();
             $table->softDeletes();
