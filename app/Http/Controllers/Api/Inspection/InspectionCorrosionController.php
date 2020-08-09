@@ -25,7 +25,7 @@ class InspectionCorrosionController extends ApiControllerV1
     public function __construct()
     {
         $this->middleware('auth:api');
-        $this->middleware('transform.input:'.CorrosionTransformer::class)->only(['store']);
+        $this->middleware('transform.input:' . CorrosionTransformer::class)->only(['store']);
     }
 
     /**
@@ -167,7 +167,7 @@ class InspectionCorrosionController extends ApiControllerV1
 
         foreach ($request->file('files') as $file) {
             $corrosion->files()->create([
-                'path' => $this->store_file($file, 'inspections/'.$inspection->id.'/corrosions/'.$corrosion->id, 'private')
+                'path' => $this->store_file($file, 'inspections/' . $inspection->id . '/corrosions/' . $corrosion->id, 'private')
             ]);
         }
         DB::commit();
