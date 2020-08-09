@@ -809,7 +809,7 @@
                 "operationId": "App\\Http\\Controllers\\Api\\Corrosion\\CorrosionController::show",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "corrosion",
                         "in": "path",
                         "description": "Id de la corrosión",
                         "required": true,
@@ -848,7 +848,7 @@
                 "operationId": "App\\Http\\Controllers\\Api\\Corrosion\\CorrosionController::update",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "corrosion",
                         "in": "path",
                         "description": "Id de la corrosión",
                         "required": true,
@@ -866,19 +866,19 @@
                                         "type": "string"
                                     },
                                     "remaining_thickness": {
-                                        "type": "integer"
+                                        "type": "string"
                                     },
                                     "area": {
-                                        "type": "integer"
+                                        "type": "string"
                                     },
                                     "large": {
-                                        "type": "integer"
+                                        "type": "string"
                                     },
                                     "thickness": {
-                                        "type": "integer"
+                                        "type": "string"
                                     },
                                     "depth": {
-                                        "type": "integer"
+                                        "type": "string"
                                     },
                                     "observation": {
                                         "type": "string"
@@ -2093,19 +2093,19 @@
                                         "type": "string"
                                     },
                                     "remaining_thickness": {
-                                        "type": "integer"
+                                        "type": "string"
                                     },
                                     "area": {
-                                        "type": "integer"
+                                        "type": "string"
                                     },
                                     "large": {
-                                        "type": "integer"
+                                        "type": "string"
                                     },
                                     "thickness": {
-                                        "type": "integer"
+                                        "type": "string"
                                     },
                                     "depth": {
-                                        "type": "integer"
+                                        "type": "string"
                                     },
                                     "files": {
                                         "type": "array",

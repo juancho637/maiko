@@ -20,7 +20,7 @@ class CorrosionController extends ApiControllerV1
     public function __construct()
     {
         $this->middleware('auth:api');
-        $this->middleware('transform.input:'.CorrosionTransformer::class)->only(['update']);
+        $this->middleware('transform.input:' . CorrosionTransformer::class)->only(['update']);
     }
 
     /**
@@ -29,7 +29,7 @@ class CorrosionController extends ApiControllerV1
      *     summary="Muestra la información de una corrosión",
      *     tags={"Corrosiones"},
      *     @OA\Parameter(
-     *         name="id",
+     *         name="corrosion",
      *         description="Id de la corrosión",
      *         required=true,
      *         in="path",
@@ -64,7 +64,7 @@ class CorrosionController extends ApiControllerV1
      *     summary="Actualiza una corrosión",
      *     tags={"Corrosiones"},
      *     @OA\Parameter(
-     *         name="id",
+     *         name="corrosion",
      *         description="Id de la corrosión",
      *         required=true,
      *         in="path",
@@ -82,23 +82,23 @@ class CorrosionController extends ApiControllerV1
      *                 ),
      *                 @OA\Property(
      *                     property="remaining_thickness",
-     *                     type="integer"
+     *                     type="string"
      *                 ),
      *                 @OA\Property(
      *                     property="area",
-     *                     type="integer"
+     *                     type="string"
      *                 ),
      *                 @OA\Property(
      *                     property="large",
-     *                     type="integer"
+     *                     type="string"
      *                 ),
      *                 @OA\Property(
      *                     property="thickness",
-     *                     type="integer"
+     *                     type="string"
      *                 ),
      *                 @OA\Property(
      *                     property="depth",
-     *                     type="integer"
+     *                     type="string"
      *                 ),
      *                 @OA\Property(
      *                     property="observation",
@@ -133,11 +133,11 @@ class CorrosionController extends ApiControllerV1
             'corrosion_type'  => [
                 Rule::in(Corrosion::CORROSION_TYPES),
             ],
-            'remaining_thickness' => 'numeric|min:0',
-            'area' => 'numeric|min:0',
-            'large' => 'numeric|min:0',
-            'thickness' => 'numeric|min:0',
-            'depth' => 'numeric|min:0',
+            'remaining_thickness' => 'string',
+            'area' => 'string',
+            'large' => 'string',
+            'thickness' => 'string',
+            'depth' => 'string',
             'observation' => 'string',
         ]);
 
@@ -173,7 +173,7 @@ class CorrosionController extends ApiControllerV1
             $corrosion->observation = $request->observation;
         }
 
-        if (!$corrosion->isDirty()){
+        if (!$corrosion->isDirty()) {
             return $this->errorResponse(
                 ucfirst(__('se debe especificar al menos un valor diferente para actualizar')),
                 422

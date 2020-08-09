@@ -90,23 +90,23 @@ class InspectionCorrosionController extends ApiControllerV1
      *                 ),
      *                 @OA\Property(
      *                     property="remaining_thickness",
-     *                     type="integer"
+     *                     type="string"
      *                 ),
      *                 @OA\Property(
      *                     property="area",
-     *                     type="integer"
+     *                     type="string"
      *                 ),
      *                 @OA\Property(
      *                     property="large",
-     *                     type="integer"
+     *                     type="string"
      *                 ),
      *                 @OA\Property(
      *                     property="thickness",
-     *                     type="integer"
+     *                     type="string"
      *                 ),
      *                 @OA\Property(
      *                     property="depth",
-     *                     type="integer"
+     *                     type="string"
      *                 ),
      *                 @OA\Property(
      *                     property="files",
@@ -146,11 +146,11 @@ class InspectionCorrosionController extends ApiControllerV1
                 'required',
                 Rule::in(Corrosion::CORROSION_TYPES),
             ],
-            'remaining_thickness' => 'required|numeric|min:0',
-            'area' => 'required|numeric|min:0',
-            'large' => 'required|numeric|min:0',
-            'thickness' => 'required|numeric|min:0',
-            'depth' => 'required|numeric|min:0',
+            'remaining_thickness' => 'required|string',
+            'area' => 'required|string',
+            'large' => 'required|string',
+            'thickness' => 'required|string',
+            'depth' => 'required|string',
             'files' => 'required|array|min:5',
             'files.*' => 'image|mimes:jpeg,png,jpg|max:2048',
             'observation' => 'string',
