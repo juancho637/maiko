@@ -156,6 +156,10 @@ class InspectionCorrosionController extends ApiControllerV1
             'observation' => 'string',
         ]);
 
+        if ($inspection->status_id != Status::abbreviation('gen-act')->id) {
+            return $this->errorResponse(__('No puedes crear una corrosión asociada a está inspección porque ya fue finalizada.'), 409);
+        }
+
         $request['status_id'] = Status::abbreviation('gen-act')->id;
 
         DB::beginTransaction();
