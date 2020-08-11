@@ -83,6 +83,14 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
+     * Validación para ver si el usuario ya fue verificado.
+     */
+    public function verified_user()
+    {
+        return $this->email_verified_at !== null;
+    }
+
+    /**
      * Obtiene el estado asociado al usuario.
      */
     public function status()

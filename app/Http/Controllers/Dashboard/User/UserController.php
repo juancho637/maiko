@@ -22,7 +22,7 @@ class UserController extends Controller
     {
         $this->middleware('can:view users')->only('index');
         $this->middleware('can:view user')->only('show');
-        $this->middleware('can:create users')->only(['create', 'store']);
+        $this->middleware('can:create users')->only(['create', 'store', 'resend']);
         $this->middleware('can:edit users')->only(['edit', 'update']);
         $this->middleware('can:delete users')->only('destroy');
     }
@@ -114,7 +114,7 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'full_name' => 'required|max:255',
-            'email' => 'required|max:255|unique:users,email,'.$user->id,
+            'email' => 'required|max:255|unique:users,email,' . $user->id,
             'roles' => 'required|array|min:1',
             'roles.*' => 'exists:roles,name',
         ]);
@@ -180,7 +180,7 @@ class UserController extends Controller
             'email_verified_at' => Carbon::now()->toDateTimeString(),
         ]);
 
-        return back()->with('success', 'Contraseña actualizada correctamente.');
+        return redirect()->route('login')->with('success', 'Contraseña actualizada correctamente.');
     }
 
     /**
@@ -192,7 +192,7 @@ class UserController extends Controller
             return back()->with('error', 'Este usuario ya ha sido verificado.');
         }
 
-        retry(5, function() use ($user) {
+        retry(5, function () use ($user) {
             $user->notify(new CreationNotification());
         }, 100);
 

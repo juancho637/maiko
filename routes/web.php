@@ -36,6 +36,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     })->name('dashboard');
 
     Route::resource('users', 'Dashboard\User\UserController', ['as' => 'dashboard']);
+    Route::get('users/{user}/resend', 'Dashboard\User\UserController@resend')
+        ->name('dashboard.users.resend');
     Route::resource('roles', 'Dashboard\Role\RoleController', ['as' => 'dashboard']);
     Route::resource('companies', 'Dashboard\Company\CompanyController', ['as' => 'dashboard']);
     Route::resource('companies.clients', 'Dashboard\Company\CompanyClientController', [

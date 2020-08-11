@@ -7,10 +7,7 @@
 <link rel="stylesheet" href="{{ asset('/modules/select2/dist/css/select2.min.css') }}">
 
 <style>
-    .right-square + span > .selection > .select2-selection--single {
-        border-top-right-radius: 0px !important;
-        border-bottom-right-radius: 0px !important;
-    }
+
 </style>
 @endpush
 
@@ -28,16 +25,27 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="form-group col-md-6">
-                        <label for="full_name">{{ ucfirst(__("nombre completo")) }}</label>
+                        <div class="form-group col-md-3">
+                            <label for="full_name">{{ ucfirst(__("nombre completo")) }}</label>
                             <input type="text" id="full_name" name="full_name" value="{{ $user->full_name }}" class="form-control" disabled>
                         </div>
-                        <div class="form-group col-md-6">
-                        <label for="email">{{ ucfirst(__("correo electrónico")) }}</label>
+                        <div class="form-group col-md-4">
+                            <label for="email">{{ ucfirst(__("correo electrónico")) }}</label>
                             <input type="text" id="email" name="email" value="{{ $user->email }}" class="form-control" disabled>
                         </div>
+                        <div class="form-group col-md-5">
+                            <label for="email_verified_at">
+                                {{ ucfirst(__("fecha de verificación")) }}
+                                @can('create users')
+                                    @if(!$user->email_verified_at)
+                                    <a href="{{ route('dashboard.users.resend', $user) }}">({{ ucfirst(__("Reenviar correo de verificación")) }})</a>
+                                    @endif
+                                @endcan
+                            </label>
+                            <input type="text" id="email_verified_at" value="{{ $user->email_verified_at }}" class="form-control" disabled>
+                        </div>
                         <div class="form-group col-md-12">
-                        <label for="roles">{{ ucfirst(__("roles")) }}</label>
+                            <label for="roles">{{ ucfirst(__("roles")) }}</label>
                             <select class="form-control select2" id="roles" name="roles[]" multiple="multiple" style="width: 100%;" disabled>
                                 @foreach($user->getRoleNames() as $role)
                                     <option value="{{ $role }}" selected>{{ ucfirst($role) }}</option>
