@@ -114,11 +114,11 @@ Route::group(['middleware' => 'api'], function () {
 
         // Rutas para las respuestas
         Route::apiResource('answers', 'Api\Answer\AnswerController', [
-            'only' => ['show', 'update'],
+            'only' => ['show'],
             'as' => 'api'
         ]);
         Route::apiResource('inspections.answers', 'Api\Inspection\InspectionAnswerController', [
-            'only' => ['index'],
+            'only' => ['index', 'update'],
             'as' => 'api'
         ]);
         Route::apiResource('inspections.questions.answers', 'Api\Inspection\InspectionQuestionAnswerController', [
