@@ -48,7 +48,8 @@ class CorrosionTransformer extends TransformerAbstract
         ];
     }
 
-    public static function originalAttribute($index){
+    public static function originalAttribute($index)
+    {
         $attributes = [
             'id' => 'id',
             'status' => 'status_id',
@@ -59,6 +60,7 @@ class CorrosionTransformer extends TransformerAbstract
             'large' => 'large',
             'thickness' => 'thickness',
             'depth' => 'depth',
+            'answers' => 'answers',
             'observation' => 'observation',
             'created' => 'created_at',
             'updated' => 'updated_at',
@@ -79,6 +81,7 @@ class CorrosionTransformer extends TransformerAbstract
             'large' => 'large',
             'thickness' => 'thickness',
             'depth' => 'depth',
+            'answers' => 'answers',
             'observation' => 'observation',
             'created_at' => 'created',
             'updated_at' => 'updated',

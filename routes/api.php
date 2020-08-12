@@ -129,6 +129,10 @@ Route::group(['middleware' => 'api'], function () {
             'only' => ['index', 'update'],
             'as' => 'api'
         ]);
+        Route::apiResource('corrosions.answers', 'Api\Corrosion\CorrosionAnswerController', [
+            'only' => ['index', 'update'],
+            'as' => 'api'
+        ]);
 
         // Rutas para las corrosiones
         Route::apiResource('corrosions', 'Api\Corrosion\CorrosionController', [

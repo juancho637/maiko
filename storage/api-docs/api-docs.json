@@ -743,6 +743,117 @@
                 ]
             }
         },
+        "/corrosions/{corrosion}/answers": {
+            "get": {
+                "tags": [
+                    "Respuestas"
+                ],
+                "summary": "Listado de respuestas asociadas a una corrosión",
+                "operationId": "App\\Http\\Controllers\\Api\\Corrosion\\CorrosionAnswerController::index",
+                "parameters": [
+                    {
+                        "name": "corrosion",
+                        "in": "path",
+                        "description": "Id de la corrosión",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra el listado de respuestas asociadas a una corrosión.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Id no encontrado."
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/corrosions/{corrosion}/answers/{answer}": {
+            "put": {
+                "tags": [
+                    "Respuestas"
+                ],
+                "summary": "Actualiza una respuesta asociada a una corrosión",
+                "operationId": "App\\Http\\Controllers\\Api\\Corrosion\\CorrosionAnswerController::update",
+                "parameters": [
+                    {
+                        "name": "corrosion",
+                        "in": "path",
+                        "description": "Id de la corrosión",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "answer",
+                        "in": "path",
+                        "description": "Id de la respuesta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "value"
+                                ],
+                                "properties": {
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Actualiza una respuesta asociada a una corrosión.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "409": {
+                        "description": "Error en validaciones de negocio."
+                    },
+                    "422": {
+                        "description": "Entidad no procesable."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/corrosions/{corrosion}": {
             "get": {
                 "tags": [

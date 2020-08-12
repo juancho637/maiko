@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api\Inspection;
 
 use App\Status;
+use App\Question;
 use App\Corrosion;
 use App\Inspection;
 use Illuminate\Http\Request;
 use App\Traits\StorageDriver;
 use Illuminate\Validation\Rule;
+use App\Helpers\QuestionsAnswers;
 use Illuminate\Support\Facades\DB;
 use App\Transformers\CorrosionTransformer;
 use App\Http\Controllers\Api\ApiControllerV1;
@@ -154,7 +156,14 @@ class InspectionCorrosionController extends ApiControllerV1
             'files' => 'required|array|min:5',
             'files.*' => 'image|mimes:jpeg,png,jpg|max:2048',
             'observation' => 'string',
+            'answers' => 'required|array',
         ]);
+
+        $questions_answers = new QuestionsAnswers(Question::MODULE_CORROSION, $request->answers);
+
+        if (!empty($questions_answers->validate_answers())) {
+            return $this->errorResponse($questions_answers->validate_answers(), 409);
+        }
 
         if ($inspection->status_id != Status::abbreviation('gen-act')->id) {
             return $this->errorResponse(__('No puedes crear una corrosión asociada a está inspección porque ya fue finalizada.'), 409);
@@ -164,6 +173,13 @@ class InspectionCorrosionController extends ApiControllerV1
 
         DB::beginTransaction();
         $corrosion = $inspection->corrosions()->create($request->all());
+
+        foreach ($questions_answers->get_answers() as $answer) {
+            $corrosion->answers()->create([
+                'question_id' => $answer['question_id'],
+                'value' => $answer['answer']
+            ]);
+        }
 
         foreach ($request->file('files') as $file) {
             $corrosion->files()->create([
