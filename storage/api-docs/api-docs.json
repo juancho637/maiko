@@ -1293,6 +1293,117 @@
                 ]
             }
         },
+        "/dents/{dent}/answers": {
+            "get": {
+                "tags": [
+                    "Respuestas"
+                ],
+                "summary": "Listado de respuestas asociadas a una abolladura",
+                "operationId": "App\\Http\\Controllers\\Api\\Dent\\DentAnswerController::index",
+                "parameters": [
+                    {
+                        "name": "dent",
+                        "in": "path",
+                        "description": "Id de la abolladura",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra el listado de respuestas asociadas a una abolladura.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Id no encontrado."
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/dents/{dent}/answers/{answer}": {
+            "put": {
+                "tags": [
+                    "Respuestas"
+                ],
+                "summary": "Actualiza una respuesta asociada a una abolladura",
+                "operationId": "App\\Http\\Controllers\\Api\\Dent\\DentAnswerController::update",
+                "parameters": [
+                    {
+                        "name": "dent",
+                        "in": "path",
+                        "description": "Id de la abolladura",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "answer",
+                        "in": "path",
+                        "description": "Id de la respuesta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "value"
+                                ],
+                                "properties": {
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Actualiza una respuesta asociada a una abolladura.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario no autorizado."
+                    },
+                    "409": {
+                        "description": "Error en validaciones de negocio."
+                    },
+                    "422": {
+                        "description": "Entidad no procesable."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/dents/{dent}": {
             "get": {
                 "tags": [
@@ -3065,6 +3176,10 @@
         {
             "name": "Estados/departamentos",
             "description": "Endpoints para el módulo de estados/departamentos"
+        },
+        {
+            "name": "Respuestas",
+            "description": "Endpoints para el módulo de respuestas"
         },
         {
             "name": "Abolladuras",

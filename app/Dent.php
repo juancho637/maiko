@@ -52,4 +52,12 @@ class Dent extends Model
     {
         return $this->morphMany(File::class, 'fileable');
     }
+
+    /**
+     * Obtiene las respuestas asociadas a una abolladura.
+     */
+    public function answers()
+    {
+        return $this->morphMany(Answer::class, 'answerable');
+    }
 }

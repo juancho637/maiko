@@ -125,6 +125,10 @@ Route::group(['middleware' => 'api'], function () {
             'only' => ['store'],
             'as' => 'api'
         ]);
+        Route::apiResource('dents.answers', 'Api\Dent\DentAnswerController', [
+            'only' => ['index', 'update'],
+            'as' => 'api'
+        ]);
 
         // Rutas para las corrosiones
         Route::apiResource('corrosions', 'Api\Corrosion\CorrosionController', [
