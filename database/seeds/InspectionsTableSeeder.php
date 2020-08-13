@@ -3,10 +3,14 @@
 use App\WorkOrder;
 use Carbon\Carbon;
 use App\Inspection;
+use App\Traits\StorageDriver;
 use Illuminate\Database\Seeder;
+use Illuminate\Http\UploadedFile;
 
 class InspectionsTableSeeder extends Seeder
 {
+    use StorageDriver;
+
     /**
      * Run the database seeds.
      *
@@ -23,7 +27,13 @@ class InspectionsTableSeeder extends Seeder
                 'tank_id' => $client->tanks()->get()->random(1)->first()->id,
                 'date' => Carbon::createFromFormat('Y-m-d', $work_order->start)->addDay(1)->toDateString(),
                 'address' => $client->address,
-            ]);
+            ])->each(function ($inspection) {
+                for ($i = 1; $i <= 15; $i++) {
+                    $inspection->files()->create([
+                        'path' => $this->store_file(UploadedFile::fake()->image('avatar.jpg'), 'inspections/' . $inspection->id, 'private')
+                    ]);
+                }
+            });
         });
     }
 }

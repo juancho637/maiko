@@ -5,9 +5,14 @@
 @push('styles')
 <link rel="stylesheet" href="{{ asset('/modules/datatables/datatables.min.css') }}">
 <link rel="stylesheet" href="{{ asset('/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('/modules/chocolat/dist/css/chocolat.css') }}">
 
 <style>
-
+    .flex-center {
+        display: flex !important;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
 </style>
 @endpush
 
@@ -66,6 +71,29 @@
                             <label for="temperature">{{ ucfirst(__("temperatura")) }}</label>
                             <input type="text" id="temperature" value="{{ $inspection->temperature }}" class="form-control" disabled>
                         </div>
+                        @if (count($inspection->files) > 0)
+                            <div class="col-12">
+                                <div class="gallery gallery-md flex-center">
+                                    @foreach ($inspection->files as $file_key => $file)
+                                        @if(count($inspection->files) > 10)
+                                            @if($file_key < 9)
+                                                <div class="gallery-item" data-image="{{ route('dashboard.inspections.files.show', [$inspection->id, $file->id]) }}"></div>
+                                            @endif
+                                            @if($file_key == 9)
+                                                <div class="gallery-item gallery-more" data-image="{{ route('dashboard.inspections.files.show', [$inspection->id, $file->id]) }}">
+                                                    <div>+{{ count($inspection->files) - 10 }}</div>
+                                                </div>
+                                            @endif
+                                            @if($file_key > 9)
+                                                <div class="gallery-item gallery-hide" data-image="{{ route('dashboard.inspections.files.show', [$inspection->id, $file->id]) }}"></div>
+                                            @endif
+                                        @else
+                                            <div class="gallery-item" data-image="{{ route('dashboard.inspections.files.show', [$inspection->id, $file->id]) }}"></div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
                         @can('edit inspections')
                             <div class="col-md-6 offset-md-3">
                                 <a href="{{ route('dashboard.work_orders.inspections.edit', [$work_order, $inspection]) }}" class="btn btn-icon icon-left btn-warning btn-block"><i class="fas fa-pen"></i> {{ ucfirst(__('editar')) }}</a>
@@ -144,6 +172,7 @@
 @push('scripts')
 <script src="{{ asset('/modules/datatables/datatables.min.js') }}"></script>
 <script src="{{ asset('/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('/modules/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
 
 <script>
     $(function () {
@@ -196,6 +225,30 @@
                 "infoFiltered": ""
             }
         });
+
+        $(".gallery .gallery-item").each(function() {
+            var me = $(this);
+
+            me.attr('href', me.data('image'));
+            me.attr('title', me.data('title'));
+            if(me.parent().hasClass('gallery-fw')) {
+                me.css({
+                    height: me.parent().data('item-height'),
+                });
+                me.find('div').css({
+                    lineHeight: me.parent().data('item-height') + 'px'
+                });
+            }
+            me.css({
+                backgroundImage: 'url("'+ me.data('image') +'")'
+            });
+        });
+        if(jQuery().Chocolat) {
+            $(".gallery").Chocolat({
+                className: 'gallery',
+                imageSelector: '.gallery-item',
+            });
+        }
 
         @if($inspection->status->abbreviation === "insp-refu")
         $('#rejection_criterias').DataTable({

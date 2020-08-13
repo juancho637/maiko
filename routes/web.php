@@ -54,6 +54,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
         ->name('dashboard.inspections.approved');
     Route::get('inspections/{inspection}/rejected', 'Dashboard\Inspection\InspectionController@rejected')
         ->name('dashboard.inspections.rejected');
+    Route::get('inspections/{inspection}/files/{file}', 'Dashboard\Inspection\InspectionFileController@show')
+        ->name('dashboard.inspections.files.show');
 
     Route::group(['prefix' => 'settings'], function () {
         Route::resource('questions', 'Dashboard\Question\QuestionController', ['as' => 'dashboard']);
