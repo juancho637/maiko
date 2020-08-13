@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
             $this->call(UsersTableSeeder::class);
             $this->call(QuestionsTableSeeder::class);
         } else {
+            Storage::deleteDirectory('inspections');
             $this->call(StatusesTableSeeder::class);
             $this->call(CountriesTableSeeder::class);
             $this->call(StatesTableSeeder::class);
