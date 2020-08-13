@@ -9,23 +9,20 @@ trait StorageDriver
 {
     public function store_file($file, $path, $visibility = 'public')
     {
-        Storage::put($path, $file, $visibility);
+        $storagePath = Storage::put($path, $file, $visibility);
 
         if ($visibility === 'private') {
-            return $path;
+            return $storagePath;
         }
 
-        return Storage::url($path);
+        return Storage::url($storagePath);
     }
 
     public function show_file($path)
     {
-        $file = storage_path($path);
+        $file = Storage::path($path);
 
         return response()->file($file);
-        // return response()->stream(function() use ($file) {
-        //     echo $file;
-        // }, 200, ['Content-Type' => 'image/jpeg',]);
     }
 
     public function delete_file(File $file)
@@ -37,7 +34,7 @@ trait StorageDriver
 
     public function delete_file_only($file)
     {
-        if(Storage::exists($file)) {
+        if (Storage::exists($file)) {
             Storage::delete($file);
         }
     }
