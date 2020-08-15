@@ -1,5 +1,6 @@
 <?php
 
+use App\Dent;
 use App\Question;
 use App\Corrosion;
 use App\Inspection;
@@ -34,6 +35,19 @@ class AnswersTableSeeder extends Seeder
                     $responses = explode(',', $question->possible_response);
                     $rand_key = array_rand($responses);
                     $corrosion->answers()->create([
+                        'question_id' => $question->id,
+                        'value' => $responses[$rand_key],
+                    ]);
+                });
+        });
+
+        Dent::all()->each(function ($dent) {
+            Question::byModule(Question::MODULE_DENT)
+                ->get()
+                ->each(function ($question) use ($dent) {
+                    $responses = explode(',', $question->possible_response);
+                    $rand_key = array_rand($responses);
+                    $dent->answers()->create([
                         'question_id' => $question->id,
                         'value' => $responses[$rand_key],
                     ]);

@@ -90,6 +90,13 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'edit corrosions', 'module' => 'corrosions']);
         Permission::create(['name' => 'delete corrosions', 'module' => 'corrosions']);
 
+        // Dents
+        Permission::create(['name' => 'view dents', 'module' => 'dents']);
+        Permission::create(['name' => 'view dent', 'module' => 'dents']);
+        //  Permission::create(['name' => 'create dents', 'module' => 'dents']);
+        Permission::create(['name' => 'edit dents', 'module' => 'dents']);
+        Permission::create(['name' => 'delete dents', 'module' => 'dents']);
+
         // Questions
         Permission::create(['name' => 'view questions', 'module' => 'questions']);
         Permission::create(['name' => 'view question', 'module' => 'questions']);

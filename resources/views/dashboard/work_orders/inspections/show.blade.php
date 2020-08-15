@@ -146,6 +146,29 @@
                 </div>
             </div>
         @endif
+        @if (count($inspection->dents) > 0)
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>{{ ucfirst(__("abolladuras")) }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="dents">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>{{ ucfirst(__("largo")) }}</th>
+                                    <th>{{ ucfirst(__("ancho")) }}</th>
+                                    <th>{{ ucfirst(__("acciones")) }}</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
         <div class="col-12 col-md-12 col-lg-12">
             <div class="card">
                 <div class="card-header">
@@ -233,6 +256,35 @@
                     {data: 'id', name: 'id'},
                     {data: 'corrosion_type', name: 'corrosion_type'},
                     {data: 'area', name: 'area'},
+                    {data: 'actions', name: 'actions'}
+                ],
+                "language": {
+                    "info": "_TOTAL_ registros",
+                    "search": "Buscar",
+                    "lengthMenu": "Mostrar _MENU_ registros",
+                    "paginate": {
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "emptyTable": "No hay datos",
+                    "zeroRecords": "No hay coinsidencias",
+                    "infoEmpty": "",
+                    "infoFiltered": ""
+                }
+            });
+        @endif
+
+        @if (count($inspection->dents) > 0)
+            $('#dents').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('datatable.work_orders.inspections.dents.index', [$work_order, $inspection]) }}",
+                columns: [
+                    {data: 'id', name: 'id'},
+                    {data: 'large', name: 'large'},
+                    {data: 'width', name: 'width'},
                     {data: 'actions', name: 'actions'}
                 ],
                 "language": {

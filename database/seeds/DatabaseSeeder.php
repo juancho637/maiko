@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
             $this->call(InspectionsTableSeeder::class);
             $this->call(AccesoriesTableSeeder::class);
             $this->call(CorrosionsTableSeeder::class);
+            $this->call(DentsTableSeeder::class);
             $this->call(AnswersTableSeeder::class);
         }
     }

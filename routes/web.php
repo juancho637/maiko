@@ -54,6 +54,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
         'except' => ['create', 'store', 'index'],
         'as' => 'dashboard',
     ]);
+    Route::resource('work_orders.inspections.dents', 'Dashboard\WorkOrder\WorkOrderInspectionDentController', [
+        'except' => ['create', 'store', 'index'],
+        'as' => 'dashboard',
+    ]);
     Route::get('inspections/{inspection}/approved', 'Dashboard\Inspection\InspectionController@approved')
         ->name('dashboard.inspections.approved');
     Route::get('inspections/{inspection}/rejected', 'Dashboard\Inspection\InspectionController@rejected')
@@ -62,6 +66,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
         ->name('dashboard.inspections.files.show');
     Route::get('corrosions/{corrosion}/files/{file}', 'Dashboard\Corrosion\CorrosionFileController@show')
         ->name('dashboard.corrosions.files.show');
+    Route::get('dents/{dent}/files/{file}', 'Dashboard\Dent\DentFileController@show')
+        ->name('dashboard.dents.files.show');
 
     Route::group(['prefix' => 'settings'], function () {
         Route::resource('questions', 'Dashboard\Question\QuestionController', ['as' => 'dashboard']);
@@ -119,6 +125,10 @@ Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
         'only' => ['index'],
         'as' => 'datatable'
     ]);
+    Route::resource('work_orders.inspections.dents', 'DataTable\WorkOrder\WorkOrderInspectionDentController', [
+        'only' => ['index'],
+        'as' => 'datatable'
+    ]);
     Route::resource('questions', 'DataTable\Question\QuestionController', [
         'only' => ['index'],
         'as' => 'datatable'
@@ -136,6 +146,10 @@ Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
         'as' => 'datatable'
     ]);
     Route::resource('corrosions.answers', 'DataTable\Corrosion\CorrosionAnswerController', [
+        'only' => ['index'],
+        'as' => 'datatable'
+    ]);
+    Route::resource('dents.answers', 'DataTable\Dent\DentAnswerController', [
         'only' => ['index'],
         'as' => 'datatable'
     ]);
