@@ -26,7 +26,7 @@ class CorrosionFileController extends Controller
     {
         if (!$corrosion->files()->where('id', $file->id)->exists()) {
             return $this->errorResponse(
-                __('El archivo no existe o no esta asociado a esta inspección.'),
+                __('El archivo no existe o no esta asociado a esta corrosión.'),
                 404
             );
         }
