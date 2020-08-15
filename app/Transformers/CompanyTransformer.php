@@ -36,6 +36,7 @@ class CompanyTransformer extends TransformerAbstract
             'id' => (int)$company->id,
             'status' => (int)$company->status_id,
             'name' => (string)$company->name,
+            'nit' => (string)$company->nit,
             'address' => (string)$company->address,
             'contact_name' => (string)$company->contact_name,
             'contact_number' => (string)$company->contact_number,
@@ -44,11 +45,13 @@ class CompanyTransformer extends TransformerAbstract
         ];
     }
 
-    public static function originalAttribute($index){
+    public static function originalAttribute($index)
+    {
         $attributes = [
             'id' => 'id',
             'status' => 'status_id',
             'name' => 'name',
+            'nit' => 'nit',
             'address' => 'address',
             'contact_name' => 'contact_name',
             'contact_number' => 'contact_number',
@@ -65,6 +68,7 @@ class CompanyTransformer extends TransformerAbstract
             'id' => 'id',
             'status_id' => 'status',
             'name' => 'name',
+            'nit' => 'nit',
             'address' => 'address',
             'contact_name' => 'contact_name',
             'contact_number' => 'contact_number',

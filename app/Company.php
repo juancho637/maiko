@@ -19,6 +19,7 @@ class Company extends Model
         'status_id',
         'city_id',
         'name',
+        'nit',
         'address',
         'contact_name',
         'contact_number',

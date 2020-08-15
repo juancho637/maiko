@@ -14,6 +14,7 @@ $factory->define(Company::class, function (Faker $faker) {
         'status_id' => $active,
         'city_id' => City::all()->random(1)->first()->id,
         'name' => $faker->company,
+        'nit' => $faker->ean8,
         'address' => $faker->address,
         'contact_name' => $faker->name,
         'contact_number' => $faker->tollFreePhoneNumber,

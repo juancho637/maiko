@@ -29,10 +29,15 @@
                         <div class="row">
                             @csrf
                             @method('PUT')
-                            <div class="form-group col-md-12 {{ $errors->has('name') ? 'has-error' : '' }}">
+                            <div class="form-group col-md-8 {{ $errors->has('name') ? 'has-error' : '' }}">
                                 <label for="name">{{ ucfirst(__("nombre")) }}</label>
                                 <input type="text" id="name" name="name" value="{{ old('name', $company->name) }}" class="form-control" {{ $errors->has('name') || !old('name') ? 'autofocus' : '' }}>
                                 {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
+                            </div>
+                            <div class="form-group col-md-4 {{ $errors->has('nit') ? 'has-error' : '' }}">
+                                <label for="nit">{{ ucfirst(__("nit")) }}</label>
+                                <input type="text" id="nit" name="nit" value="{{ old('nit', $company->nit) }}" class="form-control" {{ $errors->has('nit') || !old('nit') ? 'autofocus' : '' }}>
+                                {!! $errors->first('nit', '<span class="help-block">:message</span>') !!}
                             </div>
                             <div class="form-group col-md-6 {{ $errors->has('contact_name') ? 'has-error' : '' }}">
                                 <label for="contact_name">{{ ucfirst(__("nombre del contacto")) }}</label>

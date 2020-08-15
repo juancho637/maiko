@@ -56,17 +56,18 @@ class CompanyController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:191',
+            'nit' => 'required|max:191',
             'contact_name' => 'required|string|max:191',
             'contact_number' => 'required|string|max:10',
             'country_id' => 'required|exists:countries,id',
             'state_id' => ['required', 'exists:states,id', function ($attribute, $value, $fail) use ($request) {
                 if ((string) State::where('id', $value)->first()->country_id !== $request['country_id']) {
-                    $fail($attribute.' no pertenece a al país seleccionado.');
+                    $fail($attribute . ' no pertenece a al país seleccionado.');
                 }
             }],
             'city_id' => ['required', 'exists:cities,id', function ($attribute, $value, $fail) use ($request) {
                 if ((string) City::where('id', $value)->first()->state_id !== $request['state_id']) {
-                    $fail($attribute.' no pertenece a el estado/departamento seleccionado.');
+                    $fail($attribute . ' no pertenece a el estado/departamento seleccionado.');
                 }
             }],
             'address' => 'required|string|max:191',
@@ -114,17 +115,18 @@ class CompanyController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:191',
+            'nit' => 'required|max:191',
             'contact_name' => 'required|string|max:191',
             'contact_number' => 'required|string|max:10',
             'country_id' => 'required|exists:countries,id',
             'state_id' => ['required', 'exists:states,id', function ($attribute, $value, $fail) use ($request) {
                 if ((string) State::where('id', $value)->first()->country_id !== $request['country_id']) {
-                    $fail($attribute.' no pertenece a al país seleccionado.');
+                    $fail($attribute . ' no pertenece a al país seleccionado.');
                 }
             }],
             'city_id' => ['required', 'exists:cities,id', function ($attribute, $value, $fail) use ($request) {
                 if ((string) City::where('id', $value)->first()->state_id !== $request['state_id']) {
-                    $fail($attribute.' no pertenece a el estado/departamento seleccionado.');
+                    $fail($attribute . ' no pertenece a el estado/departamento seleccionado.');
                 }
             }],
             'address' => 'required|string|max:191',
@@ -143,7 +145,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        if ($company->delete()){
+        if ($company->delete()) {
             return redirect()->route('dashboard.companies.index')->with('success', __(":model eliminada correctamente", ['model' => ucfirst(__('empresa'))]));
         }
     }

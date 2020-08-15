@@ -26,9 +26,13 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-8">
                             <label>{{ ucfirst(__("nombre")) }}</label>
                             <input type="text" value="{{ $company->name }}" class="form-control" disabled>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>{{ ucfirst(__("nombre")) }}</label>
+                            <input type="text" value="{{ $company->nit }}" class="form-control" disabled>
                         </div>
                         <div class="form-group col-md-6">
                             <label>{{ ucfirst(__("nombre del contacto")) }}</label>

@@ -18,6 +18,7 @@ class CreateCompaniesTable extends Migration
             $table->unsignedBigInteger('status_id');
             $table->unsignedBigInteger('city_id');
             $table->string('name');
+            $table->string('nit');
             $table->string('address');
             $table->string('contact_name');
             $table->string('contact_number');
