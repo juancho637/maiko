@@ -123,6 +123,29 @@
                 </div>
             </div>
         </div>
+        @if (count($inspection->corrosions) > 0)
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>{{ ucfirst(__("corrosiones")) }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="corrosions">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>{{ ucfirst(__("tipos de corrosión")) }}</th>
+                                    <th>{{ ucfirst(__("Área")) }}</th>
+                                    <th>{{ ucfirst(__("acciones")) }}</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
         <div class="col-12 col-md-12 col-lg-12">
             <div class="card">
                 <div class="card-header">
@@ -200,6 +223,35 @@
                 "infoFiltered": ""
             }
         });
+
+        @if (count($inspection->corrosions) > 0)
+            $('#corrosions').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('datatable.work_orders.inspections.corrosions.index', [$work_order, $inspection]) }}",
+                columns: [
+                    {data: 'id', name: 'id'},
+                    {data: 'corrosion_type', name: 'corrosion_type'},
+                    {data: 'area', name: 'area'},
+                    {data: 'actions', name: 'actions'}
+                ],
+                "language": {
+                    "info": "_TOTAL_ registros",
+                    "search": "Buscar",
+                    "lengthMenu": "Mostrar _MENU_ registros",
+                    "paginate": {
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "emptyTable": "No hay datos",
+                    "zeroRecords": "No hay coinsidencias",
+                    "infoEmpty": "",
+                    "infoFiltered": ""
+                }
+            });
+        @endif
 
         $('#accesories').DataTable({
             processing: true,

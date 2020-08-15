@@ -50,12 +50,18 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
         'except' => ['create', 'store'],
         'as' => 'dashboard',
     ]);
+    Route::resource('work_orders.inspections.corrosions', 'Dashboard\WorkOrder\WorkOrderInspectionCorrosionController', [
+        'except' => ['create', 'store', 'index'],
+        'as' => 'dashboard',
+    ]);
     Route::get('inspections/{inspection}/approved', 'Dashboard\Inspection\InspectionController@approved')
         ->name('dashboard.inspections.approved');
     Route::get('inspections/{inspection}/rejected', 'Dashboard\Inspection\InspectionController@rejected')
         ->name('dashboard.inspections.rejected');
     Route::get('inspections/{inspection}/files/{file}', 'Dashboard\Inspection\InspectionFileController@show')
         ->name('dashboard.inspections.files.show');
+    Route::get('corrosions/{corrosion}/files/{file}', 'Dashboard\Corrosion\CorrosionFileController@show')
+        ->name('dashboard.corrosions.files.show');
 
     Route::group(['prefix' => 'settings'], function () {
         Route::resource('questions', 'Dashboard\Question\QuestionController', ['as' => 'dashboard']);
@@ -109,6 +115,10 @@ Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
         'only' => ['index'],
         'as' => 'datatable'
     ]);
+    Route::resource('work_orders.inspections.corrosions', 'DataTable\WorkOrder\WorkOrderInspectionCorrosionController', [
+        'only' => ['index'],
+        'as' => 'datatable'
+    ]);
     Route::resource('questions', 'DataTable\Question\QuestionController', [
         'only' => ['index'],
         'as' => 'datatable'
@@ -122,6 +132,10 @@ Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
         'as' => 'datatable'
     ]);
     Route::resource('inspections.rejection_criterias', 'DataTable\Inspection\InspectionRejectionCriteriaController', [
+        'only' => ['index'],
+        'as' => 'datatable'
+    ]);
+    Route::resource('corrosions.answers', 'DataTable\Corrosion\CorrosionAnswerController', [
         'only' => ['index'],
         'as' => 'datatable'
     ]);

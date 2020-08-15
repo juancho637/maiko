@@ -1,7 +1,8 @@
 <?php
 
-use App\Inspection;
 use App\Question;
+use App\Corrosion;
+use App\Inspection;
 use Illuminate\Database\Seeder;
 
 class AnswersTableSeeder extends Seeder
@@ -20,6 +21,19 @@ class AnswersTableSeeder extends Seeder
                     $responses = explode(',', $question->possible_response);
                     $rand_key = array_rand($responses);
                     $inspection->answers()->create([
+                        'question_id' => $question->id,
+                        'value' => $responses[$rand_key],
+                    ]);
+                });
+        });
+
+        Corrosion::all()->each(function ($corrosion) {
+            Question::byModule(Question::MODULE_CORROSION)
+                ->get()
+                ->each(function ($question) use ($corrosion) {
+                    $responses = explode(',', $question->possible_response);
+                    $rand_key = array_rand($responses);
+                    $corrosion->answers()->create([
                         'question_id' => $question->id,
                         'value' => $responses[$rand_key],
                     ]);
