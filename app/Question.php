@@ -32,12 +32,12 @@ class Question extends Model
      */
     const MODULES = [
         'inspección externa',
-        'inspación interna',
+        'inspección interna',
         'corrosión',
         'abolladura',
     ];
     const MODULE_EXTERNAL = 'inspección externa';
-    const MODULE_INTERNAL = 'inspación interna';
+    const MODULE_INTERNAL = 'inspección interna';
     const MODULE_CORROSION = 'corrosión';
     const MODULE_DENT = 'abolladura';
 
